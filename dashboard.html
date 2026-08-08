@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 미국 중간선거 모니터</title>
+<style>
+/* Palette: dataviz reference instance. The only color job here is DIVERGING
+   polarity (민주당 ↔ 공화당), which maps onto the blue↔red pair with a gray
+   midpoint. Validated with the six checks in both modes, all-pairs:
+     light #2a78d6/#e34948 — CVD ΔE 21.6, normal ΔE 32.3, contrast ≥3:1  PASS
+     dark  #3987e5/#e66767 — CVD ΔE 19.2, normal ΔE 29.0, contrast ≥3:1  PASS
+   Color never carries meaning alone: every bar is direct-labeled and every
+   lean chip ships an arrow glyph plus a word. */
+:root {
+  color-scheme: light;
+  --plane:      #f9f9f7;
+  --surface:    #fcfcfb;
+  --surface-2:  #f2f2ef;
+  --line:       #e2e2dd;
+  --ink:        #0b0b0b;
+  --ink-2:      #52514e;
+  --ink-3:      #83827c;
+  --dem:        #2a78d6;
+  --rep:        #e34948;
+  --neutral:    #d8d7d2;
+  --dem-soft:   #dbe8fa;
+  --rep-soft:   #fadcdc;
+  --warn:       #fab219;
+  --radius:     4px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --plane:     #0d0d0d;
+    --surface:   #1a1a19;
+    --surface-2: #242422;
+    --line:      #34342f;
+    --ink:       #ffffff;
+    --ink-2:     #c3c2b7;
+    --ink-3:     #8d8c83;
+    --dem:       #3987e5;
+    --rep:       #e66767;
+    --neutral:   #46453f;
+    --dem-soft:  #1c3555;
+    --rep-soft:  #4a2626;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane:     #0d0d0d;
+  --surface:   #1a1a19;
+  --surface-2: #242422;
+  --line:      #34342f;
+  --ink:       #ffffff;
+  --ink-2:     #c3c2b7;
+  --ink-3:     #8d8c83;
+  --dem:       #3987e5;
+  --rep:       #e66767;
+  --neutral:   #46453f;
+  --dem-soft:  #1c3555;
+  --rep-soft:  #4a2626;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--plane);
+  color: var(--ink);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Malgun Gothic", "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 28px 20px 80px; }
+
+/* ---- header ---- */
+header { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+         margin-bottom: 6px; }
+h1 { font-size: 22px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
+.stamp { color: var(--ink-3); font-size: 13px; }
+.theme-btn {
+  margin-left: auto; background: var(--surface); color: var(--ink-2);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 4px 10px; font-size: 12px; cursor: pointer; font-family: inherit;
+}
+.lede { color: var(--ink-2); font-size: 13.5px; margin: 0 0 24px;
+        max-width: 62ch; }
+
+section { margin-bottom: 34px; }
+h2 { font-size: 15px; font-weight: 650; margin: 0 0 4px; }
+.sub { color: var(--ink-3); font-size: 12.5px; margin: 0 0 14px; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 18px 20px;
+}
+
+/* ---- balance of power ---- */
+.bop-row {
+  display: grid; grid-template-columns: 150px 1fr 52px;
+  align-items: center; gap: 12px; padding: 5px 0;
+}
+.bop-name { font-size: 13.5px; color: var(--ink-2); }
+.bop-track { background: var(--surface-2); border-radius: var(--radius);
+             height: 20px; overflow: hidden; }
+.bop-fill { height: 100%; border-radius: var(--radius); }
+.bop-val { font-variant-numeric: tabular-nums; font-size: 13.5px;
+           text-align: right; color: var(--ink); }
+
+/* ---- chamber cards ---- */
+.chambers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 860px) { .chambers { grid-template-columns: 1fr; } }
+.ch-name { font-size: 13px; color: var(--ink-3); margin-bottom: 8px; }
+.ch-hero { font-size: 30px; font-weight: 650; letter-spacing: -0.02em;
+           line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ch-hero small { font-size: 13px; font-weight: 400; color: var(--ink-2);
+                 display: block; margin-top: 3px; letter-spacing: 0; }
+.ch-seats { margin-top: 14px; font-size: 12.5px; color: var(--ink-2); }
+
+/* seat distribution: diverging around the majority line */
+.dist { display: flex; align-items: flex-end; gap: 2px; height: 54px;
+        margin-top: 10px; }
+.dist-bar { flex: 1; border-radius: var(--radius) var(--radius) 0 0;
+            min-height: 2px; position: relative; }
+.dist-axis { display: flex; justify-content: space-between;
+             font-size: 10.5px; color: var(--ink-3); margin-top: 4px; }
+.footnote { font-size: 11.5px; color: var(--ink-3); margin-top: 10px;
+            line-height: 1.45; }
+
+/* ---- movers ---- */
+.movers { display: flex; flex-wrap: wrap; gap: 8px; }
+.mover {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 999px; padding: 5px 12px; font-size: 12.5px;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.mover b { font-weight: 550; }
+.mv-up { color: var(--dem); } .mv-dn { color: var(--rep); }
+
+/* ---- race table ---- */
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  font-size: 11.5px; font-weight: 550; color: var(--ink-3);
+  text-align: left; padding: 0 10px 8px; border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+thead th.num { text-align: right; }
+tbody tr { border-bottom: 1px solid var(--line); cursor: pointer; }
+tbody tr:hover { background: var(--surface-2); }
+tbody td { padding: 10px; vertical-align: middle; font-size: 13.5px; }
+td.num { text-align: right; font-variant-numeric: tabular-nums;
+         white-space: nowrap; }
+.rank { color: var(--ink-3); font-size: 12px; width: 26px; }
+.race-name { font-weight: 550; }
+.race-cand { font-size: 11.5px; color: var(--ink-3); margin-top: 1px; }
+
+/* the two probability columns */
+.pcell { display: flex; align-items: center; justify-content: flex-end;
+         gap: 8px; }
+.pbar { width: 54px; height: 6px; background: var(--surface-2);
+        border-radius: 3px; overflow: hidden; flex: none; }
+.pbar i { display: block; height: 100%; border-radius: 3px; }
+.pnum { min-width: 74px; text-align: right; white-space: nowrap; }
+/* section header with its sort control on the right */
+.sec-head { display: flex; align-items: baseline; justify-content: space-between;
+            gap: 12px; flex-wrap: wrap; }
+.sortbox { display: flex; gap: 0; border: 1px solid var(--line);
+           border-radius: var(--radius); overflow: hidden; flex: none; }
+.sortbtn { font: inherit; font-size: 12px; padding: 4px 10px; cursor: pointer;
+           border: 0; background: var(--surface); color: var(--ink-2); }
+.sortbtn.on { background: var(--ink); color: var(--surface); }
+.chip.sum { font-size: 12px; padding: 3px 8px; }
+/* The party word is the point of the cell — never let colour carry it alone. */
+.pparty { font-size: 11px; font-weight: 600; }
+.none { color: var(--ink-3); font-size: 12px; }
+.delta { font-size: 11px; color: var(--ink-3); margin-left: 4px; }
+
+/* model lean chips */
+.chips { display: flex; gap: 4px; }
+.chip {
+  font-size: 11px; padding: 2px 6px; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--surface-2);
+  color: var(--ink-3); white-space: nowrap;
+}
+.chip.d { background: var(--dem-soft); border-color: transparent;
+          color: var(--dem); }
+.chip.r { background: var(--rep-soft); border-color: transparent;
+          color: var(--rep); }
+.chip.a { background: var(--surface-2); color: var(--ink-2); }
+
+.badge-warn {
+  font-size: 11px; color: var(--ink); background: var(--warn);
+  border-radius: var(--radius); padding: 1px 5px; margin-left: 6px;
+}
+
+/* ---- detail row ---- */
+tr.detail > td { background: var(--surface-2); padding: 4px 10px 18px; }
+.models { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+          margin-top: 8px; }
+@media (max-width: 860px) { .models { grid-template-columns: 1fr 1fr; } }
+.model {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 6px; padding: 12px;
+}
+.model h4 { margin: 0 0 2px; font-size: 12.5px; font-weight: 600; }
+.model .q { font-size: 11.5px; color: var(--ink-3); margin-bottom: 8px;
+            line-height: 1.4; }
+.model .verdict { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.model .meta { font-size: 11px; color: var(--ink-3); }
+.vars { margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line);
+        font-size: 11px; color: var(--ink-2); }
+.vars div { display: flex; justify-content: space-between; gap: 8px;
+            padding: 1.5px 0; }
+.vars .off { color: var(--ink-3); }
+.vars span.z { font-variant-numeric: tabular-nums; }
+
+.explain { font-size: 12px; color: var(--ink-2); margin: 10px 0 0;
+           line-height: 1.5; }
+.loading, .error { padding: 40px 0; color: var(--ink-2); }
+.error b { color: var(--rep); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>2026 미국 중간선거 모니터</h1>
+    <span class="stamp" id="stamp"></span>
+    <button class="theme-btn" id="theme">테마</button>
+  </header>
+  <p class="lede">
+    베팅 시장·여론조사·기초 지표를 <b>따로</b> 보여줍니다. 하나의 숫자로 합치지
+    않습니다 — 셋이 엇갈릴 때가 가장 중요한 정보인데, 평균을 내면 그게 사라지기
+    때문입니다. 순서는 <b>베팅 거래액</b>이 많은 순입니다.
+  </p>
+  <div id="app"><p class="loading">불러오는 중…</p></div>
+</div>
+
+<script>
+const FMT = (p, d = 0) => (100 * p).toFixed(d) + "%";
+/* Signed fixed-point without JavaScript's negative zero: (-0.004).toFixed(2)
+   renders "-0.00", which reads as a Republican lean that isn't there. */
+const SIGNED = (v, d = 2) => {
+  const s = v.toFixed(d);
+  return /^-0\.?0*$/.test(s) ? s.slice(1) : (v > 0 ? "+" + s : s);
+};
+const MONEY = v =>
+  v >= 1e6 ? "$" + (v / 1e6).toFixed(1) + "M" :
+  v >= 1e3 ? "$" + Math.round(v / 1e3) + "K" : "$" + Math.round(v);
+const el = (tag, cls, html) => {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (html !== undefined) n.innerHTML = html;
+  return n;
+};
+
+/* Majority threshold per chamber, in REPUBLICAN seats — the seat markets are
+   all quoted in R seats. Below the line the Democrats hold the chamber. The
+   Senate line is 50 rather than 51 because the Vice-President breaks ties and
+   is a Republican, so 50-50 is Republican control. */
+const R_MAJORITY = { senate: 50, house: 218, governor: 25 };
+
+const LEAN_WORD = { D: "민주", R: "공화", N: "중립" };
+const LEAN_ARROW = { D: "▲", R: "▼", N: "–" };
+const LEVEL_WORD = { high: "높음", normal: "보통", low: "낮음" };
+const STRENGTH = ["중립", "약함", "보통", "강함"];
+const WHY_NONE = {
+  structural: "이 레이스에는 제도적으로 존재하지 않는 지표",
+  pending: "아직 시점이 안 됨",
+  missing: "이번에 데이터를 가져오지 못함"
+};
+
+/* ---------- balance of power ---------- */
+function balanceSection(rows) {
+  const s = el("section");
+  s.appendChild(el("h2", null, "전체 판세"));
+  s.appendChild(el("p", "sub",
+    "상·하원을 한 시장에서 동시에 거래하는 <b>Balance of Power</b> 시장. " +
+    "미드텀 전체에서 거래액이 가장 큽니다."));
+  const card = el("div", "card");
+  const max = Math.max(...rows.map(r => r.prob), 0.01);
+  rows.slice().sort((a, b) => b.prob - a.prob).forEach(r => {
+    // Blue for a Democratic sweep, red for a Republican one, neutral gray for
+    // the split outcomes — they are genuinely neither.
+    const color = /Democrats Sweep/.test(r.outcome) ? "var(--dem)"
+                : /Republicans Sweep/.test(r.outcome) ? "var(--rep)"
+                : "var(--neutral)";
+    const row = el("div", "bop-row");
+    row.appendChild(el("div", "bop-name", r.label || r.outcome));
+    const track = el("div", "bop-track");
+    const fill = el("div", "bop-fill");
+    fill.style.width = (100 * r.prob / max) + "%";
+    fill.style.background = color;
+    track.appendChild(fill);
+    track.title = (r.label || r.outcome) + " " + FMT(r.prob, 1);
+    row.appendChild(track);
+    row.appendChild(el("div", "bop-val", FMT(r.prob, 1)));
+    card.appendChild(row);
+  });
+  s.appendChild(card);
+  return s;
+}
+
+/* ---------- chambers ---------- */
+function chamberCard(key, c) {
+  const card = el("div", "card");
+  card.appendChild(el("div", "ch-name", c.label));
+
+  if (c.prob_dem_control != null) {
+    const lead = c.prob_dem_control >= 0.5;
+    const hero = el("div", "ch-hero");
+    hero.style.color = lead ? "var(--dem)" : "var(--rep)";
+    hero.innerHTML = FMT(lead ? c.prob_dem_control : 1 - c.prob_dem_control) +
+      "<small>" + (lead ? "민주당" : "공화당") + "이 다수당이 될 확률 · 시장 " +
+      MONEY(c.control_volume) + "</small>";
+    card.appendChild(hero);
+  } else {
+    card.appendChild(el("div", "ch-hero",
+      "—<small>다수당 확률을 직접 거래하는 시장이 없습니다</small>"));
+  }
+
+  if (c.seat_buckets && c.seat_buckets.length) {
+    const line = R_MAJORITY[key];
+    const max = Math.max(...c.seat_buckets.map(b => b.prob));
+    const dist = el("div", "dist");
+    c.seat_buckets.forEach(b => {
+      const bar = el("div", "dist-bar");
+      bar.style.height = Math.max(2, 100 * b.prob / max) + "%";
+      // Diverging around the majority line: buckets that would leave the
+      // Republicans short of a majority are blue, the rest red.
+      bar.style.background = b.midpoint < line ? "var(--dem)" : "var(--rep)";
+      bar.title = "공화당 " + b.label + "석 — " + FMT(b.prob, 1);
+      dist.appendChild(bar);
+    });
+    card.appendChild(dist);
+    const axis = el("div", "dist-axis");
+    axis.appendChild(el("span", null, "공화당 " +
+      c.seat_buckets[0].label + "석"));
+    axis.appendChild(el("span", null,
+      c.seat_buckets[c.seat_buckets.length - 1].label + "석"));
+    card.appendChild(axis);
+
+    card.appendChild(el("div", "ch-seats",
+      "시장이 보는 의석 <b>민주 " + c.expected_dem_seats +
+      " · 공화 " + c.expected_rep_seats + "</b>"));
+    if (c.expectation_is_approximate) {
+      card.appendChild(el("p", "footnote",
+        "양 끝 구간(‘" + c.seat_buckets[0].label + "’ 등)은 상한·하한이 " +
+        "열려 있어 중앙값을 가정해야 합니다. 의석수는 <b>어림값</b>이고, " +
+        "위 막대 분포가 시장이 실제로 말한 내용입니다."));
+    }
+  }
+  return card;
+}
+
+/* ---------- movers ---------- */
+function moversSection(movers) {
+  if (!movers.length) return null;
+  const s = el("section");
+  s.appendChild(el("h2", null, "어제보다 많이 움직인 시장"));
+  s.appendChild(el("p", "sub",
+    "베팅 시장의 1일 변화. 화살표는 어느 당 쪽으로 움직였는지, " +
+    "화살표 뒤 값은 현재 앞서는 당의 확률입니다."));
+  const box = el("div", "movers");
+  movers.forEach(m => {
+    const up = m.change > 0;                       // 민주당 쪽으로 움직임
+    const dem = m.prob_dem >= 0.5;                 // 지금 앞서는 쪽
+    const chip = el("div", "mover");
+    chip.innerHTML = "<b>" + m.label + "</b> " +
+      "<span class='" + (up ? "mv-up" : "mv-dn") + "'>" +
+      (up ? "▲ 민주 " : "▼ 공화 ") + Math.abs(100 * m.change).toFixed(1) +
+      "%p</span> <span class='none'>→ " + (dem ? "민주 " : "공화 ") +
+      FMT(dem ? m.prob_dem : 1 - m.prob_dem, 1) + "</span>";
+    box.appendChild(chip);
+  });
+  s.appendChild(box);
+  return s;
+}
+
+/* ---------- one probability cell ---------- */
+/* Cells are quoted in the LEADING party's terms, not always the Democrat's.
+   The underlying datum is still prob_dem — that is the only form comparable
+   across races — but "캔자스 18.8%" was read as a Republican number by a
+   reader who had just seen Polymarket quote the Republican leg at 81%. Both
+   were right; the column simply never said whose probability it was.
+
+   So the party is now printed next to every number. That matters most where
+   the two columns disagree in DIRECTION: Texas Senate quotes the market at
+   공화 51.0% and the polls at 민주 51.1%. Those look like the same number and
+   are opposite claims, which is exactly the divergence this board exists to
+   show — the party word and the blue/red flip carry it. */
+function probCell(p, change, missingText) {
+  const td = el("td", "num");
+  if (p == null) {
+    td.appendChild(el("span", "none", missingText));
+    return td;
+  }
+  const dem = p >= 0.5;
+  const shown = dem ? p : 1 - p;          // the leader's own probability
+  const color = dem ? "var(--dem)" : "var(--rep)";
+
+  const wrap = el("div", "pcell");
+  const bar = el("div", "pbar");
+  const fill = el("i");
+  /* Width tracks the number printed beside it. Filling to prob_dem while
+     colouring by the leader drew Kansas as an 18.8%-wide RED bar — the length
+     said Democrat, the colour said Republican. */
+  fill.style.width = (100 * shown) + "%";
+  fill.style.background = color;
+  bar.appendChild(fill);
+  wrap.appendChild(bar);
+
+  const num = el("span", "pnum");
+  /* change_1d is signed on prob_dem. Reading it as the displayed party's move
+     means flipping it whenever the Republican is the one being quoted. */
+  let text = "<span class='pparty' style='color:" + color + "'>" +
+             (dem ? "민주" : "공화") + "</span> " + FMT(shown, 1);
+  if (change != null && Math.abs(change) >= 0.005) {
+    const mine = dem ? change : -change;
+    text += "<span class='delta'>" + (mine > 0 ? "▲" : "▼") +
+            Math.abs(100 * mine).toFixed(1) + "</span>";
+  }
+  num.innerHTML = text;
+  wrap.appendChild(num);
+  td.appendChild(wrap);
+  return td;
+}
+
+/* ---------- model chips + detail ---------- */
+/* One cell standing in for the four models, by TALLY of the directional ones.
+   Attention is excluded on purpose: a pageview count cannot vote on a party,
+   so folding it in would give the summary a direction it has no basis for.
+
+   A tally, not a weighted average. Averaging the four z-scores would mint a
+   new number on a scale nobody fitted — the exact move v3 exists to avoid.
+   Counting how many models point which way invents nothing, and it keeps
+   disagreement visible: 2-vs-1 reads "엇갈림", not a confident middle. */
+function modelSummary(models) {
+  const dir = models.filter(m => m.directional && m.n_available > 0 &&
+                                 (m.lean === "D" || m.lean === "R"));
+  const box = el("div", "chips");
+  if (!dir.length) {
+    box.appendChild(el("span", "chip", "지표 없음"));
+    return box;
+  }
+  const d = dir.filter(m => m.lean === "D").length;
+  const r = dir.filter(m => m.lean === "R").length;
+
+  let cls = "chip sum", text;
+  if (d === r) {
+    /* A dead heat only happens when a model is missing, so there is no
+       majority to report and nothing here to break the tie with. */
+    text = "경합";
+  } else {
+    const dem = d > r;
+    cls += dem ? " d" : " r";
+    text = dem ? "민주 우세" : "공화 우세";
+  }
+  const chip = el("span", cls, text);
+  chip.title = "방향을 가진 모델 " + dir.length + "개 중 민주 " + d +
+    " / 공화 " + r + ". 관심도는 지지와 반감을 구분하지 못해 제외했습니다. " +
+    "행을 누르면 모델별로 볼 수 있습니다.";
+  box.appendChild(chip);
+  return box;
+}
+
+function modelChips(models) {
+  const box = el("div", "chips");
+  models.forEach(m => {
+    let cls = "chip", text;
+    if (m.n_available === 0) {
+      text = m.label.replace(" 모델", "") + " –";
+    } else if (m.directional) {
+      cls += " " + (m.lean === "D" ? "d" : m.lean === "R" ? "r" : "");
+      text = m.label.replace(" 모델", "") + " " + LEAN_ARROW[m.lean];
+    } else {
+      cls += " a";
+      text = "관심 " + LEVEL_WORD[m.level];
+    }
+    const chip = el("span", cls, text);
+    chip.title = m.question;
+    box.appendChild(chip);
+  });
+  return box;
+}
+
+function modelCard(m) {
+  const card = el("div", "model");
+  card.appendChild(el("h4", null, m.label));
+  card.appendChild(el("div", "q", m.question));
+
+  if (m.n_available === 0) {
+    card.appendChild(el("div", "verdict", "—"));
+    const why = el("div", "meta", WHY_NONE[m.unavailable] || m.unavailable);
+    // The raw reason is a diagnostic string from the adapter, often in
+    // English. It belongs on hover, not in the reading flow.
+    if (m.reason) why.title = m.reason;
+    card.appendChild(why);
+    return card;
+  }
+
+  const verdict = el("div", "verdict");
+  if (m.directional) {
+    verdict.style.color = m.lean === "D" ? "var(--dem)"
+                        : m.lean === "R" ? "var(--rep)" : "var(--ink-2)";
+    verdict.textContent = m.lean === "N" ? "어느 쪽도 아님"
+      : LEAN_WORD[m.lean] + "당 쪽 " + STRENGTH[m.strength];
+  } else {
+    verdict.style.color = "var(--ink)";
+    verdict.textContent = "평소보다 " + LEVEL_WORD[m.level];
+  }
+  card.appendChild(verdict);
+
+  card.appendChild(el("div", "meta",
+    "평소 대비 " + SIGNED(m.z) + "표준편차" +
+    (m.shift_pp != null ? " · 대략 " + SIGNED(m.shift_pp, 1) + "%p" : "") +
+    " · 지표 " + m.n_available + "/" + m.n_total + "개 사용"));
+
+  const vars = el("div", "vars");
+  m.variables.forEach(v => {
+    const row = el("div", v.z == null ? "off" : null);
+    row.appendChild(el("span", null, v.label));
+    row.appendChild(el("span", "z", v.z == null
+      ? (WHY_NONE[v.availability] || "없음")
+      : SIGNED(v.z)));
+    if (v.z == null && v.reason) row.title = v.reason;
+    vars.appendChild(row);
+  });
+  card.appendChild(vars);
+  return card;
+}
+
+/* ---------- race table ---------- */
+/* How many rows each chamber shows. forecast.json carries the UNION of the
+   two volume rankings (board.rank), which is more than this — so whichever
+   metric is selected, its own top N is fully present and the table is not
+   showing a list assembled under the other metric. */
+const SHOW_N = { senate: 20, house: 25, governor: 20 };
+let SORT_BY = "volume";                       // "volume" | "volume1wk"
+
+function raceTable(races, chamberKey) {
+  const rows = races.slice().sort(
+    (a, b) => (b.betting[SORT_BY] - a.betting[SORT_BY]) ||
+              (b.betting.volume - a.betting.volume)
+  ).slice(0, SHOW_N[chamberKey] || undefined);
+
+  const table = el("table");
+  const thead = el("thead");
+  thead.innerHTML =
+    "<tr><th></th><th>선거구</th>" +
+    "<th class='num'>베팅 시장</th><th class='num'>여론조사</th>" +
+    "<th>기초 지표</th><th class='num'>" +
+    (SORT_BY === "volume" ? "누적 거래액" : "1주일 거래액") + "</th></tr>";
+  table.appendChild(thead);
+  const tbody = el("tbody");
+
+  rows.forEach((r, i) => {
+    const tr = el("tr");
+    /* Position under the CURRENT sort, not the rank the pipeline baked in
+       under its own metric — otherwise switching the toggle leaves a column
+       of numbers that no longer counts 1, 2, 3. */
+    tr.appendChild(el("td", "rank", i + 1));
+
+    const name = el("td");
+    const cands = [r.candidates.D, r.candidates.R]
+      .filter(Boolean)
+      .map(s => s.replace(/\s*\((D|R)\)\s*$/, "").replace(/ Party$/, "당"));
+    name.innerHTML = "<div class='race-name'>" + r.label +
+      (r.betting.trustworthy ? "" :
+        "<span class='badge-warn' title='시장 확률의 " +
+        FMT(r.betting.unmapped_mass, 0) +
+        "가 민주·공화 어느 쪽도 아닌 후보에 걸려 있습니다. " +
+        "두 정당 확률로 환산하면 실제로 거래되는 사건과 달라집니다.'>" +
+        "무소속 " + FMT(r.betting.unmapped_mass, 0) + "</span>") +
+      "</div>" +
+      (cands.length === 2 && cands[0] !== "민주당"
+        ? "<div class='race-cand'>" + cands.join(" vs ") + "</div>" : "");
+    tr.appendChild(name);
+
+    tr.appendChild(probCell(
+      r.betting.trustworthy ? r.betting.prob_dem : null,
+      r.betting.change_1d,
+      r.betting.prob_dem == null ? "시장 없음" : "환산 불가"));
+    tr.appendChild(probCell(
+      r.polls ? r.polls.prob_dem : null, null, "여론조사 없음"));
+
+    const chips = el("td");
+    chips.appendChild(modelSummary(r.models));
+    tr.appendChild(chips);
+
+    const vol = el("td", "num");
+    /* Whichever metric the board is sorted on leads; the other stays as the
+       second line, because the two diverge hard — Alaska Senate reads $383K
+       cumulative against $6.5K in a week. */
+    vol.innerHTML = SORT_BY === "volume"
+      ? MONEY(r.betting.volume) +
+        "<div class='race-cand'>1주일 " + MONEY(r.betting.volume1wk) + "</div>"
+      : MONEY(r.betting.volume1wk) +
+        "<div class='race-cand'>누적 " + MONEY(r.betting.volume) + "</div>";
+    tr.appendChild(vol);
+    tbody.appendChild(tr);
+
+    // Detail row — the four models expanded, with each variable underneath.
+    const detail = el("tr", "detail");
+    detail.style.display = "none";
+    const cell = el("td");
+    cell.colSpan = 6;
+    const models = el("div", "models");
+    r.models.forEach(m => models.appendChild(modelCard(m)));
+    cell.appendChild(models);
+    const bits = [];
+    if (r.polls) {
+      bits.push("여론조사 " + r.polls.n_polls + "건 집계, 최근 " +
+        (r.polls.latest_date || "?") + " · 평균 마진 민주 " +
+        (r.polls.margin_dem > 0 ? "+" : "") + r.polls.margin_dem + "p");
+    }
+    if (r.reference && r.reference.rating) {
+      bits.push("전문가 등급 " + r.reference.rating);
+    }
+    if (r.reference && r.reference.incumbent) {
+      bits.push("현직 " + r.reference.incumbent +
+        " (" + r.reference.incumbent_party + ")");
+    }
+    if (bits.length) cell.appendChild(el("p", "explain", bits.join(" · ")));
+    detail.appendChild(cell);
+    tbody.appendChild(detail);
+
+    tr.addEventListener("click", () => {
+      detail.style.display = detail.style.display === "none" ? "" : "none";
+    });
+  });
+
+  table.appendChild(tbody);
+  return table;
+}
+
+/* Cumulative vs 24h is a real choice, not a default to hide. Cumulative
+   matches what polymarket.com shows and is stable; the week says who is
+   actually trading now (Alaska Senate: $383K cumulative, $6.5K in a week). */
+function sortToggle(doc) {
+  const box = el("div", "sortbox");
+  [["volume", "누적"], ["volume1wk", "1주일"]].forEach(([key, word]) => {
+    const b = el("button", "sortbtn" + (SORT_BY === key ? " on" : ""), word);
+    b.addEventListener("click", () => {
+      if (SORT_BY === key) return;
+      SORT_BY = key;
+      render(doc);                       // cheap: a few dozen rows
+    });
+    box.appendChild(b);
+  });
+  return box;
+}
+
+/* ---------- render ---------- */
+function render(doc) {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+
+  document.getElementById("stamp").textContent =
+    new Date(doc.meta.generated_at).toLocaleString("ko-KR") + " 기준";
+
+  if (doc.balance_of_power && doc.balance_of_power.length) {
+    app.appendChild(balanceSection(doc.balance_of_power));
+  }
+
+  const chSec = el("section");
+  chSec.appendChild(el("h2", null, "의회별 전망"));
+  chSec.appendChild(el("p", "sub",
+    "우리 레이스를 합산한 값이 아니라, 의석수를 직접 거래하는 시장에서 " +
+    "그대로 읽은 값입니다."));
+  const grid = el("div", "chambers");
+  ["senate", "house", "governor"].forEach(k => {
+    if (doc.chambers[k]) grid.appendChild(chamberCard(k, doc.chambers[k]));
+  });
+  chSec.appendChild(grid);
+  app.appendChild(chSec);
+
+  const mv = moversSection(doc.movers || []);
+  if (mv) app.appendChild(mv);
+
+  ["senate", "house", "governor"].forEach(k => {
+    const races = doc.races.filter(r => r.chamber === k);
+    if (!races.length) return;
+    const s = el("section");
+    const head = el("div", "sec-head");
+    head.appendChild(el("h2", null, doc.chambers[k].label + " 개별 선거"));
+    head.appendChild(sortToggle(doc));
+    s.appendChild(head);
+    s.appendChild(el("p", "sub",
+      (SORT_BY === "volume" ? "누적" : "최근 1주일") + " 베팅 거래액이 많은 순 " +
+      Math.min(races.length, SHOW_N[k] || races.length) + "곳. 행을 누르면 " +
+      "기초 지표를 자세히 볼 수 있습니다. " +
+      "<b>확률은 그 칸에서 앞서는 당의 승리 확률</b>입니다 — " +
+      "두 칸의 당이 서로 다르면 시장과 여론조사가 승자를 반대로 보고 " +
+      "있다는 뜻입니다." +
+      (k === "house"
+        ? " <b>하원은 거래액과 접전 여부가 별개입니다</b> — 폴리마켓은 443개 " +
+          "지역구를 모두 상장하고, 결과가 뻔한 안전 의석에도 거래가 쌓입니다."
+        : "")));
+    s.appendChild(raceTable(races, k));
+    app.appendChild(s);
+  });
+
+  const notes = el("section");
+  notes.appendChild(el("h2", null, "읽는 법"));
+  const card = el("div", "card");
+  card.innerHTML =
+    "<p class='explain' style='margin-top:0'><b>베팅 시장</b>은 실제 돈이 걸린 " +
+    "가격입니다. 민주·공화 두 쪽 가격을 모두 읽어 합이 1이 되도록 " +
+    "환산했습니다.</p>" +
+    "<p class='explain'><b>여론조사</b>는 수기로 입력한 조사를 최신순·표본 " +
+    "크기순으로 가중 평균한 뒤 확률로 바꾼 값입니다. 조사가 없는 " +
+    "선거구가 많습니다.</p>" +
+    "<p class='explain'><b>기초 지표</b> 칸은 방향을 가진 세 모델(경제·정치자금·" +
+    "풀뿌리)이 <b>어느 쪽을 더 많이 가리키는지 센 것</b>입니다. 평균이 아니라 " +
+    "다수결이라 새 눈금을 만들지 않습니다. 같은 수로 갈리면 ‘경합’, 세 모델 " +
+    "모두 데이터가 없으면 ‘지표 없음’입니다. 관심도는 지지와 반감을 구분하지 " +
+    "못해 이 집계에서 빠집니다. <b>행을 누르면 네 모델을 따로</b> 볼 수 " +
+    "있습니다.</p>" +
+    "<p class='explain'>기초 지표는 확률이 아니라 <b>방향과 세기</b>입니다. " +
+    "‘경제가 평소보다 나빠지고 있다’를 ‘민주당 57% 승리’로 바꾸려면 지표와 " +
+    "결과를 잇는 검증된 대응 관계가 있어야 하는데, 쓸 수 있는 과거 표본이 " +
+    "47개뿐이라 그 환산은 하지 않습니다. 상세보기의 %p는 같은 값을 눈에 " +
+    "익은 단위로 바꿔 본 참고치일 뿐입니다.</p>" +
+    (doc.meta.calibration_validated ? "" :
+      "<p class='explain'><b>보정 미검증.</b> " +
+      (doc.meta.calibration_note || "") + "</p>") +
+    "<p class='explain'>데이터: " + doc.meta.sources_used.join(", ") +
+    (doc.meta.sources_missing.length
+      ? " · 이번에 실패: " + doc.meta.sources_missing.join(", ") : "") + "</p>";
+  notes.appendChild(card);
+  app.appendChild(notes);
+}
+
+/* ---------- theme toggle ---------- */
+document.getElementById("theme").addEventListener("click", () => {
+  const now = document.documentElement.getAttribute("data-theme");
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const next = now ? (now === "dark" ? "light" : "dark") : (dark ? "light" : "dark");
+  document.documentElement.setAttribute("data-theme", next);
+});
+
+/* ---------- load ---------- */
+/* "no-cache" revalidates rather than refusing the cache outright. The file
+   changes once a day, so a repeat visitor gets a 304 with an empty body
+   instead of re-downloading the whole payload — the difference matters on a
+   metered static host. "no-store" would have forced a full transfer each
+   time; plain caching would have served yesterday's numbers. */
+fetch("forecast.json", { cache: "no-cache" })
+  .then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status)))
+  .then(doc => {
+    if (!String(doc.meta && doc.meta.schema_version).startsWith("3.")) {
+      throw new Error("forecast.json이 v" + doc.meta.schema_version +
+        " 형식입니다. 이 페이지는 v3를 읽습니다 — `python3 -m election2026 run`을 다시 실행하세요.");
+    }
+    render(doc);
+  })
+  .catch(err => {
+    document.getElementById("app").innerHTML =
+      "<p class='error'><b>데이터를 불러오지 못했습니다.</b><br>" + err.message +
+      "<br><br>이 페이지는 파일을 직접 열면 동작하지 않습니다. 터미널에서<br>" +
+      "<code>python3 -m election2026.serve</code><br>" +
+      "를 실행한 뒤 <code>http://localhost:8000/dashboard.html</code> 로 " +
+      "접속하세요.</p>";
+  });
+</script>
+</body>
+</html>

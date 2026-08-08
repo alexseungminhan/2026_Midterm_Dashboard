@@ -1,0 +1,8 @@
+# Real API keys — .env.example is the committed template.
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+public/
+election2026/data/raw/
+election2026/data/logs/

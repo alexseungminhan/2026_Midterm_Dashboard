@@ -1,0 +1,9 @@
+# cached raw pulls + generated outputs (keep the dirs, ignore the churn)
+data/raw/**/*.json
+data/raw/_quota_*.json
+data/forecast.json
+data/history/*.json
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
