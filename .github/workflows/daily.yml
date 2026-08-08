@@ -1,0 +1,81 @@
+name: daily forecast
+
+# 매일 한 번 파이프라인을 돌려 forecast.json 을 갱신하고 커밋한다.
+# 커밋이 생기면 Render Static Site 가 그것을 감지해 재배포한다.
+# 사람이 푸시할 일은 여론조사 엑셀을 바꿀 때뿐이다.
+
+on:
+  schedule:
+    # GitHub cron 은 UTC 다. 20:00 UTC = 한국 시간 다음날 05:00.
+    - cron: "0 20 * * *"
+  workflow_dispatch:        # Actions 탭에서 손으로도 돌릴 수 있게
+
+# 커밋을 되밀어야 하므로 쓰기 권한이 필요하다.
+permissions:
+  contents: write
+
+concurrency:
+  # 앞선 실행이 아직 돌고 있으면 겹쳐 돌리지 않는다. 두 파이프라인이 같은
+  # raw 캐시에 동시에 쓰면 반쯤 쓰인 JSON 을 서로 읽는다.
+  group: daily-forecast
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90        # 실측 40분. 소스가 느려질 때를 감안한 여유.
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r election2026/requirements.txt
+
+      # FEC 원본 캐시(약 43MB). 이게 없으면 레이스별 신고 시점 탐색을 매번
+      # 처음부터 해서 훨씬 느려지고 FEC 시간당 1,000건 한도에 닿는다.
+      # 캐시 자체가 1주일 TTL 이므로 키도 ISO 주 단위로 끊는다 — 매 실행마다
+      # 새 키를 쓰면 43MB 짜리 캐시가 하루 하나씩 쌓인다.
+      - id: week
+        run: echo "id=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore FEC cache
+        uses: actions/cache@v4
+        with:
+          path: election2026/data/raw/track_b/fec
+          key: fec-${{ steps.week.outputs.id }}
+          restore-keys: fec-
+
+      - name: Run pipeline
+        env:
+          FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+        run: python -m election2026 run --skip gdelt,reddit,youtube
+
+      # 스키마를 통과하지 못한 결과는 커밋하지 않는다. 깨진 forecast.json 이
+      # 배포되면 대시보드가 빈 화면이 된다.
+      - name: Validate
+        run: python -m election2026 validate
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # forecast.json 과, 다음 run 이 z-score 를 내는 데 필요한 상태.
+          # baselines/ 와 history/ 를 빼면 러너가 매번 빈 상태로 시작해
+          # 기초 지표가 통째로 "기준선 없음"이 된다.
+          git add election2026/data/forecast.json \
+                  election2026/data/baselines \
+                  election2026/data/history \
+                  election2026/data/prediction_log.jsonl
+          if git diff --cached --quiet; then
+            echo "변화 없음 — 커밋 생략"
+          else
+            git commit -m "data: 자동 갱신 $(date -u +%Y-%m-%d)"
+            # 사람이 그 사이 여론조사를 커밋했을 수 있다. 우리 커밋은 데이터
+            # 파일만 건드리므로 rebase 로 얹으면 충돌 없이 올라간다.
+            git pull --rebase --autostash
+            git push
+          fi
