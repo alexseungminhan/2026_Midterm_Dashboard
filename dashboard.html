@@ -388,7 +388,13 @@ function chamberCard(key, c) {
 function moversSection(movers) {
   if (!movers.length) return null;
   const s = el("section");
-  s.appendChild(el("h2", null, "어제보다 많이 움직인 시장"));
+  /* The run is every three days, so "어제" would be wrong. meta carries the
+     real gap; fall back to a neutral wording when it is absent. */
+  const gap = (window.__DOC && window.__DOC.meta &&
+               window.__DOC.meta.change_window_days) || null;
+  s.appendChild(el("h2", null,
+    (gap === 1 ? "어제보다" : gap ? gap + "일 전보다" : "직전 갱신보다") +
+    " 많이 움직인 시장"));
   const box = el("div", "movers");
   movers.forEach(m => {
     const up = m.change > 0;                       // 민주당 쪽으로 움직임
@@ -846,6 +852,7 @@ fetch("forecast.json", { cache: "no-cache" })
       throw new Error("forecast.json이 v" + doc.meta.schema_version +
         " 형식입니다. 이 페이지는 v3를 읽습니다 — `python3 -m election2026 run`을 다시 실행하세요.");
     }
+    window.__DOC = doc;
     render(doc);
   })
   .catch(err => {

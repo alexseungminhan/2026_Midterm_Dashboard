@@ -35,7 +35,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Optional
 
-SCHEMA_VERSION = "3.3.0"
+SCHEMA_VERSION = "3.4.0"
 
 CHAMBERS = ("senate", "house", "governor")
 PARTIES = ("D", "R")
@@ -164,6 +164,10 @@ class Meta:
     # config.py. Nothing in v3 blends on it — see the module docstring.
     calibration_validated: bool = True
     calibration_note: Optional[str] = None
+    # Days between this run and the snapshot `change_1d` is measured against.
+    # The schedule is every three days, so the dashboard prints this rather
+    # than saying "어제보다". None on the first v3 run (nothing to compare).
+    change_window_days: Optional[int] = None
 
 
 def document(meta: Meta, chambers: dict, races: list,
@@ -351,6 +355,7 @@ JSON_SCHEMA = {
                 "dry_run": {"type": "boolean"},
                 "calibration_validated": {"type": "boolean"},
                 "calibration_note": _nullable("string"),
+                "change_window_days": _nullable("integer"),
             },
         },
         "balance_of_power": {

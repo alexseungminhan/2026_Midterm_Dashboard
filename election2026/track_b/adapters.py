@@ -25,7 +25,7 @@ PAYLOAD CONTRACT (uniform across Track B)
 
 `value` is the current observation for that party's side of the race. When
 "baseline" is present the z-score is computed from it directly; otherwise
-signals.py z-scores against the persistent BaselineStore. Absolute values
+signals.py turns into a reading. Absolute values
 NEVER reach the signal — only deviations do.
 
 Two contract extensions, both for variables that are intrinsically ONE number

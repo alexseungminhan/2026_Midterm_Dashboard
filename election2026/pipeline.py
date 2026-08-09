@@ -140,9 +140,29 @@ def _load_snapshots(limit: int = 10) -> list:
     return snaps[-limit:]
 
 
+def prior_gap_days(snapshots: list) -> Optional[int]:
+    """Days between today and the snapshot `change_1d` is measured against.
+
+    The run used to be daily, so "1d" was true by construction. It is every
+    three days now (2026-08-09), and a three-day move labelled "어제보다" is
+    simply a false statement — the dashboard prints this number instead of
+    assuming.
+    """
+    today = datetime.now(timezone.utc).date()
+    prior = [d for d, _ in snapshots
+             if d != today.strftime("%Y-%m-%d")]
+    if not prior:
+        return None
+    try:
+        return max(1, (today - datetime.strptime(
+            prior[-1], "%Y-%m-%d").date()).days)
+    except ValueError:
+        return None
+
+
 def _changes(snapshots: list, race_id: str,
              current: Optional[float]) -> tuple:
-    """(change_1d, change_7d) in probability points, or (None, None)."""
+    """(change_prev, change_older) in probability points, or (None, None)."""
     if current is None or not snapshots:
         return None, None
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -285,10 +305,6 @@ def run(chamber: Optional[str] = None, races_filter: Optional[list] = None,
                     history=ref.get("history", []),
                 ) if ref else None)))
 
-    if not scoped:
-        for store in stores.values():
-            store.save()
-
     chambers_out = {}
     for ch in schema.CHAMBERS:
         reading = chamber_readings[ch]
@@ -320,6 +336,7 @@ def run(chamber: Optional[str] = None, races_filter: Optional[list] = None,
             calibration_validated=config.CALIBRATION_VALIDATED,
             calibration_note=(None if config.CALIBRATION_VALIDATED
                               else config.CALIBRATION_NOTE),
+            change_window_days=prior_gap_days(snapshots),
         ),
         chambers=chambers_out,
         races=races_out,

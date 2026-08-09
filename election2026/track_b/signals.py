@@ -1,21 +1,11 @@
 """track_b/signals.py — turn raw Track B pulls into Dem-oriented z-readings.
 
-For each variable the adapter reports a dem side and a rep side. Each side is
-z-scored against ITS OWN baseline (per race, per source, per side channel),
-then oriented:
+Nothing is carried between runs (2026-08-09). Each variable is read one of
+two ways, both of which finish inside a single run:
 
-    z_oriented = (z_dem - z_rep) / 2          (clipped to ±z_clip)
-
-so "Democratic side unusually energized" is positive and "Republican side
-unusually energized" is negative — never absolute levels. Sides with a
-"baseline" array in the payload are scored against it; otherwise the
-persistent BaselineStore is used and the new observation is appended for
-future runs.
-
-Two variables are intrinsically ONE contrast rather than two sides (a primary
-turnout RATIO, a registration NET change). They ship an "oriented" block and
-skip the differencing — splitting them into two sides would halve the reading
-and invent a second baseline that does not exist.
+  * two sides (dem/rep) -> the snapshot contrast (dem - rep) / (dem + rep)
+  * an "oriented" block -> already one signed reading, carrying its own
+    baseline from the source (FRED returns the state's whole series)
 
 Availability is four-valued. See adapters.unavailable().
 """
@@ -70,10 +60,7 @@ def residualize(raw_by_race: dict) -> dict:
     i.e. other battlegrounds — which is also required, since competitive
     races attract disproportionate small-dollar money by construction.
 
-    Only applies to sides scored against the persistent BaselineStore; sides
-    carrying their own in-payload baseline keep the rolling path so residual
-    observations are never compared against raw-level history. Returns
-    {race_id: {variable: provenance}} for the output breakdown.
+    Returns {race_id: {variable: provenance}} for the output breakdown.
     """
     provenance: dict = {rid: {} for rid in raw_by_race}
     for var in config.TRACK_B["weights"]:

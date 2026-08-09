@@ -7,7 +7,11 @@ name: daily forecast
 on:
   schedule:
     # GitHub cron 은 UTC 다. 20:00 UTC = 한국 시간 다음날 05:00.
-    - cron: "0 20 * * *"
+    #
+    # 3일 간격(매월 1·4·7…28·31일). 매일 돌릴 이유가 없고, FEC 신고 시점
+    # 캐시가 7일 유효라 3일이면 항상 살아 있어 실행이 20분대로 유지된다.
+    # 주 1회로 늘리면 캐시가 매번 막 만료된 상태라 실행마다 1~2시간이 든다.
+    - cron: "0 20 */3 * *"
   workflow_dispatch:        # Actions 탭에서 손으로도 돌릴 수 있게
 
 # 커밋을 되밀어야 하므로 쓰기 권한이 필요하다.
@@ -23,12 +27,21 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 90        # 실측 40분. 소스가 느려질 때를 감안한 여유.
+    # The FIRST run on a cold cache is the expensive one: FEC is rate-limited
+    # to one request every 1.05s and a cold board needs thousands of them, so
+    # the wait alone runs 30-75 minutes before anything else. 90 minutes was
+    # not enough and the job was killed twice — and because actions/cache only
+    # saves on success, each kill threw away the cache it had just built, so
+    # the next run started cold again. Nothing could ever converge.
+    #
+    # Once the cache lands, FEC filing dates hold for a week and the run drops
+    # back to ~20 minutes.
+    timeout-minutes: 330
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.11"
           cache: pip
@@ -42,8 +55,12 @@ jobs:
       - id: week
         run: echo "id=$(date -u +%G-W%V)" >> "$GITHUB_OUTPUT"
 
+      # restore + save are SPLIT so the cache is written even when the run
+      # fails or is cancelled. actions/cache's combined form only saves on
+      # success, which is exactly the case that kept the cold cache cold.
       - name: Restore FEC cache
-        uses: actions/cache@v4
+        id: fec-cache
+        uses: actions/cache/restore@v4
         with:
           path: election2026/data/raw/track_b/fec
           key: fec-${{ steps.week.outputs.id }}
@@ -56,6 +73,13 @@ jobs:
 
       # 스키마를 통과하지 못한 결과는 커밋하지 않는다. 깨진 forecast.json 이
       # 배포되면 대시보드가 빈 화면이 된다.
+      - name: Save FEC cache
+        if: always()          # especially on timeout — see above
+        uses: actions/cache/save@v4
+        with:
+          path: election2026/data/raw/track_b/fec
+          key: fec-${{ steps.week.outputs.id }}-${{ github.run_id }}
+
       - name: Validate
         run: python -m election2026 validate
 

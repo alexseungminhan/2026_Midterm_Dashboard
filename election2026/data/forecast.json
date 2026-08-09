@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated_at": "2026-08-09T01:56:37.951961+00:00",
-    "schema_version": "3.3.0",
+    "generated_at": "2026-08-09T10:26:26.502680+00:00",
+    "schema_version": "3.4.0",
     "sources_used": [
       "econ_claims",
       "econ_coincident",
@@ -23,28 +23,29 @@
     "pp_per_sigma": 5.0,
     "dry_run": false,
     "calibration_validated": false,
-    "calibration_note": "매크로 지표의 세기 구간과 최소 변화량은 과거 데이터로 적합한 값이 아니라 수기 설정값입니다. 쓸 수 있는 과거 표본이 47개뿐이고 그중 상당수가 근사 재구성값이라(data/historical/MANIFEST.md) 적합이 의미를 갖지 못합니다. 그래서 이 값들로 확률을 만들지 않고 방향만 보여줍니다."
+    "calibration_note": "매크로 지표의 세기 구간과 최소 변화량은 과거 데이터로 적합한 값이 아니라 수기 설정값입니다. 쓸 수 있는 과거 표본이 47개뿐이고 그중 상당수가 근사 재구성값이라(data/historical/MANIFEST.md) 적합이 의미를 갖지 못합니다. 그래서 이 값들로 확률을 만들지 않고 방향만 보여줍니다.",
+    "change_window_days": 1
   },
   "balance_of_power": [
     {
       "outcome": "Democrats Sweep",
       "label": "민주당 상·하원 석권",
-      "prob": 0.4539
+      "prob": 0.4541
     },
     {
       "outcome": "D Senate, R House",
       "label": "상원 민주 / 하원 공화",
-      "prob": 0.013
+      "prob": 0.0125
     },
     {
       "outcome": "R Senate, D House",
       "label": "상원 공화 / 하원 민주",
-      "prob": 0.404
+      "prob": 0.4042
     },
     {
       "outcome": "Republicans Sweep",
       "label": "공화당 상·하원 석권",
-      "prob": 0.1247
+      "prob": 0.1248
     },
     {
       "outcome": "Other",
@@ -58,11 +59,11 @@
       "total_seats": 100,
       "n_races_shown": 10,
       "prob_dem_control": 0.455,
-      "control_volume": 3760839.9369719992,
+      "control_volume": 3764541.1833339985,
       "expected_dem_seats": 50.1,
       "expected_rep_seats": 49.9,
-      "favourite_dem_seats": 52,
-      "favourite_rep_seats": 48,
+      "favourite_dem_seats": 51,
+      "favourite_rep_seats": 49,
       "seats_volume": 2791893.212041,
       "expectation_is_approximate": true,
       "seat_buckets": [
@@ -150,7 +151,7 @@
       "total_seats": 435,
       "n_races_shown": 10,
       "prob_dem_control": 0.8663,
-      "control_volume": 9149494.926402997,
+      "control_volume": 9152191.640648,
       "expected_dem_seats": 231.7,
       "expected_rep_seats": 203.3,
       "favourite_dem_seats": 231,
@@ -160,70 +161,70 @@
       "seat_buckets": [
         {
           "label": "Below 190",
-          "prob": 0.2124,
+          "prob": 0.209,
           "rep_low": null,
           "rep_high": 190.0,
           "midpoint": 187.5
         },
         {
           "label": "190-194",
-          "prob": 0.1154,
+          "prob": 0.1161,
           "rep_low": 190.0,
           "rep_high": 194.0,
           "midpoint": 192.0
         },
         {
           "label": "195-199",
-          "prob": 0.1247,
+          "prob": 0.1301,
           "rep_low": 195.0,
           "rep_high": 199.0,
           "midpoint": 197.0
         },
         {
           "label": "200-204",
-          "prob": 0.1223,
+          "prob": 0.1231,
           "rep_low": 200.0,
           "rep_high": 204.0,
           "midpoint": 202.0
         },
         {
           "label": "205-209",
-          "prob": 0.1196,
+          "prob": 0.1198,
           "rep_low": 205.0,
           "rep_high": 209.0,
           "midpoint": 207.0
         },
         {
           "label": "210-214",
-          "prob": 0.0845,
+          "prob": 0.0766,
           "rep_low": 210.0,
           "rep_high": 214.0,
           "midpoint": 212.0
         },
         {
           "label": "215-219",
-          "prob": 0.0711,
+          "prob": 0.0715,
           "rep_low": 215.0,
           "rep_high": 219.0,
           "midpoint": 217.0
         },
         {
           "label": "220-224",
-          "prob": 0.0563,
+          "prob": 0.0562,
           "rep_low": 220.0,
           "rep_high": 224.0,
           "midpoint": 222.0
         },
         {
           "label": "225-229",
-          "prob": 0.06,
+          "prob": 0.0636,
           "rep_low": 225.0,
           "rep_high": 229.0,
           "midpoint": 227.0
         },
         {
           "label": "230+",
-          "prob": 0.0337,
+          "prob": 0.0339,
           "rep_low": 230.0,
           "rep_high": null,
           "midpoint": 232.5
@@ -245,7 +246,7 @@
       "seat_buckets": [
         {
           "label": "<22",
-          "prob": 0.2115,
+          "prob": 0.2067,
           "rep_low": null,
           "rep_high": 22.0,
           "midpoint": 21.0
@@ -266,7 +267,7 @@
         },
         {
           "label": "26–27",
-          "prob": 0.1779,
+          "prob": 0.1827,
           "rep_low": 26.0,
           "rep_high": 27.0,
           "midpoint": 26.5
@@ -306,9 +307,9 @@
       "rank": 1,
       "betting": {
         "prob_dem": 0.6782,
-        "volume": 1128774.8354139996,
-        "volume1wk": 28211.000132,
-        "liquidity": 164862.9357,
+        "volume": 1128996.647137,
+        "volume1wk": 26439.713621,
+        "liquidity": 165473.6062,
         "slug": "maine-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -497,12 +498,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.201,
+              "z": 0.164,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.600354913719251,
-              "rep_value": 0.399645086280749
+              "dem_value": 0.5821059987099548,
+              "rep_value": 0.41789400129004517
             },
             {
               "variable": "wiki_edit_count",
@@ -513,36 +514,6 @@
               "reason": null,
               "dem_value": 22.0,
               "rep_value": 7.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -566,14 +537,14 @@
       "title": "Texas Senate Election Winner",
       "rank": 2,
       "betting": {
-        "prob_dem": 0.5,
-        "volume": 680648.4671629998,
-        "volume1wk": 33501.269605,
-        "liquidity": 130200.7231,
+        "prob_dem": 0.4975,
+        "volume": 683254.4471629998,
+        "volume1wk": 35362.029605,
+        "liquidity": 120617.773,
         "slug": "texas-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0075,
+        "change_1d": 0.005,
         "change_7d": null
       },
       "candidates": {
@@ -758,12 +729,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.514,
+              "z": 0.501,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.757173172601958,
-              "rep_value": 0.24282682739804198
+              "dem_value": 0.7505202146234125,
+              "rep_value": 0.24947978537658755
             },
             {
               "variable": "wiki_edit_count",
@@ -774,36 +745,6 @@
               "reason": null,
               "dem_value": 21.0,
               "rep_value": 8.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -828,9 +769,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.5198,
-        "volume": 383137.0456989999,
-        "volume1wk": 7929.661521,
-        "liquidity": 89019.53823,
+        "volume": 383137.04569899995,
+        "volume1wk": 6523.716664,
+        "liquidity": 88797.23383,
         "slug": "alaska-senate-election-winner",
         "unmapped_mass": 0.0005,
         "trustworthy": true,
@@ -1035,36 +976,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 4.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -1089,9 +1000,9 @@
       "rank": 4,
       "betting": {
         "prob_dem": 0.5931,
-        "volume": 274051.951653,
-        "volume1wk": 126286.39758700001,
-        "liquidity": 125515.2664,
+        "volume": 274321.573809,
+        "volume1wk": 124566.744818,
+        "liquidity": 123631.071,
         "slug": "michigan-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1284,8 +1195,8 @@
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.9999571879015864,
-              "rep_value": 4.2812098413597695e-05
+              "dem_value": 0.9999551909935196,
+              "rep_value": 4.480900648042139e-05
             },
             {
               "variable": "wiki_edit_count",
@@ -1294,38 +1205,8 @@
               "weight": 0.1,
               "availability": "missing",
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
-              "dem_value": 79.0,
+              "dem_value": 83.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -1395,7 +1276,7 @@
         "prob_dem": 0.0034,
         "volume": 189412.56860099998,
         "volume1wk": null,
-        "liquidity": 33896.34525,
+        "liquidity": 33778.13975,
         "slug": "nebraska-senate-election-winner",
         "unmapped_mass": 0.267,
         "trustworthy": false,
@@ -1579,12 +1460,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.996,
+              "z": -0.995,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.002228826151560178,
-              "rep_value": 0.9977711738484398
+              "dem_value": 0.002308707124010554,
+              "rep_value": 0.9976912928759895
             },
             {
               "variable": "wiki_edit_count",
@@ -1594,37 +1475,7 @@
               "availability": "missing",
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
-              "rep_value": 1.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "rep_value": 2.0
             }
           ],
           "unavailable": null,
@@ -1649,9 +1500,9 @@
       "rank": 6,
       "betting": {
         "prob_dem": 0.4406,
-        "volume": 171837.550758,
-        "volume1wk": 4934.251568,
-        "liquidity": 30552.9378,
+        "volume": 171837.55075799997,
+        "volume1wk": 4901.9915679999995,
+        "liquidity": 33443.6441,
         "slug": "iowa-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1840,12 +1691,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.29,
+              "z": 0.273,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.6449371973896568,
-              "rep_value": 0.3550628026103431
+              "dem_value": 0.6365588681152097,
+              "rep_value": 0.3634411318847903
             },
             {
               "variable": "wiki_edit_count",
@@ -1856,36 +1707,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 6.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -1910,9 +1731,9 @@
       "rank": 7,
       "betting": {
         "prob_dem": 0.5099,
-        "volume": 128891.08833300004,
-        "volume1wk": 2810.214148,
-        "liquidity": 46255.6438,
+        "volume": 128891.088333,
+        "volume1wk": 2236.183187,
+        "liquidity": 46061.0245,
         "slug": "ohio-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2101,12 +1922,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.09,
+              "z": 0.076,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.5447992149758454,
-              "rep_value": 0.45520078502415456
+              "dem_value": 0.5380091262464086,
+              "rep_value": 0.4619908737535913
             },
             {
               "variable": "wiki_edit_count",
@@ -2117,36 +1938,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 1.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -2173,7 +1964,7 @@
         "prob_dem": 0.095,
         "volume": 118980.08933999996,
         "volume1wk": null,
-        "liquidity": 101348.0615,
+        "liquidity": 94302.0768,
         "slug": "south-carolina-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2357,12 +2148,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.999,
+              "z": -0.998,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.0005752766403844202,
-              "rep_value": 0.9994247233596156
+              "dem_value": 0.0007626168224299065,
+              "rep_value": 0.99923738317757
             },
             {
               "variable": "wiki_edit_count",
@@ -2373,36 +2164,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 4.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -2422,8 +2183,8 @@
       "betting": {
         "prob_dem": 0.0088,
         "volume": 101291.78864,
-        "volume1wk": 766.929381,
-        "liquidity": 48746.33162,
+        "volume1wk": 211.04,
+        "liquidity": 45316.78882,
         "slug": "montana-senate-election-winner",
         "unmapped_mass": 0.1567,
         "trustworthy": false,
@@ -2623,36 +2384,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 1.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -2670,14 +2401,14 @@
       "title": "Georgia Senate Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.919,
-        "volume": 96291.90793900001,
-        "volume1wk": 810.658008,
-        "liquidity": 66504.94123,
+        "prob_dem": 0.9195,
+        "volume": 96291.90793900004,
+        "volume1wk": 738.548008,
+        "liquidity": 67266.82165,
         "slug": "georgia-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0004,
+        "change_1d": 0.0009,
         "change_7d": null
       },
       "candidates": {
@@ -2866,8 +2597,8 @@
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.9981988814105602,
-              "rep_value": 0.0018011185894397574
+              "dem_value": 0.9980693900391718,
+              "rep_value": 0.0019306099608282037
             },
             {
               "variable": "wiki_edit_count",
@@ -2878,36 +2609,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -2976,8 +2677,8 @@
       "betting": {
         "prob_dem": 0.9873,
         "volume": 136618.873488,
-        "volume1wk": 26052.211292,
-        "liquidity": 43773.25917,
+        "volume1wk": 17430.827872,
+        "liquidity": 41857.75752,
         "slug": "ca-28-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3177,36 +2878,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -3227,7 +2898,7 @@
         "prob_dem": 0.9747,
         "volume": 121676.87525999997,
         "volume1wk": null,
-        "liquidity": 30282.70503,
+        "liquidity": 30794.85578,
         "slug": "ca-15-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3411,12 +3082,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.987,
+              "z": 0.989,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.9937238493723849,
-              "rep_value": 0.006276150627615063
+              "dem_value": 0.9946043165467626,
+              "rep_value": 0.00539568345323741
             },
             {
               "variable": "wiki_edit_count",
@@ -3427,36 +3098,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -3477,7 +3118,7 @@
         "prob_dem": 0.0493,
         "volume": 116511.693461,
         "volume1wk": null,
-        "liquidity": 23585.15799,
+        "liquidity": 23756.14498,
         "slug": "fl-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3677,36 +3318,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -3724,14 +3335,14 @@
       "title": "VA-06 House Election Winner",
       "rank": 4,
       "betting": {
-        "prob_dem": 0.0863,
-        "volume": 110432.61137099999,
+        "prob_dem": 0.0859,
+        "volume": 110432.61137099998,
         "volume1wk": 3760.9199999999996,
-        "liquidity": 42124.9982,
+        "liquidity": 43058.4215,
         "slug": "va-06-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0004,
+        "change_1d": -0.0008,
         "change_7d": null
       },
       "candidates": {
@@ -3927,36 +3538,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -3977,7 +3558,7 @@
         "prob_dem": 0.0296,
         "volume": 109873.3857829998,
         "volume1wk": null,
-        "liquidity": 34112.95622,
+        "liquidity": 34729.69662,
         "slug": "ms-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4161,12 +3742,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.904,
+              "z": -0.914,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.04810126582278481,
-              "rep_value": 0.9518987341772152
+              "dem_value": 0.043010752688172046,
+              "rep_value": 0.956989247311828
             },
             {
               "variable": "wiki_edit_count",
@@ -4177,36 +3758,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -4227,7 +3778,7 @@
         "prob_dem": 0.9746,
         "volume": 97609.233724,
         "volume1wk": null,
-        "liquidity": 36044.47395,
+        "liquidity": 36106.45194,
         "slug": "wi-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4427,36 +3978,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -4476,8 +3997,8 @@
       "betting": {
         "prob_dem": 0.0281,
         "volume": 89885.25295400001,
-        "volume1wk": 179.38,
-        "liquidity": 30441.04109,
+        "volume1wk": null,
+        "liquidity": 30944.47016,
         "slug": "ok-03-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4677,36 +4198,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -4727,7 +4218,7 @@
         "prob_dem": 0.9444,
         "volume": 86324.841175,
         "volume1wk": null,
-        "liquidity": 36618.4529,
+        "liquidity": 37194.3084,
         "slug": "ca-16-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4927,36 +4418,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -4974,14 +4435,14 @@
       "title": "WV-02 House Election Winner",
       "rank": 9,
       "betting": {
-        "prob_dem": 0.0218,
-        "volume": 78987.069497,
-        "volume1wk": 1275.0,
-        "liquidity": 27440.42587,
+        "prob_dem": 0.0259,
+        "volume": 79187.06949700002,
+        "volume1wk": 1475.0,
+        "liquidity": 35580.07728,
         "slug": "wv-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0004,
+        "change_1d": 0.0045,
         "change_7d": null
       },
       "candidates": {
@@ -5177,36 +4638,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -5227,7 +4658,7 @@
         "prob_dem": 0.9736,
         "volume": 71073.559433,
         "volume1wk": null,
-        "liquidity": 40252.12362,
+        "liquidity": 40480.27121,
         "slug": "mi-11-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -5427,36 +4858,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -5474,14 +4875,14 @@
       "title": "Alaska Governor Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.4258,
-        "volume": 1108769.297849,
-        "volume1wk": 6125.50107,
-        "liquidity": 234655.8813,
+        "prob_dem": 0.416,
+        "volume": 1109294.825625,
+        "volume1wk": 9559.853882,
+        "liquidity": 213558.9834,
         "slug": "alaska-governor-election-winner",
-        "unmapped_mass": 0.0427,
+        "unmapped_mass": 0.0435,
         "trustworthy": true,
-        "change_1d": 0.0043,
+        "change_1d": -0.0055,
         "change_7d": null
       },
       "candidates": {
@@ -5677,36 +5078,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -5725,11 +5096,11 @@
       "rank": 2,
       "betting": {
         "prob_dem": 0.8434,
-        "volume": 194324.64507199996,
-        "volume1wk": 1509.82,
-        "liquidity": 35039.69944,
+        "volume": 194724.64507199998,
+        "volume1wk": 1948.34941,
+        "liquidity": 40000.83879,
         "slug": "michigan-governor-winner-2026",
-        "unmapped_mass": 0.0144,
+        "unmapped_mass": 0.0154,
         "trustworthy": true,
         "change_1d": 0.0,
         "change_7d": null
@@ -5927,36 +5298,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -5981,9 +5322,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.4089,
-        "volume": 128487.729812,
-        "volume1wk": 43064.151295,
-        "liquidity": 43434.9398,
+        "volume": 128587.72981199999,
+        "volume1wk": 43164.15129500001,
+        "liquidity": 43673.8758,
         "slug": "wisconsin-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6172,52 +5513,22 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.833,
+              "z": 0.831,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.9167281161596524,
-              "rep_value": 0.08327188384034752
+              "dem_value": 0.9154121200664443,
+              "rep_value": 0.08458787993355561
             },
             {
               "variable": "wiki_edit_count",
               "label": "위키 편집 활동",
-              "z": 0.571,
+              "z": 0.5,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 44.0,
-              "rep_value": 12.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "dem_value": 48.0,
+              "rep_value": 16.0
             }
           ],
           "unavailable": null,
@@ -6241,14 +5552,14 @@
       "title": "Ohio Governor Election Winner",
       "rank": 4,
       "betting": {
-        "prob_dem": 0.4478,
-        "volume": 116772.460651,
-        "volume1wk": 571.743326,
-        "liquidity": 43415.5222,
+        "prob_dem": 0.467,
+        "volume": 117327.32065099999,
+        "volume1wk": 1534.388817,
+        "liquidity": 44119.3835,
         "slug": "ohio-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
+        "change_1d": 0.0192,
         "change_7d": null
       },
       "candidates": {
@@ -6433,52 +5744,22 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.183,
+              "z": -0.19,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.40829500313610706,
-              "rep_value": 0.591704996863893
+              "dem_value": 0.4050409072689977,
+              "rep_value": 0.5949590927310023
             },
             {
               "variable": "wiki_edit_count",
               "label": "위키 편집 활동",
-              "z": 0.636,
+              "z": 0.667,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 9.0,
+              "dem_value": 10.0,
               "rep_value": 2.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -6532,9 +5813,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.935,
-        "volume": 89187.18556700002,
+        "volume": 89187.18556700001,
         "volume1wk": 1525.2665880000002,
-        "liquidity": 51678.2372,
+        "liquidity": 56213.0674,
         "slug": "new-york-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6734,36 +6015,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -6782,9 +6033,9 @@
       "rank": 6,
       "betting": {
         "prob_dem": 0.8434,
-        "volume": 65139.824393,
-        "volume1wk": 656.578234,
-        "liquidity": 39224.8276,
+        "volume": 65163.82439300001,
+        "volume1wk": 680.578234,
+        "liquidity": 39136.3692,
         "slug": "arizona-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6984,36 +6235,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -7038,9 +6259,9 @@
       "rank": 7,
       "betting": {
         "prob_dem": 0.9406,
-        "volume": 63484.40162,
-        "volume1wk": 254.629645,
-        "liquidity": 32846.41998,
+        "volume": 63584.40162,
+        "volume1wk": 633.629645,
+        "liquidity": 35171.99015,
         "slug": "minnesota-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -7240,36 +6461,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -7289,8 +6480,8 @@
       "betting": {
         "prob_dem": 0.595,
         "volume": 60702.728824,
-        "volume1wk": 555.333332,
-        "liquidity": 25820.6113,
+        "volume1wk": 555.3333319999999,
+        "liquidity": 26651.4962,
         "slug": "georgia-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -7483,8 +6674,8 @@
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.9950617283950617,
-              "rep_value": 0.0049382716049382715
+              "dem_value": 0.9949619576393173,
+              "rep_value": 0.005038042360682706
             },
             {
               "variable": "wiki_edit_count",
@@ -7495,36 +6686,6 @@
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
               "rep_value": 0.0
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": null,
@@ -7548,14 +6709,14 @@
       "title": "Rhode Island Governor Election Winner",
       "rank": 9,
       "betting": {
-        "prob_dem": 0.9506,
-        "volume": 59824.09311300001,
+        "prob_dem": 0.9516,
+        "volume": 59824.09311300002,
         "volume1wk": 524.109297,
-        "liquidity": 33437.70066,
+        "liquidity": 36341.92872,
         "slug": "rhode-island-governor-winner-2026",
-        "unmapped_mass": 0.0209,
+        "unmapped_mass": 0.0204,
         "trustworthy": true,
-        "change_1d": 0.0092,
+        "change_1d": 0.0102,
         "change_7d": null
       },
       "candidates": {
@@ -7751,36 +6912,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -7798,14 +6929,14 @@
       "title": "Iowa Governor Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.6782,
-        "volume": 55104.90002,
-        "volume1wk": 135.107644,
-        "liquidity": 14161.6947,
+        "prob_dem": 0.6919,
+        "volume": 55557.019832,
+        "volume1wk": 641.045636,
+        "liquidity": 14413.7222,
         "slug": "iowa-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.005,
+        "change_1d": 0.0087,
         "change_7d": null
       },
       "candidates": {
@@ -8006,36 +7137,6 @@
               "reason": "소스가 아무 값도 반환하지 않았다",
               "dem_value": null,
               "rep_value": null
-            },
-            {
-              "variable": "gdelt",
-              "label": "미디어 노출·톤",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "reddit",
-              "label": "주 서브레딧 감성",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
-            },
-            {
-              "variable": "youtube",
-              "label": "채널 열의",
-              "z": null,
-              "weight": 0.0,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
             }
           ],
           "unavailable": "missing",
@@ -8082,19 +7183,27 @@
   ],
   "movers": [
     {
-      "race_id": "gov-ri",
-      "label": "로드아일랜드 주지사",
+      "race_id": "gov-oh",
+      "label": "오하이오 주지사",
       "chamber": "governor",
-      "prob_dem": 0.9506,
-      "change": 0.0092,
+      "prob_dem": 0.467,
+      "change": 0.0192,
       "window": "1d"
     },
     {
-      "race_id": "sen-tx",
-      "label": "텍사스 상원",
-      "chamber": "senate",
-      "prob_dem": 0.5,
-      "change": 0.0075,
+      "race_id": "gov-ri",
+      "label": "로드아일랜드 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.9516,
+      "change": 0.0102,
+      "window": "1d"
+    },
+    {
+      "race_id": "gov-ia",
+      "label": "아이오와 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.6919,
+      "change": 0.0087,
       "window": "1d"
     },
     {
@@ -8106,19 +7215,27 @@
       "window": "1d"
     },
     {
+      "race_id": "gov-ak",
+      "label": "알래스카 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.416,
+      "change": -0.0055,
+      "window": "1d"
+    },
+    {
+      "race_id": "sen-tx",
+      "label": "텍사스 상원",
+      "chamber": "senate",
+      "prob_dem": 0.4975,
+      "change": 0.005,
+      "window": "1d"
+    },
+    {
       "race_id": "gov-ny",
       "label": "뉴욕 주지사",
       "chamber": "governor",
       "prob_dem": 0.935,
       "change": 0.005,
-      "window": "1d"
-    },
-    {
-      "race_id": "gov-ia",
-      "label": "아이오와 주지사",
-      "chamber": "governor",
-      "prob_dem": 0.6782,
-      "change": -0.005,
       "window": "1d"
     }
   ]
