@@ -69,6 +69,10 @@ jobs:
       - name: Run pipeline
         env:
           FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
+          # FRED's keyless CSV host times out from GitHub's runners; the
+          # official API takes a free key and answers normally. Without this
+          # the economy model is empty on every cloud run.
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
         run: python -m election2026 run
 
       # 스키마를 통과하지 못한 결과는 커밋하지 않는다. 깨진 forecast.json 이

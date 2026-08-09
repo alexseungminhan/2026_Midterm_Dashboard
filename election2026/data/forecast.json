@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-09T10:26:26.502680+00:00",
+    "generated_at": "2026-08-09T12:40:19.919741+00:00",
     "schema_version": "3.4.0",
     "sources_used": [
       "econ_claims",
@@ -2368,12 +2368,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.731,
+              "z": -0.737,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.13434969032872796,
-              "rep_value": 0.865650309671272
+              "dem_value": 0.13134920634920635,
+              "rep_value": 0.8686507936507937
             },
             {
               "variable": "wiki_edit_count",
@@ -2383,7 +2383,7 @@
               "availability": "missing",
               "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
               "dem_value": 0.0,
-              "rep_value": 1.0
+              "rep_value": 2.0
             }
           ],
           "unavailable": null,
@@ -3522,12 +3522,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.189,
+              "z": 0.187,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.5944903581267218,
-              "rep_value": 0.40550964187327826
+              "dem_value": 0.5934065934065934,
+              "rep_value": 0.4065934065934066
             },
             {
               "variable": "wiki_edit_count",

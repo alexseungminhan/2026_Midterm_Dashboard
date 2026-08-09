@@ -843,8 +843,15 @@ class FredBase(TrackBAdapter):
 
     source = "econ"
     supports_backfill = True
+    # Two ways in. The official JSON API is preferred because the CSV host
+    # times out from GitHub's runners — every request burned 3 retries x 30s
+    # there, 2.2 hours of pure waiting across a board, which is what killed
+    # the first two cloud runs. The CSV needs no key, so it stays as the
+    # fallback for a local checkout that has not set one.
+    API = "https://api.stlouisfed.org/fred/series/observations"
     CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv"
     _limiter = cache.RateLimiter(0.5)
+    _dead = set()          # series that failed this run; see _series()
 
     series_suffix = ""        # "UR" (unemployment) / "PHCI" (coincident)
     higher_is_better = False  # unemployment: up = worse
@@ -868,25 +875,68 @@ class FredBase(TrackBAdapter):
         cached = cache.read(self.track, self.source, key, max_age_hours=24)
         if cached is not None:
             return {date.fromisoformat(d): v for d, v in cached.items()}
-        resp = cache.http_get(self.CSV, params={"id": sid}, timeout=30,
-                              limiter=self._limiter)
+
+        # FAILURES ARE REMEMBERED FOR THE RUN. FRED refuses connections from
+        # GitHub's IP range: every request burns 3 retries x 30s, and without
+        # this the same unreachable series is re-attempted once per race —
+        # 90 fetches x 90s = 2.2 hours of pure timeout, which is exactly what
+        # killed the first cloud runs. One attempt per series, then give up.
+        if sid in self._dead:
+            return None
+
+        out = self._from_api(sid)
+        if out is None:
+            out = self._from_csv(sid)
+        if not out:
+            self._dead.add(sid)
+            return None
+        cache.write(self.track, self.source, key,
+                    {d.isoformat(): v for d, v in out.items()})
+        return out
+
+    def _from_api(self, sid: str) -> Optional[dict]:
+        """Official JSON API. None when no key is set or the call fails."""
+        key = os.environ.get("FRED_API_KEY")
+        if not key:
+            return None
+        resp = cache.http_get(self.API, timeout=20, retries=2,
+                              limiter=self._limiter,
+                              params={"series_id": sid, "api_key": key,
+                                      "file_type": "json"})
+        if resp is None or resp.status_code != 200:
+            return None
+        try:
+            rows = resp.json().get("observations", [])
+        except Exception:
+            return None
+        out = {}
+        for row in rows:
+            value = str(row.get("value", "")).strip()
+            if not value or value == ".":      # FRED marks gaps with a dot
+                continue
+            try:
+                out[date.fromisoformat(row["date"])] = float(value)
+            except (ValueError, KeyError):
+                continue
+        return out or None
+
+    def _from_csv(self, sid: str) -> Optional[dict]:
+        """Keyless fallback. Blocked from some cloud hosts — see API above."""
+        resp = cache.http_get(self.CSV, params={"id": sid}, timeout=15,
+                              limiter=self._limiter, retries=1)
         if resp is None or resp.status_code != 200:
             return None
         out = {}
         for line in resp.text.splitlines()[1:]:
             when, _, value = line.partition(",")
             value = value.strip()
-            if not value or value == ".":     # FRED marks gaps with a dot
+            if not value or value == ".":
                 continue
             try:
                 out[date.fromisoformat(when.strip())] = float(value)
             except ValueError:
                 continue
-        if not out:
-            return None
-        cache.write(self.track, self.source, key,
-                    {d.isoformat(): v for d, v in out.items()})
-        return out
+        return out or None
 
     @staticmethod
     def _incumbent_party(meta: dict) -> str:
@@ -1417,6 +1467,50 @@ class WikiBase(TrackBAdapter):
                     {d.isoformat(): v for d, v in out.items()})
         return out
 
+    def _from_api(self, sid: str) -> Optional[dict]:
+        """Official JSON API. None when no key is set or the call fails."""
+        key = os.environ.get("FRED_API_KEY")
+        if not key:
+            return None
+        resp = cache.http_get(self.API, timeout=20, retries=2,
+                              limiter=self._limiter,
+                              params={"series_id": sid, "api_key": key,
+                                      "file_type": "json"})
+        if resp is None or resp.status_code != 200:
+            return None
+        try:
+            rows = resp.json().get("observations", [])
+        except Exception:
+            return None
+        out = {}
+        for row in rows:
+            value = str(row.get("value", "")).strip()
+            if not value or value == ".":      # FRED marks gaps with a dot
+                continue
+            try:
+                out[date.fromisoformat(row["date"])] = float(value)
+            except (ValueError, KeyError):
+                continue
+        return out or None
+
+    def _from_csv(self, sid: str) -> Optional[dict]:
+        """Keyless fallback. Blocked from some cloud hosts — see API above."""
+        resp = cache.http_get(self.CSV, params={"id": sid}, timeout=15,
+                              limiter=self._limiter, retries=1)
+        if resp is None or resp.status_code != 200:
+            return None
+        out = {}
+        for line in resp.text.splitlines()[1:]:
+            when, _, value = line.partition(",")
+            value = value.strip()
+            if not value or value == ".":
+                continue
+            try:
+                out[date.fromisoformat(when.strip())] = float(value)
+            except ValueError:
+                continue
+        return out or None
+
     def _edits(self, title: str, start: date, end: date) -> Optional[dict]:
         """{date: edit count} for an article — active engagement, not passive
         attention, which is why it is a separate variable from pageviews."""
@@ -1447,6 +1541,50 @@ class WikiBase(TrackBAdapter):
         cache.write(self.track, self.source, key,
                     {d.isoformat(): v for d, v in out.items()})
         return out
+
+    def _from_api(self, sid: str) -> Optional[dict]:
+        """Official JSON API. None when no key is set or the call fails."""
+        key = os.environ.get("FRED_API_KEY")
+        if not key:
+            return None
+        resp = cache.http_get(self.API, timeout=20, retries=2,
+                              limiter=self._limiter,
+                              params={"series_id": sid, "api_key": key,
+                                      "file_type": "json"})
+        if resp is None or resp.status_code != 200:
+            return None
+        try:
+            rows = resp.json().get("observations", [])
+        except Exception:
+            return None
+        out = {}
+        for row in rows:
+            value = str(row.get("value", "")).strip()
+            if not value or value == ".":      # FRED marks gaps with a dot
+                continue
+            try:
+                out[date.fromisoformat(row["date"])] = float(value)
+            except (ValueError, KeyError):
+                continue
+        return out or None
+
+    def _from_csv(self, sid: str) -> Optional[dict]:
+        """Keyless fallback. Blocked from some cloud hosts — see API above."""
+        resp = cache.http_get(self.CSV, params={"id": sid}, timeout=15,
+                              limiter=self._limiter, retries=1)
+        if resp is None or resp.status_code != 200:
+            return None
+        out = {}
+        for line in resp.text.splitlines()[1:]:
+            when, _, value = line.partition(",")
+            value = value.strip()
+            if not value or value == ".":
+                continue
+            try:
+                out[date.fromisoformat(when.strip())] = float(value)
+            except ValueError:
+                continue
+        return out or None
 
 
 def _slug(title: str) -> str:
