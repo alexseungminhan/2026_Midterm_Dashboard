@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-09T12:45:09.864279+00:00",
+    "generated_at": "2026-08-09T15:43:27.900363+00:00",
     "schema_version": "3.4.0",
     "sources_used": [
       "econ_claims",
@@ -59,87 +59,87 @@
       "total_seats": 100,
       "n_races_shown": 10,
       "prob_dem_control": 0.455,
-      "control_volume": 3764736.9659409984,
+      "control_volume": 3764541.1833339985,
       "expected_dem_seats": 50.1,
       "expected_rep_seats": 49.9,
       "favourite_dem_seats": 51,
       "favourite_rep_seats": 49,
-      "seats_volume": 2792367.942041,
+      "seats_volume": 2791893.212041,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "≤47",
-          "prob": 0.2231,
+          "prob": 0.2219,
           "rep_low": null,
           "rep_high": 47.0,
           "midpoint": 46.5
         },
         {
           "label": "48",
-          "prob": 0.1092,
+          "prob": 0.1086,
           "rep_low": 48.0,
           "rep_high": 48.0,
           "midpoint": 48.0
         },
         {
           "label": "49",
-          "prob": 0.1234,
+          "prob": 0.1228,
           "rep_low": 49.0,
           "rep_high": 49.0,
           "midpoint": 49.0
         },
         {
           "label": "50",
-          "prob": 0.1281,
+          "prob": 0.1275,
           "rep_low": 50.0,
           "rep_high": 50.0,
           "midpoint": 50.0
         },
         {
           "label": "51",
-          "prob": 0.1471,
+          "prob": 0.1511,
           "rep_low": 51.0,
           "rep_high": 51.0,
           "midpoint": 51.0
         },
         {
           "label": "52",
-          "prob": 0.1258,
+          "prob": 0.1256,
           "rep_low": 52.0,
           "rep_high": 52.0,
           "midpoint": 52.0
         },
         {
           "label": "53",
-          "prob": 0.0513,
+          "prob": 0.051,
           "rep_low": 53.0,
           "rep_high": 53.0,
           "midpoint": 53.0
         },
         {
           "label": "54",
-          "prob": 0.0351,
+          "prob": 0.0349,
           "rep_low": 54.0,
           "rep_high": 54.0,
           "midpoint": 54.0
         },
         {
           "label": "55",
-          "prob": 0.0214,
+          "prob": 0.0212,
           "rep_low": 55.0,
           "rep_high": 55.0,
           "midpoint": 55.0
         },
         {
           "label": "56",
-          "prob": 0.0228,
+          "prob": 0.0227,
           "rep_low": 56.0,
           "rep_high": 56.0,
           "midpoint": 56.0
         },
         {
           "label": "57+",
-          "prob": 0.0128,
+          "prob": 0.0127,
           "rep_low": 57.0,
           "rep_high": null,
           "midpoint": 57.5
@@ -151,80 +151,80 @@
       "total_seats": 435,
       "n_races_shown": 10,
       "prob_dem_control": 0.8663,
-      "control_volume": 9154599.120631002,
+      "control_volume": 9152191.640648,
       "expected_dem_seats": 231.7,
       "expected_rep_seats": 203.3,
       "favourite_dem_seats": 231,
       "favourite_rep_seats": 203,
-      "seats_volume": 282554.82655899995,
+      "seats_volume": 282554.826559,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "Below 190",
-          "prob": 0.2118,
+          "prob": 0.209,
           "rep_low": null,
           "rep_high": 190.0,
           "midpoint": 187.5
         },
         {
           "label": "190-194",
-          "prob": 0.1176,
+          "prob": 0.1161,
           "rep_low": 190.0,
           "rep_high": 194.0,
           "midpoint": 192.0
         },
         {
           "label": "195-199",
-          "prob": 0.1224,
+          "prob": 0.1301,
           "rep_low": 195.0,
           "rep_high": 199.0,
           "midpoint": 197.0
         },
         {
           "label": "200-204",
-          "prob": 0.1247,
+          "prob": 0.1231,
           "rep_low": 200.0,
           "rep_high": 204.0,
           "midpoint": 202.0
         },
         {
           "label": "205-209",
-          "prob": 0.1219,
+          "prob": 0.1198,
           "rep_low": 205.0,
           "rep_high": 209.0,
           "midpoint": 207.0
         },
         {
           "label": "210-214",
-          "prob": 0.0776,
+          "prob": 0.0766,
           "rep_low": 210.0,
           "rep_high": 214.0,
           "midpoint": 212.0
         },
         {
           "label": "215-219",
-          "prob": 0.0725,
+          "prob": 0.0715,
           "rep_low": 215.0,
           "rep_high": 219.0,
           "midpoint": 217.0
         },
         {
           "label": "220-224",
-          "prob": 0.0569,
+          "prob": 0.0562,
           "rep_low": 220.0,
           "rep_high": 224.0,
           "midpoint": 222.0
         },
         {
           "label": "225-229",
-          "prob": 0.0616,
+          "prob": 0.0636,
           "rep_low": 225.0,
           "rep_high": 229.0,
           "midpoint": 227.0
         },
         {
           "label": "230+",
-          "prob": 0.0329,
+          "prob": 0.0339,
           "rep_low": 230.0,
           "rep_high": null,
           "midpoint": 232.5
@@ -307,9 +307,9 @@
       "rank": 1,
       "betting": {
         "prob_dem": 0.6782,
-        "volume": 1129032.821049,
-        "volume1wk": 26475.887533,
-        "liquidity": 163582.6212,
+        "volume": 1128996.647137,
+        "volume1wk": 26439.713621,
+        "liquidity": 165473.6062,
         "slug": "maine-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -344,7 +344,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -2.021,
+              "z": -13.297,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -381,67 +381,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.745,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.3050847457627119,
+              "rep_value": 0.04460966542750929
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.683,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2122.0,
+              "rep_value": 399.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.783,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2078.840677966102,
+              "rep_value": 253.63940520446099
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
               "z": null,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "missing",
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 34.46441976028041,
+              "rep_value": -2.687946676301226
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -487,37 +487,37 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.164,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.5821059987099548,
+              "rep_value": 0.41789400129004517
             },
             {
               "variable": "wiki_edit_count",
               "label": "위키 편집 활동",
-              "z": null,
+              "z": 0.517,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 22.0,
+              "rep_value": 7.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -538,9 +538,9 @@
       "rank": 2,
       "betting": {
         "prob_dem": 0.4975,
-        "volume": 683274.6371629997,
-        "volume1wk": 33365.765525,
-        "liquidity": 132243.667,
+        "volume": 683254.4471629998,
+        "volume1wk": 35362.029605,
+        "liquidity": 120617.773,
         "slug": "texas-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -575,7 +575,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.293,
+              "z": -16.305,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -612,67 +612,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 0.5,
+          "strength": 1,
+          "shift_pp": 2.5,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": -0.037,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.5351170568561873,
+              "rep_value": 0.576271186440678
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.745,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 5470.0,
+              "rep_value": 799.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.826,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 5433.411371237458,
+              "rep_value": 517.9957627118645
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.305,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 25.11830314756321,
+              "rep_value": 13.3699322473061
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -718,37 +718,37 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.501,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.7505202146234125,
+              "rep_value": 0.24947978537658755
             },
             {
               "variable": "wiki_edit_count",
               "label": "위키 편집 활동",
-              "z": null,
+              "z": 0.448,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 21.0,
+              "rep_value": 8.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -769,9 +769,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.5198,
-        "volume": 383146.155699,
-        "volume1wk": 6432.826663999999,
-        "liquidity": 89853.01043,
+        "volume": 383137.04569899995,
+        "volume1wk": 6523.716664,
+        "liquidity": 88797.23383,
         "slug": "alaska-senate-election-winner",
         "unmapped_mass": 0.0005,
         "trustworthy": true,
@@ -797,16 +797,16 @@
           "directional": true,
           "lean": "R",
           "level": null,
-          "z": -0.667,
-          "strength": 1,
-          "shift_pp": -3.3,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 0.027,
+              "z": -12.431,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -843,67 +843,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.181,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.11406844106463879,
+              "rep_value": 0.07903780068728522
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.465,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1086.0,
+              "rep_value": 397.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.784,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1024.0608365019011,
+              "rep_value": 124.14776632302406
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.695,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2.9995928424151312,
+              "rep_value": 0.5391042143918251
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -949,23 +949,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.992,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.9961013645224172,
+              "rep_value": 0.003898635477582846
             },
             {
               "variable": "wiki_edit_count",
@@ -973,13 +973,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 5.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -1000,9 +1000,9 @@
       "rank": 4,
       "betting": {
         "prob_dem": 0.5931,
-        "volume": 274596.16396999994,
-        "volume1wk": 124841.334979,
-        "liquidity": 126159.3229,
+        "volume": 274321.573809,
+        "volume1wk": 124566.744818,
+        "liquidity": 123631.071,
         "slug": "michigan-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1028,16 +1028,16 @@
           "directional": true,
           "lean": "R",
           "level": null,
-          "z": -0.667,
+          "z": -0.333,
           "strength": 1,
-          "shift_pp": -3.3,
+          "shift_pp": -1.7,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.05,
+              "z": 0.986,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -1074,67 +1074,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "N",
           "level": null,
-          "z": null,
+          "z": 0.0,
           "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "shift_pp": 0.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.849,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.4208754208754209,
+              "rep_value": 0.034482758620689655
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": -0.845,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 311.0,
+              "rep_value": 3707.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": -0.771,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 188.4848484848485,
+              "rep_value": 1457.2344827586207
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": -0.614,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 3.972961162992528,
+              "rep_value": 16.618857041537062
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -1180,23 +1180,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 1.0,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.9999551909935196,
+              "rep_value": 4.480900648042139e-05
             },
             {
               "variable": "wiki_edit_count",
@@ -1204,13 +1204,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 83.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -1276,7 +1276,7 @@
         "prob_dem": 0.0034,
         "volume": 189412.56860099998,
         "volume1wk": null,
-        "liquidity": 33917.69535,
+        "liquidity": 33778.13975,
         "slug": "nebraska-senate-election-winner",
         "unmapped_mass": 0.267,
         "trustworthy": false,
@@ -1306,7 +1306,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.322,
+              "z": -24.967,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -1357,7 +1357,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -1367,7 +1367,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -1377,7 +1377,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -1387,7 +1387,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -1397,13 +1397,13 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             }
           ],
           "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side"
         },
         {
           "key": "grassroots",
@@ -1449,23 +1449,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "R",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": -0.995,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.002308707124010554,
+              "rep_value": 0.9976912928759895
             },
             {
               "variable": "wiki_edit_count",
@@ -1473,13 +1473,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 2.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -1500,9 +1500,9 @@
       "rank": 6,
       "betting": {
         "prob_dem": 0.4406,
-        "volume": 171837.550758,
+        "volume": 171837.55075799997,
         "volume1wk": 4901.9915679999995,
-        "liquidity": 33143.8614,
+        "liquidity": 33443.6441,
         "slug": "iowa-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1537,7 +1537,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.403,
+              "z": -28.752,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -1574,67 +1574,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "N",
           "level": null,
-          "z": null,
+          "z": 0.0,
           "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "shift_pp": 0.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.893,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.4132841328413284,
+              "rep_value": 0.023333333333333334
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": -0.798,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 316.0,
+              "rep_value": 2808.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": -0.505,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 274.0221402214022,
+              "rep_value": 833.0400000000001
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.993,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 12873.385672063676,
+              "rep_value": 46.84236676462669
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -1680,23 +1680,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.273,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.6365588681152097,
+              "rep_value": 0.3634411318847903
             },
             {
               "variable": "wiki_edit_count",
@@ -1704,13 +1704,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 6.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -1731,9 +1731,9 @@
       "rank": 7,
       "betting": {
         "prob_dem": 0.5099,
-        "volume": 128891.08833299996,
-        "volume1wk": 1667.623331,
-        "liquidity": 46447.8414,
+        "volume": 128891.088333,
+        "volume1wk": 2236.183187,
+        "liquidity": 46061.0245,
         "slug": "ohio-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1768,7 +1768,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.164,
+              "z": -12.25,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -1805,67 +1805,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.942,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.35451505016722407,
+              "rep_value": 0.01060070671378092
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.45,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 5493.0,
+              "rep_value": 2081.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.737,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 5199.060200668897,
+              "rep_value": 786.809187279152
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.989,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 96.8793475673302,
+              "rep_value": 0.5236119621776976
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -1911,23 +1911,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "N",
           "level": null,
-          "z": null,
+          "z": 0.0,
           "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "shift_pp": 0.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.076,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.5380091262464086,
+              "rep_value": 0.4619908737535913
             },
             {
               "variable": "wiki_edit_count",
@@ -1935,13 +1935,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 1.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -1964,7 +1964,7 @@
         "prob_dem": 0.095,
         "volume": 118980.08933999996,
         "volume1wk": null,
-        "liquidity": 95437.1865,
+        "liquidity": 94302.0768,
         "slug": "south-carolina-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1994,7 +1994,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 0.316,
+              "z": 8.154,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -2031,67 +2031,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.797,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.36824324324324326,
+              "rep_value": 0.041666666666666664
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.914,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 842.0,
+              "rep_value": 38.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.94,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 773.7297297297298,
+              "rep_value": 23.75
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": -0.702,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.6227887296248509,
+              "rep_value": 9.26194656634965
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -2137,23 +2137,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "R",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": -0.998,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.0007626168224299065,
+              "rep_value": 0.99923738317757
             },
             {
               "variable": "wiki_edit_count",
@@ -2161,13 +2161,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 4.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": null
@@ -2181,14 +2181,14 @@
       "title": "Montana Senate Election Winner",
       "rank": 9,
       "betting": {
-        "prob_dem": 0.0158,
-        "volume": 101764.97864,
-        "volume1wk": 473.19,
-        "liquidity": 44348.2255,
+        "prob_dem": 0.0088,
+        "volume": 101291.78864,
+        "volume1wk": 211.04,
+        "liquidity": 45316.78882,
         "slug": "montana-senate-election-winner",
-        "unmapped_mass": 0.1558,
+        "unmapped_mass": 0.1567,
         "trustworthy": false,
-        "change_1d": 0.0069,
+        "change_1d": -0.0001,
         "change_7d": null
       },
       "candidates": {
@@ -2205,16 +2205,16 @@
           "directional": true,
           "lean": "D",
           "level": null,
-          "z": 0.667,
+          "z": 0.333,
           "strength": 1,
-          "shift_pp": 3.3,
+          "shift_pp": 1.7,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.082,
+              "z": -3.44,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -2251,67 +2251,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "R",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": -0.5,
+          "strength": 1,
+          "shift_pp": -2.5,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": -0.059,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.6666666666666666,
+              "rep_value": 0.75
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": -0.4,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 3.0,
+              "rep_value": 7.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": -0.4,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 3.0,
+              "rep_value": 7.0
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.892,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 6.425363325989309,
+              "rep_value": 0.36819135705824835
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -2357,23 +2357,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "R",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": -0.737,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.13134920634920635,
+              "rep_value": 0.8686507936507937
             },
             {
               "variable": "wiki_edit_count",
@@ -2381,13 +2381,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 2.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": null
@@ -2402,9 +2402,9 @@
       "rank": 10,
       "betting": {
         "prob_dem": 0.9195,
-        "volume": 96292.90793900001,
-        "volume1wk": 739.548008,
-        "liquidity": 67371.45141,
+        "volume": 96291.90793900004,
+        "volume1wk": 738.548008,
+        "liquidity": 67266.82165,
         "slug": "georgia-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2439,7 +2439,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.307,
+              "z": -19.239,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -2476,67 +2476,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "N",
           "level": null,
-          "z": null,
+          "z": 0.0,
           "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "shift_pp": 0.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": -0.438,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.13043478260869565,
+              "rep_value": 0.3333333333333333
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.867,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 10195.0,
+              "rep_value": 728.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.905,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 10126.80602006689,
+              "rep_value": 505.9858156028369
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": -0.979,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.9317975426610998,
+              "rep_value": 87.29955926624359
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -2582,23 +2582,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.996,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.9980693900391718,
+              "rep_value": 0.0019306099608282037
             },
             {
               "variable": "wiki_edit_count",
@@ -2606,13 +2606,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": {
@@ -2676,9 +2676,9 @@
       "rank": 1,
       "betting": {
         "prob_dem": 0.9873,
-        "volume": 136618.87348800004,
+        "volume": 136618.873488,
         "volume1wk": 17430.827872,
-        "liquidity": 42134.00911,
+        "liquidity": 41857.75752,
         "slug": "ca-28-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2708,7 +2708,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.371,
+              "z": -6.591,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -2759,7 +2759,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -2769,7 +2769,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -2779,7 +2779,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -2789,7 +2789,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -2799,13 +2799,13 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             }
           ],
           "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side"
         },
         {
           "key": "grassroots",
@@ -2898,7 +2898,7 @@
         "prob_dem": 0.9747,
         "volume": 121676.87525999997,
         "volume1wk": null,
-        "liquidity": 31086.42078,
+        "liquidity": 30794.85578,
         "slug": "ca-15-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2928,7 +2928,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.371,
+              "z": -6.591,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -2979,7 +2979,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -2989,7 +2989,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -2999,7 +2999,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -3009,7 +3009,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -3019,13 +3019,13 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             }
           ],
           "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side"
         },
         {
           "key": "grassroots",
@@ -3071,23 +3071,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.989,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.9946043165467626,
+              "rep_value": 0.00539568345323741
             },
             {
               "variable": "wiki_edit_count",
@@ -3095,13 +3095,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": null
@@ -3115,14 +3115,14 @@
       "title": "FL-01 House Election Winner",
       "rank": 3,
       "betting": {
-        "prob_dem": 0.0488,
+        "prob_dem": 0.0493,
         "volume": 116511.693461,
         "volume1wk": null,
-        "liquidity": 23828.47192,
+        "liquidity": 23756.14498,
         "slug": "fl-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0005,
+        "change_1d": 0.0,
         "change_7d": null
       },
       "candidates": {
@@ -3148,7 +3148,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.219,
+              "z": -4.173,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -3185,67 +3185,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "N",
           "level": null,
-          "z": null,
+          "z": 0.0,
           "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "shift_pp": 0.0,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": 0.433,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.625,
+              "rep_value": 0.24742268041237114
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": -0.832,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 9.0,
+              "rep_value": 98.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": -0.738,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 5.625,
+              "rep_value": 37.38144329896907
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.512,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 9.443983556641939,
+              "rep_value": 3.0518880188251525
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -3336,9 +3336,9 @@
       "rank": 4,
       "betting": {
         "prob_dem": 0.0859,
-        "volume": 110432.61137100002,
+        "volume": 110432.61137099998,
         "volume1wk": 3760.9199999999996,
-        "liquidity": 44819.4899,
+        "liquidity": 43058.4215,
         "slug": "va-06-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3368,7 +3368,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.129,
+              "z": -11.174,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -3405,67 +3405,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 0.5,
+          "strength": 1,
+          "shift_pp": 2.5,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": -0.077,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.8571428571428571,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.75,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 35.0,
+              "rep_value": 5.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.789,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 34.0,
+              "rep_value": 4.0
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.545,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 5.055488621725906,
+              "rep_value": 1.487566772349274
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -3511,23 +3511,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": 0.187,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.5934065934065934,
+              "rep_value": 0.4065934065934066
             },
             {
               "variable": "wiki_edit_count",
@@ -3535,13 +3535,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": null
@@ -3558,7 +3558,7 @@
         "prob_dem": 0.0296,
         "volume": 109873.3857829998,
         "volume1wk": null,
-        "liquidity": 35087.49682,
+        "liquidity": 34729.69662,
         "slug": "ms-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3588,7 +3588,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.212,
+              "z": -4.733,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -3625,12 +3625,12 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 1.0,
+          "strength": 2,
+          "shift_pp": 5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
@@ -3638,54 +3638,54 @@
               "label": "주내 기부 비중(FEC)",
               "z": null,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "missing",
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.9047619047619048,
+              "rep_value": 0.0
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.571,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 22.0,
+              "rep_value": 6.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.555,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 20.952380952380953,
+              "rep_value": 6.0
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
               "z": null,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "missing",
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": -11.613060145200663,
+              "rep_value": 0.8676965650434861
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -3731,23 +3731,23 @@
           "question": "어느 쪽 후보가 더 주목받고 있나?",
           "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
           "directional": true,
-          "lean": null,
+          "lean": "R",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": null,
+              "z": -0.914,
               "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.043010752688172046,
+              "rep_value": 0.956989247311828
             },
             {
               "variable": "wiki_edit_count",
@@ -3755,13 +3755,13 @@
               "z": null,
               "weight": 0.1,
               "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 0.0,
+              "rep_value": 0.0
             }
           ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
+          "unavailable": null,
+          "reason": null
         }
       ],
       "reference": null
@@ -3778,7 +3778,7 @@
         "prob_dem": 0.9746,
         "volume": 97609.233724,
         "volume1wk": null,
-        "liquidity": 36144.16868,
+        "liquidity": 36106.45194,
         "slug": "wi-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3808,7 +3808,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.583,
+              "z": -17.058,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -3859,7 +3859,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -3869,7 +3869,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -3879,7 +3879,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -3889,7 +3889,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -3899,13 +3899,13 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             }
           ],
           "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side"
         },
         {
           "key": "grassroots",
@@ -3998,7 +3998,7 @@
         "prob_dem": 0.0281,
         "volume": 89885.25295400001,
         "volume1wk": null,
-        "liquidity": 31299.05818,
+        "liquidity": 30944.47016,
         "slug": "ok-03-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4028,7 +4028,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.056,
+              "z": -14.086,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -4079,7 +4079,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4089,7 +4089,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4099,7 +4099,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4109,7 +4109,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4119,13 +4119,13 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             }
           ],
           "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "reason": "the DEM candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side"
         },
         {
           "key": "grassroots",
@@ -4218,7 +4218,7 @@
         "prob_dem": 0.9444,
         "volume": 86324.841175,
         "volume1wk": null,
-        "liquidity": 37254.5027,
+        "liquidity": 37194.3084,
         "slug": "ca-16-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4248,7 +4248,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.371,
+              "z": -6.591,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -4299,7 +4299,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4309,7 +4309,7 @@
               "z": null,
               "weight": 0.1,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4319,7 +4319,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4329,7 +4329,7 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             },
@@ -4339,13 +4339,13 @@
               "z": null,
               "weight": 0.0,
               "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
+              "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side",
               "dem_value": null,
               "rep_value": null
             }
           ],
           "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "reason": "the REP candidate's committee has no itemized receipts in the last 20 weeks — below the $200 itemization threshold, so there is nothing to measure on that side"
         },
         {
           "key": "grassroots",
@@ -4436,9 +4436,9 @@
       "rank": 9,
       "betting": {
         "prob_dem": 0.0259,
-        "volume": 79187.069497,
+        "volume": 79187.06949700002,
         "volume1wk": 1475.0,
-        "liquidity": 36824.15514,
+        "liquidity": 35580.07728,
         "slug": "wv-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4468,7 +4468,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.989,
+              "z": -16.465,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -4505,12 +4505,12 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "R",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
+          "n_available": 1,
           "n_total": 2,
           "variables": [
             {
@@ -4518,54 +4518,54 @@
               "label": "주내 기부 비중(FEC)",
               "z": null,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "missing",
+              "reason": "평소 수준을 계산할 관측치가 부족하다 (4개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다",
+              "dem_value": 1.0,
+              "rep_value": 0.0
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": -0.902,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2.0,
+              "rep_value": 39.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": -0.826,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2.0,
+              "rep_value": 21.0
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.382,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2.074118032306375,
+              "rep_value": 0.9280765751999863
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -4658,7 +4658,7 @@
         "prob_dem": 0.9736,
         "volume": 71073.559433,
         "volume1wk": null,
-        "liquidity": 40505.57044,
+        "liquidity": 40480.27121,
         "slug": "mi-11-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4679,16 +4679,16 @@
           "directional": true,
           "lean": "R",
           "level": null,
-          "z": -0.667,
+          "z": -0.333,
           "strength": 1,
-          "shift_pp": -3.3,
+          "shift_pp": -1.7,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.05,
+              "z": 0.986,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -4725,67 +4725,67 @@
           "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
           "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
           "directional": true,
-          "lean": null,
+          "lean": "D",
           "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
+          "z": 0.5,
+          "strength": 1,
+          "shift_pp": 2.5,
+          "n_available": 2,
           "n_total": 2,
           "variables": [
             {
               "variable": "fec_in_state_share",
               "label": "주내 기부 비중(FEC)",
-              "z": null,
+              "z": -0.05,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 0.9047619047619048,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_small_dollar_count",
               "label": "소액기부 건수(FEC)",
-              "z": null,
+              "z": 0.826,
               "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 21.0,
+              "rep_value": 2.0
             },
             {
               "variable": "fec_unique_donors",
               "label": "고유 기부자 수(FEC)",
-              "z": null,
+              "z": 0.882,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 16.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_repeat_donor_rate",
               "label": "재기부율(FEC)",
-              "z": null,
+              "z": 0.0,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 1.0,
+              "rep_value": 1.0
             },
             {
               "variable": "fec_burn_rate",
               "label": "자금 소진율(FEC)",
-              "z": null,
+              "z": 0.303,
               "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null
+              "availability": "available",
+              "reason": null,
+              "dem_value": 2.8651902970721794,
+              "rep_value": 1.5316604717892106
             }
           ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
+          "unavailable": null,
+          "reason": null
         },
         {
           "key": "grassroots",
@@ -4875,14 +4875,14 @@
       "title": "Alaska Governor Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.4207,
-        "volume": 1109295.825625,
-        "volume1wk": 9478.013882,
-        "liquidity": 225231.80599,
+        "prob_dem": 0.416,
+        "volume": 1109294.825625,
+        "volume1wk": 9559.853882,
+        "liquidity": 213558.9834,
         "slug": "alaska-governor-election-winner",
         "unmapped_mass": 0.0435,
         "trustworthy": true,
-        "change_1d": -0.0008,
+        "change_1d": -0.0055,
         "change_7d": null
       },
       "candidates": {
@@ -4899,16 +4899,16 @@
           "directional": true,
           "lean": "R",
           "level": null,
-          "z": -0.667,
-          "strength": 1,
-          "shift_pp": -3.3,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 0.027,
+              "z": -12.431,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -5098,9 +5098,9 @@
         "prob_dem": 0.8434,
         "volume": 194724.64507199998,
         "volume1wk": 1948.34941,
-        "liquidity": 40773.35296,
+        "liquidity": 40000.83879,
         "slug": "michigan-governor-winner-2026",
-        "unmapped_mass": 0.0144,
+        "unmapped_mass": 0.0154,
         "trustworthy": true,
         "change_1d": 0.0,
         "change_7d": null
@@ -5119,16 +5119,16 @@
           "directional": true,
           "lean": "D",
           "level": null,
-          "z": 0.667,
+          "z": 0.333,
           "strength": 1,
-          "shift_pp": 3.3,
+          "shift_pp": 1.7,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 0.05,
+              "z": -0.986,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -5322,9 +5322,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.4089,
-        "volume": 128711.99655000003,
-        "volume1wk": 43288.41803300001,
-        "liquidity": 44431.2144,
+        "volume": 128587.72981199999,
+        "volume1wk": 43164.15129500001,
+        "liquidity": 43673.8758,
         "slug": "wisconsin-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -5359,7 +5359,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 0.583,
+              "z": 17.058,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -5513,12 +5513,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.833,
+              "z": 0.831,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.916403992384102,
-              "rep_value": 0.08359600761589799
+              "dem_value": 0.9154121200664443,
+              "rep_value": 0.08458787993355561
             },
             {
               "variable": "wiki_edit_count",
@@ -5554,8 +5554,8 @@
       "betting": {
         "prob_dem": 0.467,
         "volume": 117327.32065099999,
-        "volume1wk": 1515.5688169999999,
-        "liquidity": 43644.4255,
+        "volume1wk": 1534.388817,
+        "liquidity": 44119.3835,
         "slug": "ohio-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -5590,7 +5590,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.164,
+              "z": -12.25,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -5813,9 +5813,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.935,
-        "volume": 89188.25556700001,
-        "volume1wk": 1717.616588,
-        "liquidity": 58146.4701,
+        "volume": 89187.18556700001,
+        "volume1wk": 1525.2665880000002,
+        "liquidity": 56213.0674,
         "slug": "new-york-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -5834,18 +5834,18 @@
           "question": "주 경제가 좋아지고 있나, 나빠지고 있나?",
           "detail": "주 실업수당 청구·실업률·경기동행지수를 그 주의 과거 수치와 비교해 최근 몇 달의 방향을 낸다. 좋아지면 책임지는 쪽에 유리하게 읽는데, 그 대상이 직위마다 다르다 — 상·하원은 대통령 정당(현재 공화당), 주지사는 그 자리를 쥔 정당이다. 그래서 같은 주라도 상원과 주지사의 부호가 반대로 나온다.",
           "directional": true,
-          "lean": "N",
+          "lean": "D",
           "level": null,
-          "z": 0.0,
-          "strength": 0,
-          "shift_pp": 0.0,
+          "z": 0.333,
+          "strength": 1,
+          "shift_pp": 1.7,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.022,
+              "z": 3.211,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -6033,9 +6033,9 @@
       "rank": 6,
       "betting": {
         "prob_dem": 0.8434,
-        "volume": 65163.824392999995,
+        "volume": 65163.82439300001,
         "volume1wk": 680.578234,
-        "liquidity": 39992.3396,
+        "liquidity": 39136.3692,
         "slug": "arizona-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6065,7 +6065,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 0.731,
+              "z": 19.355,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -6258,14 +6258,14 @@
       "title": "Minnesota Governor Election Winner",
       "rank": 7,
       "betting": {
-        "prob_dem": 0.9397,
-        "volume": 63620.40162000001,
-        "volume1wk": 669.629645,
-        "liquidity": 37427.32473,
+        "prob_dem": 0.9406,
+        "volume": 63584.40162,
+        "volume1wk": 633.629645,
+        "liquidity": 35171.99015,
         "slug": "minnesota-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0047,
+        "change_1d": -0.0038,
         "change_7d": null
       },
       "candidates": {
@@ -6291,7 +6291,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.906,
+              "z": -3.449,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -6480,8 +6480,8 @@
       "betting": {
         "prob_dem": 0.595,
         "volume": 60702.728824,
-        "volume1wk": 555.333332,
-        "liquidity": 27748.8814,
+        "volume1wk": 555.3333319999999,
+        "liquidity": 26651.4962,
         "slug": "georgia-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6516,7 +6516,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.307,
+              "z": -19.239,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -6709,14 +6709,14 @@
       "title": "Rhode Island Governor Election Winner",
       "rank": 9,
       "betting": {
-        "prob_dem": 0.9511,
-        "volume": 59824.09311300003,
+        "prob_dem": 0.9516,
+        "volume": 59824.09311300002,
         "volume1wk": 524.109297,
-        "liquidity": 35710.56476,
+        "liquidity": 36341.92872,
         "slug": "rhode-island-governor-winner-2026",
         "unmapped_mass": 0.0204,
         "trustworthy": true,
-        "change_1d": 0.0097,
+        "change_1d": 0.0102,
         "change_7d": null
       },
       "candidates": {
@@ -6742,7 +6742,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.806,
+              "z": -6.014,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -6929,14 +6929,14 @@
       "title": "Iowa Governor Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.699,
-        "volume": 55587.019832,
-        "volume1wk": 671.045636,
-        "liquidity": 13773.7673,
+        "prob_dem": 0.6919,
+        "volume": 55557.019832,
+        "volume1wk": 641.045636,
+        "liquidity": 14413.7222,
         "slug": "iowa-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0158,
+        "change_1d": 0.0087,
         "change_7d": null
       },
       "candidates": {
@@ -6967,7 +6967,7 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -1.403,
+              "z": -28.752,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
@@ -7191,27 +7191,19 @@
       "window": "1d"
     },
     {
-      "race_id": "gov-ia",
-      "label": "아이오와 주지사",
-      "chamber": "governor",
-      "prob_dem": 0.699,
-      "change": 0.0158,
-      "window": "1d"
-    },
-    {
       "race_id": "gov-ri",
       "label": "로드아일랜드 주지사",
       "chamber": "governor",
-      "prob_dem": 0.9511,
-      "change": 0.0097,
+      "prob_dem": 0.9516,
+      "change": 0.0102,
       "window": "1d"
     },
     {
-      "race_id": "sen-mt",
-      "label": "몬태나 상원",
-      "chamber": "senate",
-      "prob_dem": 0.0158,
-      "change": 0.0069,
+      "race_id": "gov-ia",
+      "label": "아이오와 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.6919,
+      "change": 0.0087,
       "window": "1d"
     },
     {
@@ -7220,6 +7212,14 @@
       "chamber": "senate",
       "prob_dem": 0.5931,
       "change": -0.0059,
+      "window": "1d"
+    },
+    {
+      "race_id": "gov-ak",
+      "label": "알래스카 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.416,
+      "change": -0.0055,
       "window": "1d"
     },
     {
