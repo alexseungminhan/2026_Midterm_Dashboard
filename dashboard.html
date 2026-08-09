@@ -136,6 +136,16 @@ h2 { font-size: 15px; font-weight: 650; margin: 0 0 4px; }
 /* ---- race table ---- */
 /* The table is the one thing that cannot shrink to a phone: six columns of
    numbers. It scrolls inside its own box so the PAGE never does. */
+/* A phone crops the table silently, and a cropped table looks like a finished
+   one. The right edge fades into the page background to say "there is more",
+   and the fade disappears once you reach the end so it never lies. */
+.table-scroll { position: relative; }
+.table-scroll::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 46px;
+  pointer-events: none; opacity: 0; transition: opacity .18s;
+  background: linear-gradient(to right, transparent, var(--plane) 78%);
+}
+.table-scroll.more::after { opacity: 1; }
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; min-width: 560px; }
 thead th {
@@ -768,6 +778,34 @@ function _sourceNames(keys) {
   return seen.join(", ");
 }
 
+/* Shows the right-edge fade only while there is something still cropped. */
+function _scrollHint(box, pane) {
+  const sync = () => {
+    const more = pane.scrollWidth - pane.clientWidth - pane.scrollLeft > 2;
+    box.classList.toggle("more", more);
+  };
+  /* Both events: `scroll` covers the finger, `scrollend` covers the moment
+     momentum stops, and some programmatic jumps only surface on the latter. */
+  pane.addEventListener("scroll", sync, { passive: true });
+  pane.addEventListener("scrollend", sync, { passive: true });
+  /* ResizeObserver rather than a one-shot rAF: the first measurement used to
+     land before the table had been laid out, read 0 for both widths, decide
+     "nothing cropped" and never look again. The observer fires once on
+     observe() and again whenever the column widths settle. */
+  addEventListener("resize", sync);
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(sync);
+    ro.observe(pane);
+    if (pane.firstElementChild) ro.observe(pane.firstElementChild);
+  }
+  /* Measured more than once on purpose. The first paint can report equal
+     widths before the table has laid out, and a single early reading would
+     conclude "nothing cropped" and never revisit it. */
+  sync();
+  requestAnimationFrame(() => requestAnimationFrame(sync));
+  setTimeout(sync, 250);
+}
+
 /* ---------- render ---------- */
 function render(doc) {
   const app = document.getElementById("app");
@@ -827,7 +865,10 @@ function render(doc) {
       Math.min(races.length, SHOW_N[TAB] || races.length) + "곳."));
     const tw = el("div", "table-wrap");
     tw.appendChild(raceTable(races, TAB));
-    s.appendChild(tw);
+    const scroller = el("div", "table-scroll");
+    scroller.appendChild(tw);
+    s.appendChild(scroller);
+    _scrollHint(scroller, tw);
     app.appendChild(s);
   }
 
