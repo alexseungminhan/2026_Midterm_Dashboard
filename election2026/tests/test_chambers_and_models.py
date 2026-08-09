@@ -115,21 +115,45 @@ def test_a_directional_model_reports_a_lean_and_a_shift():
     assert econ.n_available == 3
 
 
-def test_weights_renormalize_over_the_available_variables_only():
-    """One live variable out of five reports ITS value, not a value dragged
-    four-fifths of the way to zero."""
+def test_money_counts_variables_rather_than_averaging_them():
+    """A share and a count are different quantities, so the model tallies
+    directions instead of averaging the normalized contrasts (2026-08-09).
+
+    n_total is 2, not 5: repeat_donor_rate and burn_rate were zeroed on
+    2026-08-08 when the variables moved to side-vs-side comparison, and
+    unique_donors on 2026-08-09 (r = +0.962 with small_dollar_count). A
+    zero-weight variable is not part of the model's denominator.
+    """
     money = {x.key: x for x in models.build(
-        _readings(fec_in_state_share=2.0))}["money"]
-    assert money.z == pytest.approx(2.0)
-    assert (money.n_available, money.n_total) == (1, 5)
+        _readings(fec_in_state_share=0.4))}["money"]
+    assert money.z == pytest.approx(1.0)      # the one live variable, D
+    assert (money.n_available, money.n_total) == (1, 2)
+
+    # Both pointing the same way is still 1.0; opposed cancels to 0.
+    split = {x.key: x for x in models.build(
+        _readings(fec_in_state_share=0.4,
+                  fec_small_dollar_count=-0.4))}["money"]
+    assert split.z == pytest.approx(0.0) and split.lean == "N"
 
 
-def test_the_attention_model_never_leans():
+def test_a_gap_too_small_to_call_does_not_vote():
+    """TOO_SMALL keeps a 0.05 contrast from counting as a full vote."""
+    money = {x.key: x for x in models.build(
+        _readings(fec_in_state_share=0.05))}["money"]
+    assert money.z == pytest.approx(0.0) and money.lean == "N"
+
+
+def test_the_attention_model_leans_with_the_candidates(): 
+    """Directional since 2026-08-09: the two candidates\' pageviews are
+    compared to each other, so the model has a side.
+
+    It is the weakest of the four by construction — views measure notoriety,
+    not support — which is why models.py says so in its `detail` string.
+    """
     att = {x.key: x for x in models.build(
-        _readings(wiki_pageviews_share=2.0, wiki_edit_count=2.0))}["attention"]
-    assert att.lean is None            # a pageview cannot pick a party
-    assert att.level == "high"
-    assert att.shift_pp is None        # and cannot shift a probability
+        _readings(wiki_pageviews_share=0.8, wiki_edit_count=0.8))}["attention"]
+    assert att.lean == "D"
+    assert att.level is None           # a directional model has no level
 
 
 def test_a_near_zero_reading_is_neutral_not_a_lean():

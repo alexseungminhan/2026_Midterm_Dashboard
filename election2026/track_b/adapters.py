@@ -733,23 +733,17 @@ class PrimaryTurnoutAdapter(TrackBAdapter):
         entry = rows.get(state)
         if entry is None:
             return None
-        contrast = {st: math.log(v["dem_pct"] / v["rep_pct"])
-                    for st, v in rows.items()
-                    if v["dem_pct"] > 0 and v["rep_pct"] > 0}
-        if state not in contrast:
+        dem, rep = entry["dem_pct"], entry["rep_pct"]
+        if not dem or not rep or dem <= 0 or rep <= 0:
             return None
-        baseline = [v for st, v in contrast.items() if st != state]
-        if len(baseline) < config.TRACK_B["baseline_min_obs"]:
-            return None
-        return {"oriented": {
-            "value": contrast[state],
-            "baseline": baseline,
-            "detail": "%d primary turnout vs %d: D %.0f%% / R %.0f%% of prior "
-                      "(log ratio %+.3f, against %d other reporting states)"
-                      % (entry["cycle"], entry["prior_cycle"],
-                         entry["dem_pct"], entry["rep_pct"],
-                         contrast[state], len(baseline)),
-        }}
+        # Compare the two parties' growth to EACH OTHER, in this state, and
+        # stop there (2026-08-09). The cross-state z-score it replaces asked
+        # "unusual among the states reporting this cycle", which is a real
+        # question but not the one on the card — and it meant Maine's reading
+        # moved when Ohio's numbers arrived.
+        return {"dem": {"value": float(dem)}, "rep": {"value": float(rep)},
+                "detail": "%d turnout as %% of %d: D %.0f%% / R %.0f%%"
+                          % (entry["cycle"], entry["prior_cycle"], dem, rep)}
 
     def _pull_live(self, race_id, meta):
         state = meta["state"]
@@ -857,7 +851,12 @@ class FredBase(TrackBAdapter):
     as_percent_change = False
     # Months differenced to read a trajectory. Three smooths the month-to-month
     # noise without lagging so far that it misses a turn.
-    LOOKBACK_MONTHS = 3
+    # A YEAR, not a quarter (2026-08-09). The old reading was "the last 3
+    # months, z-scored against the same 3-month change over the previous 24" —
+    # two nested comparisons that nobody could restate. A year-over-year
+    # change is one comparison and says itself: "실업률이 1년 전보다 0.4%p
+    # 높다". Twelve months also cancels seasonality without a seasonal model.
+    LOOKBACK_MONTHS = 12
 
     def series_id(self, meta: dict) -> str:
         return "%s%s" % (meta["state"], self.series_suffix)
@@ -928,8 +927,14 @@ class FredBase(TrackBAdapter):
             history.append(imp if party == "D" else -imp)
         if len(history) < config.TRACK_B["baseline_min_obs"]:
             return None
+        # `direct` means "already a signed, oriented reading — do not z-score
+        # it". The number is a year-over-year change in the series' own units,
+        # which is what the detail view shows. The history is still computed
+        # above because backfill uses the same code path.
         return {"oriented": {
             "value": value,
+            "direct": True,
+            "raw_change": change,
             "baseline": history[-config.TRACK_B["econ_baseline_months"]:],
             "detail": "%s %+.2f over %d months (credited to %s, the party in "
                       "power for this office)"
@@ -1177,198 +1182,6 @@ class PartyRegistrationAdapter(TrackBAdapter):
 # GDELT — media volume per side, deviation vs own baseline. Free, no auth.
 # ===========================================================================
 
-class GdeltAdapter(TrackBAdapter):
-    """Media volume per side, as deviation from that side's own baseline.
-
-    Uses mode=timelinevol, which returns a DAILY volume-intensity series (the
-    share of all monitored articles matching the query) for an arbitrary date
-    range in ONE call. That buys two things over the artlist mode this used
-    to run: the value no longer saturates at maxrecords, and eight weeks of
-    history cost one request per side instead of eight.
-    """
-
-    name = "gdelt"
-    DOC = "https://api.gdeltproject.org/api/v2/doc/doc"
-    supports_backfill = True
-    # GDELT answers 429 with "please limit requests to one every 5 seconds".
-    _limiter = cache.RateLimiter(config.TRACK_B["gdelt_min_interval"])
-
-    def _queries(self, meta) -> dict:
-        state = _STATE_NAMES.get(meta["state"], meta["state"])
-        office = {"senate": "senate", "house": "congressional",
-                  "governor": "governor"}[meta["chamber"]]
-        return {party: '"%s" %s election %s' % (state, office, term)
-                for party, term in (("dem", "democrat"), ("rep", "republican"))}
-
-    def observation_period(self, race_id, meta) -> Optional[str]:
-        # GDELT is current to within hours; yesterday is the newest day with
-        # a settled full-day volume.
-        return (date.today() - timedelta(days=1)).isoformat()
-
-    def _pull_live(self, race_id, meta):
-        end = date.today() - timedelta(days=1)
-        return self._window_means(meta, end - timedelta(days=6), end)
-
-    def backfill_series(self, race_id, meta, weeks):
-        """One call per side covers every week — slice the daily series."""
-        anchor = date.fromisoformat(self.observation_period(race_id, meta))
-        windows = week_windows(anchor, weeks + 1)[1:]   # skip the live window
-        oldest = min(start for start, _ in windows)
-        daily = {party: self._daily(q, oldest, anchor)
-                 for party, q in self._queries(meta).items()}
-        if any(d is None for d in daily.values()):
-            return None
-        out = {}
-        for start, end in windows:
-            sides = {}
-            for party, series in daily.items():
-                vals = [v for day, v in series.items() if start <= day <= end]
-                if vals:
-                    sides[party] = {"value": sum(vals) / len(vals)}
-            if len(sides) == 2:
-                out[end.isoformat()] = sides
-        return out
-
-    def _window_means(self, meta, start: date, end: date) -> Optional[dict]:
-        sides = {}
-        for party, query in self._queries(meta).items():
-            series = self._daily(query, start, end)
-            if not series:
-                return None
-            vals = [v for day, v in series.items() if start <= day <= end]
-            if not vals:
-                return None
-            sides[party] = {"value": sum(vals) / len(vals)}
-        return sides
-
-    def _daily(self, query: str, start: date, end: date) -> Optional[dict]:
-        """{date: volume-intensity} covering at least [start, end].
-
-        Asked with `timespan` (days back from now), NOT startdatetime/
-        enddatetime: GDELT classifies explicit date ranges as "larger
-        queries" and answers them with a flat 429 for anonymous callers,
-        while the same range expressed as a timespan is served normally.
-        The series is returned whole and sliced by the callers.
-
-        Cached to disk per (query, day): GDELT throttles hard and a 36-race
-        backfill is ~72 calls, so a run that gets cut off must resume from
-        where it stopped rather than start over.
-        """
-        import hashlib
-        days = (date.today() - start).days + 1
-        key = "series__%s__%dd__%s" % (
-            hashlib.sha1(query.encode("utf-8")).hexdigest()[:12],
-            days, date.today().isoformat())
-        cached = cache.read(self.track, self.name, key,
-                            max_age_hours=config.TRACK_B["cache_ttl_hours"])
-        if cached is not None:
-            return {date.fromisoformat(d): v for d, v in cached.items()} or None
-
-        resp = cache.http_get(self.DOC, params={
-            "query": query, "mode": "timelinevol", "format": "json",
-            "timespan": "%dd" % days,
-        }, timeout=30, retries=config.TRACK_B["gdelt_retries"],
-            limiter=self._limiter)
-        if resp is None or resp.status_code != 200:
-            return None
-        text = (resp.text or "").strip()
-        if not text.startswith("{"):
-            return None      # GDELT sometimes answers with empty/HTML bodies
-        try:
-            timeline = json.loads(text).get("timeline") or []
-            points = timeline[0].get("data") or []
-        except (ValueError, IndexError, AttributeError):
-            return None
-        out = {}
-        for point in points:
-            try:
-                day = date(int(point["date"][0:4]), int(point["date"][4:6]),
-                           int(point["date"][6:8]))
-            except (KeyError, ValueError):
-                continue
-            out[day] = float(point.get("value") or 0.0)
-        if not out:
-            return None
-        cache.write(self.track, self.name, key,
-                    {d.isoformat(): v for d, v in out.items()})
-        return out
-
-
-# ===========================================================================
-# Candidate roster — shared by Wikipedia and Reddit
-# ===========================================================================
-
-def candidate_roster(race_id: str, meta: dict) -> Optional[dict]:
-    """{"dem": ["Jon Ossoff"], "rep": [...]} for a race, or None.
-
-    Taken from the FEC candidate search — a Track B source already wired up —
-    with a hand-maintained override in config for governor races, which the
-    FEC does not cover. It is NOT taken from the poll sheet: that is Track A
-    data, and the two tracks share no inputs by construction.
-    """
-    override = config.TRACK_B.get("candidate_overrides", {}).get(race_id)
-    if override:
-        return {k: list(v) for k, v in override.items()}
-    if meta["chamber"] == "governor":
-        return None
-    fec = FecBase()
-    if not fec.is_available():
-        return None
-    out = {}
-    for party, code in (("dem", "DEM"), ("rep", "REP")):
-        names = [_humanize_fec_name(n)
-                 for n in fec.candidate_names(race_id, meta, code)]
-        names = [n for n in names if n]
-        if not names:
-            return None
-        out[party] = names
-    return out
-
-
-# Honorifics the FEC carries inside the given-name field. They are titles,
-# not names: leaving "MR." in produced the roster entry "David Alfred Mr.
-# Pautsch", which no Wikipedia search can match. Generational suffixes
-# (JR/SR/III) are deliberately NOT here — those are part of the legal name.
-_FEC_HONORIFICS = {"mr", "mrs", "ms", "miss", "dr", "hon", "rev", "prof",
-                   "sen", "rep", "gov", "sgt", "capt", "col", "lt"}
-
-# Kept upper-case verbatim by the title-casing pass below.
-_ROMAN_SUFFIXES = {"ii", "iii", "iv", "v", "vi"}
-
-
-def _humanize_fec_name(name: str) -> Optional[str]:
-    """'OSSOFF, JON' -> 'Jon Ossoff'. Returns None on anything unparseable."""
-    name = (name or "").strip()
-    if not name:
-        return None
-    if "," in name:
-        last, _, rest = name.partition(",")
-        given = [p for p in rest.strip().split() if p]
-        # The FEC puts a generational suffix in the GIVEN-name field:
-        # "KEAN, THOMAS H JR" -> naive reassembly gives "Thomas H Jr Kean",
-        # which is not a name anybody or any search index recognizes. Move it
-        # back behind the surname where it belongs.
-        suffix = []
-        while given and given[-1].strip(".").lower() in _NAME_SUFFIXES:
-            suffix.insert(0, given.pop())
-        name = " ".join(given + [last.strip()] + suffix) if given \
-            else " ".join([last.strip()] + suffix)
-    parts = [p for p in re.split(r"\s+", name.strip()) if p]
-    parts = [p for p in parts if p.strip(".").lower() not in _FEC_HONORIFICS]
-    if not parts:
-        return None
-    # Roman-numeral suffixes must stay upper: .capitalize() turns III into
-    # "Iii", which no Wikipedia title or search index matches.
-    return " ".join(
-        p if p.strip(".").lower() in _ROMAN_SUFFIXES
-        else (p.capitalize() if p.isupper() else p)
-        for p in parts)
-
-
-# ===========================================================================
-# Wikipedia — attention, and the first BACKTESTABLE Track B variable
-# ===========================================================================
-
 class WikiBase(TrackBAdapter):
     """Wikimedia REST pageviews + edit counts. Free, no auth.
 
@@ -1476,23 +1289,33 @@ class WikiBase(TrackBAdapter):
                     continue
                 title = self._resolve(name, meta)
                 if title is None:
-                    print("[track_b] wiki: %s — could not resolve a Wikipedia "
-                          "article for %r. Refusing to report zero pageviews "
-                          "for an unresolved candidate. Add the article title "
-                          "to config.TRACK_B['wiki_titles'], or map the name "
-                          "to None there if the person has no article."
+                    # SKIP, do not fail the race. Dropping the whole contest
+                    # over one unresolvable minor name cost 28 of 40 races on
+                    # 2026-08-08 — Ohio was blanked because 'Frederick J Ode'
+                    # has no article, while Sherrod Brown and Jon Husted both
+                    # resolve fine.
+                    #
+                    # Skipping is not the same as reporting zero. A zero would
+                    # say "nobody looked this person up", inflating the other
+                    # side; leaving them out says "not measured", and the
+                    # share is then taken over the candidates we could measure
+                    # on each side. The guard that actually matters is below:
+                    # a side with nobody left is still fatal.
+                    print("[track_b] wiki: %s — no Wikipedia article for %r; "
+                          "measuring the rest of the field. Add the title to "
+                          "config.TRACK_B['wiki_titles'] to include them, or "
+                          "map to None to silence this."
                           % (race_id, name))
-                    return None
+                    continue
                 if title not in resolved:      # two candidates, one article
                     resolved.append(title)
             # A side with nobody left is not measurable: a pageview SHARE
             # needs both sides. Fail the race rather than compute a share
             # against an empty denominator.
             if not resolved:
-                print("[track_b] wiki: %s — every %s candidate is declared "
-                      "article-less in config.TRACK_B['wiki_titles'], so the "
-                      "D-vs-R pageview share has no %s side to measure."
-                      % (race_id, party, party))
+                print("[track_b] wiki: %s — no %s candidate has an article, "
+                      "so the D-vs-R pageview share has no %s side to "
+                      "measure." % (race_id, party, party))
                 return None
             titles[party] = resolved
         cache.write(self.track, self.source, key, {"titles": titles})
@@ -1505,9 +1328,16 @@ class WikiBase(TrackBAdapter):
     # worse than having no reading: it is a reading of the wrong thing that
     # looks like a reading of the right one. Titles matching these patterns
     # are therefore treated as unresolved.
+    # A DISAMBIGUATION page is the worst kind of wrong match: it exists, it
+    # resolves, and it carries almost no traffic. Maine resolved its
+    # Republican side to "Susan Collins (disambiguation)" on 2026-08-08 and
+    # scored her at ~0 views against the real article's 15,914 for the week,
+    # which put the Democratic pageview share at 99.8% in a race the market
+    # had at 67.8%. The reading looked like a landslide and was an artefact.
     _NOT_A_PERSON = re.compile(
         r"(gubernatorial|senate|congressional|presidential|house of "
-        r"representatives) election|^List of |^\d{4} United States", re.I)
+        r"representatives) election|^List of |^\d{4} United States"
+        r"|\(disambiguation\)", re.I)
 
     def _resolve(self, name: str, meta: dict) -> Optional[str]:
         """Canonical article title for a candidate, following redirects.
@@ -1674,304 +1504,74 @@ class WikiEditCountAdapter(WikiBase):
 # Reddit — state subreddits
 # ===========================================================================
 
-class RedditAdapter(TrackBAdapter):
-    """Candidate mention volume and comment sentiment in the STATE subreddit,
-    de-biased against that subreddit's own rolling baseline.
 
-    State subreddits rather than a national feed because the local-voter share
-    is far higher — much less national-politics noise — and each subreddit is
-    a well-defined baseline population to de-bias against.
+def candidate_roster(race_id: str, meta: dict) -> Optional[dict]:
+    """{"dem": ["Jon Ossoff"], "rep": [...]} for a race, or None.
 
-    API TERMS, verified 2026-07-30 (see config.TRACK_B for the note): OAuth2
-    is mandatory, there is no anonymous key-only path; the free
-    non-commercial tier allows roughly 100 queries/minute per OAuth client
-    averaged over a ten-minute window; free use requires pre-approval under
-    Reddit's November 2025 Responsible Builder Policy; commercial use is a
-    paid agreement and ML training is prohibited without a licence. The
-    adapter therefore paces itself off the X-Ratelimit-* headers Reddit
-    returns and honours Retry-After rather than assuming a fixed quota.
-
-    STATUS: implemented but NOT exercised against the live API — this
-    project holds no Reddit OAuth credentials, so is_available() is False and
-    the variable reports as missing. The parsing, sentiment and normalization
-    paths are unit-tested against fixtures. Set REDDIT_CLIENT_ID and
-    REDDIT_CLIENT_SECRET (and REDDIT_USER_AGENT) to switch it on; expect to
-    verify the search and comment shapes on first live run.
+    Taken from the FEC candidate search — a Track B source already wired up —
+    with a hand-maintained override in config for governor races, which the
+    FEC does not cover. It is NOT taken from the poll sheet: that is Track A
+    data, and the two tracks share no inputs by construction.
     """
-
-    name = "reddit"
-    OAUTH = "https://www.reddit.com/api/v1/access_token"
-    BASE = "https://oauth.reddit.com"
-    _limiter = cache.RateLimiter(config.TRACK_B["reddit_min_interval"])
-    _token = None
-    _token_expires = 0.0
-    _cooldown_until = 0.0
-
-    def is_available(self) -> bool:
-        return bool(os.environ.get("REDDIT_CLIENT_ID")
-                    and os.environ.get("REDDIT_CLIENT_SECRET"))
-
-    def _pull_live(self, race_id, meta):
-        subreddit = config.TRACK_B["reddit_subreddits"].get(meta["state"])
-        if not subreddit:
-            return unavailable(
-                "structural",
-                "no state subreddit is mapped for %s" % meta["state"])
-        roster = candidate_roster(race_id, meta)
-        if not roster:
+    override = config.TRACK_B.get("candidate_overrides", {}).get(race_id)
+    if override:
+        return {k: list(v) for k, v in override.items()}
+    if meta["chamber"] == "governor":
+        return None
+    fec = FecBase()
+    if not fec.is_available():
+        return None
+    out = {}
+    for party, code in (("dem", "DEM"), ("rep", "REP")):
+        names = [_humanize_fec_name(n)
+                 for n in fec.candidate_names(race_id, meta, code)]
+        names = [n for n in names if n]
+        if not names:
             return None
-        sides = {}
-        for party, names in roster.items():
-            score = self._side_score(subreddit, names)
-            if score is None:
-                return None
-            sides[party] = {"value": score}
-        return sides
-
-    def _side_score(self, subreddit: str, names: list) -> Optional[float]:
-        """Mentions weighted by how positively they are discussed.
-
-        value = mentions x (1 + mean sentiment), so a side talked about a lot
-        but negatively does not outscore a side talked about less but warmly.
-        The rolling baseline removes each subreddit's own resting level and
-        partisan lean — a Democratic-leaning subreddit being pro-Democrat is
-        not signal; it being unusually energized is.
-        """
-        mentions, sentiments = 0, []
-        for name in names:
-            posts = self._search(subreddit, name)
-            if posts is None:
-                return None
-            mentions += len(posts)
-            sentiments.extend(_sentiment(p) for p in posts)
-        if not mentions:
-            return 0.0
-        mean = sum(sentiments) / len(sentiments) if sentiments else 0.0
-        return mentions * (1.0 + mean)
-
-    def _search(self, subreddit: str, name: str) -> Optional[list]:
-        """Recent comment/post text mentioning a candidate in one subreddit."""
-        key = "search__%s__%s__%s" % (subreddit, _slug(name),
-                                      date.today().isoformat())
-        cached = cache.read(self.track, self.name, key,
-                            max_age_hours=config.TRACK_B["cache_ttl_hours"])
-        if cached is not None:
-            return cached.get("texts", [])
-        token = self._access_token()
-        if token is None:
-            return None
-        body = self._get("%s/r/%s/search" % (self.BASE, subreddit),
-                         token, {"q": name, "restrict_sr": 1, "sort": "new",
-                                 "t": "week",
-                                 "limit": config.TRACK_B["reddit_comment_limit"]})
-        if body is None:
-            return None
-        texts = []
-        for child in (body.get("data") or {}).get("children") or []:
-            data = child.get("data") or {}
-            text = "%s %s" % (data.get("title") or "",
-                              data.get("selftext") or data.get("body") or "")
-            if text.strip():
-                texts.append(text.strip()[:2000])
-        cache.write(self.track, self.name, key, {"texts": texts})
-        return texts
-
-    def _access_token(self) -> Optional[str]:
-        cls = type(self)
-        if cls._token and time.time() < cls._token_expires:
-            return cls._token
-        if cache.SESSION is None:
-            return None
-        try:
-            resp = cache.SESSION.post(
-                self.OAUTH, data={"grant_type": "client_credentials"},
-                auth=(os.environ["REDDIT_CLIENT_ID"],
-                      os.environ["REDDIT_CLIENT_SECRET"]),
-                headers={"User-Agent": _reddit_user_agent()}, timeout=20)
-        except Exception as exc:
-            print("[track_b] reddit: token request failed: %s" % exc)
-            return None
-        if resp.status_code != 200:
-            print("[track_b] reddit: token request returned HTTP %d — free "
-                  "tier access requires pre-approval under Reddit's "
-                  "Responsible Builder Policy" % resp.status_code)
-            return None
-        body = resp.json()
-        cls._token = body.get("access_token")
-        cls._token_expires = time.time() + float(body.get("expires_in", 3600)) - 60
-        return cls._token
-
-    def _get(self, url: str, token: str, params: dict) -> Optional[dict]:
-        """One paced GET, honouring Retry-After and the X-Ratelimit headers.
-
-        Reddit publishes remaining quota on every response, so the adapter
-        slows itself down from what the API actually reports rather than from
-        a number hard-coded off documentation that has changed repeatedly.
-        """
-        cls = type(self)
-        if time.time() < cls._cooldown_until:
-            return None
-        self._limiter.wait()
-        if cache.SESSION is None:
-            return None
-        try:
-            resp = cache.SESSION.get(
-                url, params=params, timeout=30,
-                headers={"Authorization": "Bearer %s" % token,
-                         "User-Agent": _reddit_user_agent()})
-        except Exception as exc:
-            print("[track_b] reddit: %s" % exc)
-            return None
-        if resp.status_code == 429:
-            wait = float(resp.headers.get("Retry-After")
-                         or resp.headers.get("X-Ratelimit-Reset") or 60)
-            cls._cooldown_until = time.time() + wait
-            print("[track_b] reddit: throttled, backing off %.0fs "
-                  "(remaining=%s)" % (wait,
-                                      resp.headers.get("X-Ratelimit-Remaining")))
-            return None
-        if resp.status_code != 200:
-            return None
-        try:
-            remaining = float(resp.headers.get("X-Ratelimit-Remaining", "999"))
-        except ValueError:
-            remaining = 999.0
-        if remaining < 10:
-            reset = float(resp.headers.get("X-Ratelimit-Reset") or 60)
-            cls._cooldown_until = time.time() + reset
-            print("[track_b] reddit: %.0f calls left in the window, pausing "
-                  "%.0fs" % (remaining, reset))
-        try:
-            return resp.json()
-        except ValueError:
-            return None
+        out[party] = names
+    return out
 
 
-def _reddit_user_agent() -> str:
-    """Reddit throttles generic User-Agents; the documented form is
-    platform:app_id:version (by /u/username)."""
-    return os.environ.get(
-        "REDDIT_USER_AGENT",
-        "python:election2026.midterm-monitor:3.0.0 (by /u/unknown)")
+# Honorifics the FEC carries inside the given-name field. They are titles,
+# not names: leaving "MR." in produced the roster entry "David Alfred Mr.
+# Pautsch", which no Wikipedia search can match. Generational suffixes
+# (JR/SR/III) are deliberately NOT here — those are part of the legal name.
+_FEC_HONORIFICS = {"mr", "mrs", "ms", "miss", "dr", "hon", "rev", "prof",
+                   "sen", "rep", "gov", "sgt", "capt", "col", "lt"}
 
+# Kept upper-case verbatim by the title-casing pass below.
+_ROMAN_SUFFIXES = {"ii", "iii", "iv", "v", "vi"}
 
-# A deliberately small, inspectable polarity lexicon. This is NOT a
-# state-of-the-art sentiment model and does not pretend to be: no sentiment
-# package is a dependency here, and the value is z-scored against the same
-# subreddit's own baseline computed with the same lexicon, so what has to be
-# stable is the RULE, not its absolute calibration.
-_POS = {"great", "good", "best", "love", "loves", "excellent", "strong",
-        "impressive", "win", "wins", "winning", "support", "supports",
-        "supporting", "hope", "hopeful", "proud", "excited", "excellent",
-        "solid", "smart", "honest", "fighting", "champion", "endorse",
-        "endorsed", "surge", "momentum", "vote", "voting"}
-_NEG = {"bad", "worst", "hate", "hates", "terrible", "awful", "corrupt",
-        "liar", "lies", "lying", "scandal", "fraud", "weak", "failed",
-        "failure", "lose", "loses", "losing", "disappointing", "disaster",
-        "embarrassing", "sellout", "grifter", "coward", "pathetic",
-        "resign", "indicted", "hypocrite"}
-_NEGATORS = {"not", "no", "never", "isn't", "wasn't", "don't", "doesn't",
-             "won't", "can't", "cannot", "hardly"}
-
-
-def _sentiment(text: str) -> float:
-    """Mean polarity of a comment in [-1, 1]; 0 when nothing is recognized.
-
-    Handles simple negation ("not great" scores negative) because without it
-    the lexicon reads political criticism as praise often enough to matter.
-    """
-    tokens = re.findall(r"[a-z']+", (text or "").lower())
-    score, hits = 0.0, 0
-    for i, token in enumerate(tokens):
-        polarity = 1.0 if token in _POS else (-1.0 if token in _NEG else 0.0)
-        if polarity == 0.0:
-            continue
-        window = tokens[max(0, i - 3):i]
-        if any(w in _NEGATORS for w in window):
-            polarity = -polarity
-        score += polarity
-        hits += 1
-    return score / hits if hits else 0.0
+def _humanize_fec_name(name: str) -> Optional[str]:
+    """'OSSOFF, JON' -> 'Jon Ossoff'. Returns None on anything unparseable."""
+    name = (name or "").strip()
+    if not name:
+        return None
+    if "," in name:
+        last, _, rest = name.partition(",")
+        given = [p for p in rest.strip().split() if p]
+        # The FEC puts a generational suffix in the GIVEN-name field:
+        # "KEAN, THOMAS H JR" -> naive reassembly gives "Thomas H Jr Kean",
+        # which is not a name anybody or any search index recognizes. Move it
+        # back behind the surname where it belongs.
+        suffix = []
+        while given and given[-1].strip(".").lower() in _NAME_SUFFIXES:
+            suffix.insert(0, given.pop())
+        name = " ".join(given + [last.strip()] + suffix) if given \
+            else " ".join([last.strip()] + suffix)
+    parts = [p for p in re.split(r"\s+", name.strip()) if p]
+    parts = [p for p in parts if p.strip(".").lower() not in _FEC_HONORIFICS]
+    if not parts:
+        return None
+    # Roman-numeral suffixes must stay upper: .capitalize() turns III into
+    # "Iii", which no Wikipedia title or search index matches.
+    return " ".join(
+        p if p.strip(".").lower() in _ROMAN_SUFFIXES
+        else (p.capitalize() if p.isupper() else p)
+        for p in parts)
 
 
 # ===========================================================================
-# YouTube — enthusiasm proxies under a strict daily quota budget
+# Wikipedia — attention, and the first BACKTESTABLE Track B variable
 # ===========================================================================
 
-class YouTubeAdapter(TrackBAdapter):
-    """NOT BACKFILLABLE. publishedBefore/After can restrict which videos are
-    returned, but the statistics endpoint only ever reports CURRENT view,
-    like and comment counts — there is no way to recover what a video's
-    engagement looked like eight weeks ago. Reconstructing a past week from
-    today's counters would fabricate history, so this source builds its
-    baseline the honest way: one observation per run, going forward."""
-
-    name = "youtube"
-    SEARCH = "https://www.googleapis.com/youtube/v3/search"
-    VIDEOS = "https://www.googleapis.com/youtube/v3/videos"
-
-    def __init__(self, mock_table: Optional[dict] = None):
-        super().__init__(mock_table)
-        self.budget = QuotaBudget("youtube",
-                                  config.TRACK_B["youtube_daily_budget"])
-
-    def is_available(self) -> bool:
-        return bool(os.environ.get("YOUTUBE_API_KEY"))
-
-    def _pull_live(self, race_id, meta):
-        # search(100) x2 + videos(1) x2 = 202 units per race.
-        if not self.budget.take(202):
-            return None
-        key = os.environ["YOUTUBE_API_KEY"]
-        state = _STATE_NAMES.get(meta["state"], meta["state"])
-        sides = {}
-        for party, term in (("dem", "democrat"), ("rep", "republican")):
-            score = self._enthusiasm(key, "%s %s 2026 election" % (state, term))
-            if score is None:
-                return None
-            sides[party] = {"value": score}
-        return sides
-
-    def _enthusiasm(self, key, query) -> Optional[float]:
-        """Engagement proxy: mean(comments + 10*likes) / views over recent
-        videos for the query. Per-channel de-biasing happens via the rolling
-        baseline (the same query tracks the same channel population)."""
-        resp = cache.http_get(self.SEARCH, params={
-            "part": "id", "q": query, "type": "video", "order": "date",
-            "maxResults": 25, "key": key})
-        if resp is None or resp.status_code != 200:
-            return None
-        ids = [it["id"]["videoId"] for it in resp.json().get("items", [])
-               if it.get("id", {}).get("videoId")]
-        if not ids:
-            return None
-        resp = cache.http_get(self.VIDEOS, params={
-            "part": "statistics", "id": ",".join(ids[:25]), "key": key})
-        if resp is None or resp.status_code != 200:
-            return None
-        ratios = []
-        for it in resp.json().get("items", []):
-            st = it.get("statistics", {})
-            views = float(st.get("viewCount", 0) or 0)
-            if views < 100:
-                continue
-            comments = float(st.get("commentCount", 0) or 0)
-            likes = float(st.get("likeCount", 0) or 0)
-            ratios.append((comments + 10 * likes) / views)
-        if not ratios:
-            return None
-        return sum(ratios) / len(ratios)
-
-
-# ---------------------------------------------------------------------------
-# REMOVED 2026-07-30
-#   TrendsAdapter  — pytrends is unofficial, rate-limited and cannot reliably
-#                    backfill history. Replaced by WikiBase's two variables,
-#                    which are official, free, and backfillable to 2015.
-#   TwitterAdapter — X read access is paid. Replaced by RedditAdapter.
-#   AdspendAdapter — commercial ad-tracking data is paywalled, and the free
-#                    alternative (FCC political files) is largely scanned PDFs
-#                    whose parsing cost outweighs the signal. Not replaced.
-# Do not casually re-add any of the three; each was removed for a standing
-# reason, not because it was hard to finish.
-# ---------------------------------------------------------------------------

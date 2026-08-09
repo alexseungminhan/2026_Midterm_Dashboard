@@ -29,8 +29,8 @@ from typing import Optional
 
 from . import board, chambers, config, manual, models, prediction_log, schema
 from . import track_a, track_b
-from .baseline import BaselineStore
-from .track_b.signals import compute_readings, residualize
+from .track_b.signals import (compute_readings, residualize,
+                              attention_levels_across)
 
 HISTORY_DIR = os.path.join(config.DATA_DIR, "history")
 OUTPUT_PATH = os.path.join(config.DATA_DIR, "forecast.json")
@@ -212,21 +212,30 @@ def run(chamber: Optional[str] = None, races_filter: Optional[list] = None,
     metas = {}
     for r in board_races:
         ref = reference.get(r.race_id, {})
+        # The MARKET's candidate names ride along. Track B otherwise builds
+        # its Wikipedia roster from an FEC candidate search, which returns
+        # everyone who filed rather than the two who are actually on the
+        # ballot: Maine came back "Graham Platner, Janet Mills vs Patricia M.
+        # Collins" for a race the market lists as Troy Jackson vs Susan
+        # Collins. Those are different people, and the pageview comparison was
+        # measuring them.
+        #
+        # This does not breach the track separation. The separation exists so
+        # that Track B never inherits Track A's *estimates*; a candidate's
+        # name is not an estimate, it is who is running.
         metas[r.race_id] = dict(ref, race_id=r.race_id, chamber=r.chamber,
                                 state=r.state, district=r.district,
-                                label=r.label)
+                                label=r.label,
+                                market_candidates=dict(r.candidates))
 
     scoped = bool(chamber or races_filter)
-    raw_b, periods = collect_track_b(metas, skip=skip_sources)
+    raw_b, _ = collect_track_b(metas, skip=skip_sources)
     provenance = residualize(raw_b)
 
-    # Baselines are extended only by a FULL run: the structural-residual layer
-    # is a cross-sectional fit, so a scoped run would drop differently-scaled
-    # values into a window built from full-board ones.
-    stores = {var: BaselineStore(var) for var in config.TRACK_B["weights"]}
-    if scoped:
-        print("[pipeline] scoped run — reading baselines but not extending "
-              "them (a partial panel would skew the structural residual)")
+    # Attention is graded against the rest of THIS board, not against an
+    # accumulated per-race history, so the comparison set is built once here.
+    attn_levels = attention_levels_across(raw_b)
+
 
     used, missing = {"polymarket"}, set()
     races_out = []
@@ -256,9 +265,9 @@ def run(chamber: Optional[str] = None, races_filter: Optional[list] = None,
                              if row.get("date")), default=None))
 
             readings = compute_readings(
-                r.race_id, raw_b[r.race_id], stores=stores,
-                record=not scoped, provenance=provenance.get(r.race_id),
-                periods=periods.get(r.race_id))
+                r.race_id, raw_b[r.race_id],
+                provenance=provenance.get(r.race_id),
+                attention_levels=attn_levels)
             for name, payload in raw_b[r.race_id].items():
                 (used if payload is not None else missing).add(name)
 
@@ -291,6 +300,8 @@ def run(chamber: Optional[str] = None, races_filter: Optional[list] = None,
             control_volume=reading.control_volume,
             expected_dem_seats=reading.expected_dem_seats,
             expected_rep_seats=reading.expected_rep_seats,
+            favourite_dem_seats=reading.favourite_dem_seats,
+            favourite_rep_seats=reading.favourite_rep_seats,
             seats_volume=reading.seats_volume,
             expectation_is_approximate=reading.expectation_is_approximate,
             seat_buckets=[schema.SeatBucket(

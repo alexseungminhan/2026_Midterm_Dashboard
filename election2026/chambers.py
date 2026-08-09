@@ -27,6 +27,45 @@ from . import board
 
 TOTAL_SEATS = {"senate": 100, "house": 435, "governor": 50}
 
+# Seats NOT on the 2026 ballot, by current holder. Added to the count of
+# race-by-race favourites to produce the whole-chamber seat count that
+# polymarket.com/predictions/midterms displays.
+#
+# Senate: 35 of 100 are up (33 Class 2 + OH and FL specials); Republicans
+# defend 22 and Democrats 13, against a 53-47 chamber, so 31 R and 34 D sit
+# out. Verified 2026-08-08 against Wikipedia and Ballotpedia, and confirmed
+# by reproducing Polymarket's own display exactly: 31 + 18 favourites = 49 R,
+# 34 + 17 = 51 D.
+#
+# House: all 435 are up, so nothing carries over.
+# Governor: left None — the carry-over split has not been verified, and
+# guessing it would put a wrong integer on the page.
+HELD_OVER = {
+    "senate": {"rep": 31, "dem": 34},
+    "house": {"rep": 0, "dem": 0},
+    "governor": None,
+}
+
+
+def seats_from_favourites(races: list, chamber: str) -> Optional[tuple]:
+    """(dem_seats, rep_seats) counting the leader of every traded race.
+
+    This is what Polymarket shows on its midterms page, and it is an INTEGER,
+    which is why it reads better than the distribution's weighted mean (49.9).
+
+    It is also a cruder estimator, and the card says so: a race at 50.1% is
+    counted as a full seat, exactly like one at 99%. The bucket chart beside
+    it is the one that carries the uncertainty.
+    """
+    base = HELD_OVER.get(chamber)
+    if base is None:
+        return None
+    dem = base["dem"] + sum(1 for r in races
+                            if r.prob_dem is not None and r.prob_dem >= 0.5)
+    rep = base["rep"] + sum(1 for r in races
+                            if r.prob_dem is not None and r.prob_dem < 0.5)
+    return dem, rep
+
 CONTROL_SLUGS = {
     "senate": "which-party-will-win-the-senate-in-2026",
     "house": "which-party-will-win-the-house-in-2026",
@@ -63,6 +102,10 @@ class ChamberReading:
     control_volume: float = 0.0
     expected_dem_seats: Optional[float] = None    # from the seat distribution
     expected_rep_seats: Optional[float] = None
+    # Integer seat count from race-by-race favourites (Polymarket's own
+    # display). None where the held-over split is unverified.
+    favourite_dem_seats: Optional[int] = None
+    favourite_rep_seats: Optional[int] = None
     seats_volume: float = 0.0
     buckets: list = field(default_factory=list)   # [SeatBucket] in R-seat terms
     # True when the extreme buckets are open-ended, which they always are here.
@@ -178,6 +221,7 @@ def read_balance_of_power(event: dict) -> list:
 def read_all(events: list) -> tuple:
     """({chamber: ChamberReading}, [(outcome, prob)]) from the raw event list."""
     by_slug = {e.get("slug"): e for e in events}
+    all_races = board.build(events)
     readings = {}
 
     for chamber, total in TOTAL_SEATS.items():
@@ -196,6 +240,11 @@ def read_all(events: list) -> tuple:
             if expected_rep is not None:
                 reading.expected_rep_seats = expected_rep
                 reading.expected_dem_seats = round(total - expected_rep, 1)
+
+        fav = seats_from_favourites(
+            [r for r in all_races if r.chamber == chamber], chamber)
+        if fav is not None:
+            reading.favourite_dem_seats, reading.favourite_rep_seats = fav
 
         readings[chamber] = reading
 

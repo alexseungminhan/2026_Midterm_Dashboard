@@ -1,9 +1,17 @@
-# cached raw pulls + generated outputs (keep the dirs, ignore the churn)
+# Cached raw pulls — 90MB of API responses, regenerated on every run.
 data/raw/**/*.json
 data/raw/_quota_*.json
-data/forecast.json
-data/history/*.json
+
 __pycache__/
 *.pyc
 .env
 .pytest_cache/
+
+# forecast.json and history/ are NOT ignored (2026-08-09). They used to be,
+# on the reasoning that generated output does not belong in git — but they are
+# the deployed artifact:
+#   * Render serves forecast.json; if it is not in the repo the build fails.
+#   * The daily Action commits it, and `git add` on an ignored path stages
+#     nothing, so every run would have reported "변화 없음" and the site would
+#     have frozen on whatever was first deployed.
+#   * history/ is what day-over-day movers are computed against.

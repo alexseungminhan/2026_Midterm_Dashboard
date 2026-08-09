@@ -44,42 +44,58 @@ MODELS = {
     "economy": {
         "label": "경제 모델",
         "question": "주 경제가 좋아지고 있나, 나빠지고 있나?",
-        "detail": "주 실업수당 청구·실업률·경기동행지수를 각 주의 평소 수준과 "
-                  "비교한다. 경제가 나빠지면 집권당(현재 공화당)에 불리한 쪽으로 읽는다.",
+        "detail": "주 실업수당 청구·실업률·경기동행지수를 그 주의 과거 수치와 "
+                  "비교해 최근 몇 달의 방향을 낸다. 좋아지면 책임지는 쪽에 "
+                  "유리하게 읽는데, 그 대상이 직위마다 다르다 — 상·하원은 "
+                  "대통령 정당(현재 공화당), 주지사는 그 자리를 쥔 정당이다. "
+                  "그래서 같은 주라도 상원과 주지사의 부호가 반대로 나온다.",
         "vars": ["econ_claims", "econ_coincident", "econ_unemployment"],
         "directional": True,
+        # The three series are a percentage, an index and a rate — averaging
+        # them would let whichever swings widest decide. Count which way each
+        # one points instead; the result is -1..+1 like every other model.
+        "aggregate": "tally",
     },
     "money": {
         "label": "정치자금 모델",
-        "question": "어느 쪽 후보가 지역 기부자를 더 움직이고 있나?",
-        "detail": "FEC 신고 기부 내역에서 소액기부 건수·고유 기부자 수·주내 기부 "
-                  "비중·재기부율·자금 소진율을 본다. 총액이 아니라 '누가 얼마나 "
-                  "많은 사람을 움직였나'를 본다.",
+        "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
+        "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 "
+                  "비중 세 가지를 두 후보끼리 직접 비교한다 — "
+                  "(민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 "
+                  "움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
         "vars": ["fec_in_state_share", "fec_small_dollar_count",
                  "fec_unique_donors", "fec_repeat_donor_rate", "fec_burn_rate"],
         "directional": True,
+        # Count which way each variable points rather than averaging the
+        # normalized contrasts (2026-08-09, user's call). A share and a count
+        # are different quantities; the tally does not pretend otherwise.
+        "aggregate": "tally",
     },
     "grassroots": {
-        "label": "풀뿌리 모델",
-        "question": "실제 투표 행동은 어느 쪽으로 기울어 있나?",
-        "detail": "예비선거에서 각 당이 실제로 받은 표, 그리고 정당 등록자 수의 "
-                  "변화. 설문 응답이 아니라 이미 일어난 행동이라는 점이 다르다.",
+        "label": "예비선거 모델",
+        "question": "예비선거 투표율 비교/분석",
+        "detail": "각 당의 2026 예비선거 투표수가 그 당의 2022 투표수 대비 "
+                  "몇 %인지 구한 뒤, 두 값을 직접 비교한다. 설문이 아니라 "
+                  "실제로 투표소에 간 사람 수다.",
         "vars": ["primary_turnout_ratio", "party_reg_net_change"],
         "directional": True,
     },
     "attention": {
-        "label": "관심도",
-        "question": "이 선거가 평소보다 주목받고 있나?",
-        "detail": "위키백과 조회수·편집 활동. 관심의 크기만 재고 방향은 재지 "
-                  "않는다 — 조회수는 지지와 반감을 구분하지 못한다.",
-        "vars": ["wiki_pageviews_share", "wiki_edit_count",
-                 "gdelt", "reddit", "youtube"],
-        "directional": False,
+        "label": "관심도 모델",
+        "question": "어느 쪽 후보가 더 주목받고 있나?",
+        "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — "
+                  "(민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 "
+                  "싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 "
+                  "지지가 아니다. 스캔들도 조회수를 올린다.",
+        "vars": ["wiki_pageviews_share", "wiki_edit_count"],
+        "directional": True,
+        "aggregate": "tally",
     },
 }
 
 # |weighted z| -> strength bucket. Hand-set reading aids, not thresholds with
 # statistical meaning; they exist so the dashboard can say "약간" vs "뚜렷하게".
+TOO_SMALL = 0.1        # see the tally branch in build()
 STRENGTH_EDGES = (0.25, 0.75, 1.50)
 STRENGTH_WORDS = ("중립", "약함", "보통", "강함")
 
@@ -100,6 +116,8 @@ class VariableDetail:
     weight: float
     availability: str               # available | missing | structural | pending
     reason: Optional[str] = None
+    dem_value: Optional[float] = None
+    rep_value: Optional[float] = None
 
 
 @dataclass
@@ -175,6 +193,8 @@ def build(readings: list, weights: Optional[dict] = None) -> list:
                 weight=weights.get(var, 0.0),
                 availability=(r.availability if r is not None else "missing"),
                 reason=(r.reason if r is not None else "변수가 이번 run에 없었다"),
+                dem_value=(r.dem_value if r is not None else None),
+                rep_value=(r.rep_value if r is not None else None),
             ))
 
         model = ModelReading(
@@ -191,8 +211,22 @@ def build(readings: list, weights: Optional[dict] = None) -> list:
             out.append(model)
             continue
 
-        total_w = sum(d.weight for d in live)
-        z = sum(d.weight * d.z for d in live) / total_w
+        if spec.get("aggregate") == "tally":
+            # A tally ignores size, so a 0.05% year-over-year move would count
+            # exactly like a 5% one. TOO_SMALL is the floor below which a
+            # series is called flat: 0.1 in the series' own unit, i.e. 0.1%
+            # for the percent-change series and 0.1pp for unemployment.
+            # Judgement, not a fitted threshold — but a threshold of zero is
+            # also a judgement, and a worse one.
+            votes = [d for d in live if abs(d.z) >= TOO_SMALL]
+            up = sum(1 for d in votes if d.z > 0)
+            down = sum(1 for d in votes if d.z < 0)
+            # Denominator is every variable the model WANTS, so one series
+            # out of three agreeing reads as weak rather than unanimous.
+            z = (up - down) / len(live)
+        else:
+            total_w = sum(d.weight for d in live)
+            z = sum(d.weight * d.z for d in live) / total_w
         model.z = round(z, 3)
         model.strength = strength_of(z)
         model.shift_pp = round(z * config.PP_PER_SIGMA, 1)

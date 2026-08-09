@@ -34,3 +34,8 @@ class VariableReading:
     # governor races); "missing" means this run failed and warrants a look.
     availability: str = "available"
     reason: Optional[str] = None
+    # The two sides as the source reported them, before any contrast. The
+    # detail view shows these rather than the derived number: "주내 기부 비중
+    # 민주 30.5% · 공화 4.5%" is checkable, "+0.74" is not.
+    dem_value: Optional[float] = None
+    rep_value: Optional[float] = None

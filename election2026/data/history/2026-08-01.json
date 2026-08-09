@@ -1,0 +1,6145 @@
+{
+  "meta": {
+    "generated_at": "2026-08-01T23:31:06.074229+00:00",
+    "schema_version": "2.2.0",
+    "sources_used": [
+      "fec_burn_rate",
+      "fec_in_state_share",
+      "fec_repeat_donor_rate",
+      "fec_small_dollar_count",
+      "fec_unique_donors",
+      "polls",
+      "polymarket",
+      "wiki_edit_count",
+      "wiki_pageviews_share"
+    ],
+    "sources_missing": [
+      "kalshi",
+      "party_reg_net_change",
+      "primary_turnout_ratio",
+      "reddit",
+      "youtube"
+    ],
+    "flag_threshold": 0.05,
+    "signal_confidence": 0.3891,
+    "dry_run": false,
+    "lambda": 0.1
+  },
+  "chambers": {
+    "senate": {
+      "monitored": 10,
+      "flagged": 0,
+      "safe_d": 44,
+      "safe_r": 46,
+      "control_threshold_d": 51,
+      "control_threshold_r": 50,
+      "total_seats": 100,
+      "ratings_count": {
+        "tossup": 4,
+        "lean_d": 3,
+        "lean_r": 2,
+        "likely_d": 0,
+        "likely_r": 1
+      }
+    },
+    "house": {
+      "monitored": 18,
+      "flagged": 0,
+      "safe_d": 206,
+      "safe_r": 211,
+      "control_threshold_d": 218,
+      "control_threshold_r": 218,
+      "total_seats": 435,
+      "ratings_count": {
+        "tossup": 18,
+        "lean_d": 0,
+        "lean_r": 0,
+        "likely_d": 0,
+        "likely_r": 0
+      }
+    },
+    "governor": {
+      "monitored": 5,
+      "flagged": 0,
+      "safe_d": 22,
+      "safe_r": 23,
+      "control_threshold_d": 26,
+      "control_threshold_r": 25,
+      "total_seats": null,
+      "ratings_count": {
+        "tossup": 4,
+        "lean_d": 1,
+        "lean_r": 0,
+        "likely_d": 0,
+        "likely_r": 0
+      }
+    }
+  },
+  "races": [
+    {
+      "race_id": "sen-ne",
+      "chamber": "senate",
+      "state": "NE",
+      "label": "Neb.",
+      "district": null,
+      "incumbent": "Pete Ricketts",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Likely R",
+      "p_consensus": 0.01,
+      "p_alpha": 0.01,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.01,
+        "polls": null
+      },
+      "signals": [
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.32,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.315,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.16,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.06,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 1%(공화 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 0,
+      "n_reference": 10,
+      "coverage_scale": 1.0
+    },
+    {
+      "race_id": "sen-tx",
+      "chamber": "senate",
+      "state": "TX",
+      "label": "Texas",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4847,
+      "p_alpha": 0.4847,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.475,
+        "polls": 0.5113
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.41,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.561,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 1.3,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.495,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.72,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.466,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.089,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 48%(공화 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-ia",
+      "chamber": "senate",
+      "state": "IA",
+      "label": "Iowa",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4676,
+      "p_alpha": 0.4728,
+      "delta": 0.0052,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.445,
+        "polls": 0.5299
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.72,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.623,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.65,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.899,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.1,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.339,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 47%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-oh",
+      "chamber": "senate",
+      "state": "OH",
+      "label": "Ohio",
+      "district": null,
+      "incumbent": "Jon Husted",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5256,
+      "p_alpha": 0.5245,
+      "delta": -0.0011,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.515,
+        "polls": 0.555
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 1.47,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.219,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 1.24,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.388,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.71,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.61,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.061,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.25,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.15,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 53%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-ak",
+      "chamber": "senate",
+      "state": "AK",
+      "label": "Alaska",
+      "district": null,
+      "incumbent": "Dan S. Sullivan",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5166,
+      "p_alpha": 0.5135,
+      "delta": -0.0031,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.5166
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 0.74,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.844,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.54,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.786,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 0.5,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.346,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.389,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 52%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-mi",
+      "chamber": "senate",
+      "state": "MI",
+      "label": "Mich.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.6088,
+      "p_alpha": 0.6193,
+      "delta": 0.0105,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.635,
+        "polls": 0.5365
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 1.75,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.077,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 1.75,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.781,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 1.12,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.123,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.54,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 2.702,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.21,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.237,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.159,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "senate",
+          "party": "D",
+          "margin": 0.4,
+          "who": "Slotkin"
+        },
+        {
+          "year": 2020,
+          "type": "senate",
+          "party": "D",
+          "margin": 1.5,
+          "who": "Peters"
+        },
+        {
+          "year": 2018,
+          "type": "senate",
+          "party": "D",
+          "margin": 6.5,
+          "who": "Stabenow"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 1.4,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 2.7,
+          "who": "Biden"
+        },
+        {
+          "year": 2016,
+          "type": "presidential",
+          "party": "R",
+          "margin": 0.2,
+          "who": "Trump"
+        }
+      ],
+      "comment": "기저 신호(소액기부 건수(FEC) +1.8σ · 고유 기부자 수(FEC) +1.8σ)가 컨센서스와 같은 민주 방향으로 +1.1%p 보정. 우위를 재확인하는 수준으로, FLAG 기준(±5%p)에는 못 미친다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-me",
+      "chamber": "senate",
+      "state": "ME",
+      "label": "Maine",
+      "district": null,
+      "incumbent": "Susan Collins",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.6515,
+      "p_alpha": 0.6515,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.67,
+        "polls": 0.6006
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.18,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.983,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.41,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.558,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.058,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.439,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 65%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-nc",
+      "chamber": "senate",
+      "state": "NC",
+      "label": "N.C.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean D",
+      "p_consensus": 0.8878,
+      "p_alpha": 0.8877,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.9,
+        "polls": 0.8543
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.78,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.631,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.27,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.02,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 0.21,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.015,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "R",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.289,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 89%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-nh",
+      "chamber": "senate",
+      "state": "NH",
+      "label": "N.H.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.802,
+      "p_alpha": 0.802,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.835,
+        "polls": 0.7111
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.09,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.837,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.27,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.115,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.339,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.07,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.166,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 80%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "sen-ga",
+      "chamber": "senate",
+      "state": "GA",
+      "label": "Ga.",
+      "district": null,
+      "incumbent": "Jon Ossoff",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.9102,
+      "p_alpha": 0.9102,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.905,
+        "polls": 0.9244
+      },
+      "signals": [
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 1.79,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.791,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.34,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.56,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.92,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.636,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.6,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.573,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.32,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.349,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.159,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2022,
+          "type": "senate",
+          "party": "D",
+          "margin": 2.8,
+          "who": "Warnock"
+        },
+        {
+          "year": 2020,
+          "type": "senate",
+          "party": "D",
+          "margin": 1.2,
+          "who": "Ossoff"
+        },
+        {
+          "year": 2016,
+          "type": "senate",
+          "party": "R",
+          "margin": 13.8,
+          "who": "Isakson"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 2.2,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 0.2,
+          "who": "Biden"
+        },
+        {
+          "year": 2016,
+          "type": "presidential",
+          "party": "R",
+          "margin": 5.1,
+          "who": "Trump"
+        }
+      ],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 91%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-pa10",
+      "chamber": "house",
+      "state": "PA",
+      "label": "Pa. 10",
+      "district": "PA-10",
+      "incumbent": "Scott Perry",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.8413,
+      "p_alpha": 0.8218,
+      "delta": -0.0195,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.8413
+      },
+      "signals": [
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 2.28,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.433,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 1.73,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.478,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 1.69,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.495,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "R",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.289,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.04,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.044,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "컨센서스는 민주 우위(84%)이나 기저 신호는 공화 방향으로 -1.9%p 반대 보정. 임계값 미달로 FLAG는 아니며, 다음 주 데이터로 지속 여부 확인 필요. 주요 지표: 위키 편집 활동 −3.0σ · 소액기부 건수(FEC) −2.3σ",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-az6",
+      "chamber": "house",
+      "state": "AZ",
+      "label": "Ariz. 6",
+      "district": "AZ-06",
+      "incumbent": "Juan Ciscomani",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.6312,
+      "p_alpha": 0.6312,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.6312
+      },
+      "signals": [
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 2.37,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.468,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 2.25,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.995,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.339,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.11,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.045,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 63%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-ia3",
+      "chamber": "house",
+      "state": "IA",
+      "label": "Iowa 3",
+      "district": "IA-03",
+      "incumbent": "Zach Nunn",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4338,
+      "p_alpha": 0.4309,
+      "delta": -0.0029,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.4338
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 2.23,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.078,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.39,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.494,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.061,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.04,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.294,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.25,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.15,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 43%(공화 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-wi3",
+      "chamber": "house",
+      "state": "WI",
+      "label": "Wis. 3",
+      "district": "WI-03",
+      "incumbent": "Derrick Van Orden",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5,
+      "p_alpha": 0.5042,
+      "delta": 0.0042,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": null
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.65,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.402,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.57,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.716,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.389,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.14,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.037,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 50%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-va2",
+      "chamber": "house",
+      "state": "VA",
+      "label": "Va. 2",
+      "district": "VA-02",
+      "incumbent": "Jen Kiggans",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5,
+      "p_alpha": 0.4988,
+      "delta": -0.0012,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.5
+      },
+      "signals": [
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 1.28,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.133,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.8,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.551,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.67,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.865,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.039,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.45,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 50%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-az1",
+      "chamber": "house",
+      "state": "AZ",
+      "label": "Ariz. 1",
+      "district": "AZ-01",
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5186,
+      "p_alpha": 0.5186,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.5186
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 0.93,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.735,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.93,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.084,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.37,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.125,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.439,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 52%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-co8",
+      "chamber": "house",
+      "state": "CO",
+      "label": "Colo. 8",
+      "district": "CO-08",
+      "incumbent": "Gabe Evans",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5,
+      "p_alpha": 0.5,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": null
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 1.2,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.173,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.6,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.631,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 0.47,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -3.372,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.159,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "house",
+          "party": "R",
+          "margin": 0.7,
+          "who": "Evans"
+        },
+        {
+          "year": 2022,
+          "type": "house",
+          "party": "D",
+          "margin": 0.7,
+          "who": "Caraveo"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "D",
+          "margin": 2.4,
+          "who": "Harris"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 11.0,
+          "who": "Biden"
+        }
+      ],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 50%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-ny17",
+      "chamber": "house",
+      "state": "NY",
+      "label": "N.Y. 17",
+      "district": "NY-17",
+      "incumbent": "Mike Lawler",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.3613,
+      "p_alpha": 0.3613,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.3613
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.61,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.457,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.339,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 0.08,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.167,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.08,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.182,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 36%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-oh9",
+      "chamber": "house",
+      "state": "OH",
+      "label": "Ohio 9",
+      "district": "OH-09",
+      "incumbent": "Marcy Kaptur",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.2525,
+      "p_alpha": 0.2525,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.2525
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 1.5,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.751,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.25,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.353,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 1.1,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.951,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.78,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.778,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.67,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.669,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.061,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.25,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.15,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 25%(공화 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-ca22",
+      "chamber": "house",
+      "state": "CA",
+      "label": "Calif. 22",
+      "district": "CA-22",
+      "incumbent": "David Valadao",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.7475,
+      "p_alpha": 0.7467,
+      "delta": -0.0008,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.7475
+      },
+      "signals": [
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.73,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.731,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 0.58,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.676,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.37,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.523,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "R",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.011,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.253,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 75%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-nj7",
+      "chamber": "house",
+      "state": "NJ",
+      "label": "N.J. 7",
+      "district": "NJ-07",
+      "incumbent": "Thomas Kean Jr.",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.7202,
+      "p_alpha": 0.7202,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.7202
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 2.53,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.327,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 2.53,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.535,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 2.32,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.574,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 1.28,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.277,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 1.0,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.147,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.039,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.45,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 72%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-pa8",
+      "chamber": "house",
+      "state": "PA",
+      "label": "Pa. 8",
+      "district": "PA-08",
+      "incumbent": "Rob Bresnahan",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.6077,
+      "p_alpha": 0.6077,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.6077
+      },
+      "signals": [
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 3.0,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -3.0,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 2.68,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 2.683,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 2.34,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.493,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 2.32,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.12,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.37,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.124,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.439,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 61%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-fl25",
+      "chamber": "house",
+      "state": "FL",
+      "label": "Fla. 25",
+      "district": "FL-25",
+      "incumbent": "Jared Moskowitz",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.9532,
+      "p_alpha": 0.9532,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.9532
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 1.85,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.002,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 1.4,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.395,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 1.2,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.105,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 1.07,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.318,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.69,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.686,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "R",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.039,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 95%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-mi7",
+      "chamber": "house",
+      "state": "MI",
+      "label": "Mich. 7",
+      "district": "MI-07",
+      "incumbent": "Tom Barrett",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5027,
+      "p_alpha": 0.5027,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.5027
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 2.2,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.168,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 2.16,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -5.058,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.89,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.921,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.159,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "house",
+          "party": "R",
+          "margin": 3.7,
+          "who": "Barrett"
+        },
+        {
+          "year": 2022,
+          "type": "house",
+          "party": "D",
+          "margin": 5.0,
+          "who": "Slotkin"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 1.9,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 0.6,
+          "who": "Biden"
+        }
+      ],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 50%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-tx34",
+      "chamber": "house",
+      "state": "TX",
+      "label": "Texas 34",
+      "district": "TX-34",
+      "incumbent": "Vicente Gonzalez",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.3186,
+      "p_alpha": 0.3279,
+      "delta": 0.0093,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.3186
+      },
+      "signals": [
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 2.63,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 2.78,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 2.54,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 2.287,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 1.48,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.477,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 1.1,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.996,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.37,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.368,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "R",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.011,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 32%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-ia1",
+      "chamber": "house",
+      "state": "IA",
+      "label": "Iowa 1",
+      "district": "IA-01",
+      "incumbent": "Mariannette Miller-Meeks",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.7977,
+      "p_alpha": 0.7977,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.7977
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 1.55,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 1.701,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 1.11,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.914,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.01,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.259,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.039,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.45,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 서로 상충해 합산 신호가 0 근처로 상쇄됐다. 컨센서스 80%(민주 우위)를 흔들 근거는 아직 없다.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-pa7",
+      "chamber": "house",
+      "state": "PA",
+      "label": "Pa. 7",
+      "district": "PA-07",
+      "incumbent": "Ryan Mackenzie",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.7475,
+      "p_alpha": 0.7424,
+      "delta": -0.0051,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": 0.7475
+      },
+      "signals": [
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 2.03,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.177,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 0.99,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.787,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 0.53,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.775,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.439,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 75%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "ho-wa3",
+      "chamber": "house",
+      "state": "WA",
+      "label": "Wash. 3",
+      "district": "WA-03",
+      "incumbent": "Marie Gluesenkamp Perez",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5,
+      "p_alpha": 0.4956,
+      "delta": -0.0044,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": null,
+        "polls": null
+      },
+      "signals": [
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 2.78,
+          "weight": 0.02,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -2.783,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "R",
+          "sigma": 1.5,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.655,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "R",
+          "sigma": 1.31,
+          "weight": 0.08,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -1.063,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "R",
+          "sigma": 0.36,
+          "weight": 0.16,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": -0.158,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.35,
+          "weight": 0.01,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.35,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.19,
+          "weight": 0.06,
+          "available": true,
+          "provenance": "structural",
+          "momentum_delta": 0.089,
+          "availability": "available",
+          "reason": null
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "structural",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "baseline too short for a z-score (need 4 observations)"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.4,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 50%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 4,
+      "n_reference": 10,
+      "coverage_scale": 0.6325
+    },
+    {
+      "race_id": "gov-nv",
+      "chamber": "governor",
+      "state": "NV",
+      "label": "Nev.",
+      "district": null,
+      "incumbent": "Joe Lombardo",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5233,
+      "p_alpha": 0.5233,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.565,
+        "polls": 0.4084
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.16,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.06,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.0,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2022,
+          "type": "governor",
+          "party": "R",
+          "margin": 1.5,
+          "who": "Lombardo"
+        },
+        {
+          "year": 2018,
+          "type": "governor",
+          "party": "D",
+          "margin": 4.1,
+          "who": "Sisolak"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 3.1,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 2.4,
+          "who": "Biden"
+        }
+      ],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 52%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 0,
+      "n_reference": 10,
+      "coverage_scale": 1.0
+    },
+    {
+      "race_id": "gov-ga",
+      "chamber": "governor",
+      "state": "GA",
+      "label": "Ga.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.6281,
+      "p_alpha": 0.6281,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.585,
+        "polls": 0.747
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.16,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.06,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": 0.1,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 63%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 0,
+      "n_reference": 10,
+      "coverage_scale": 1.0
+    },
+    {
+      "race_id": "gov-wi",
+      "chamber": "governor",
+      "state": "WI",
+      "label": "Wis.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5791,
+      "p_alpha": 0.5791,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.555,
+        "polls": 0.6455
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.16,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.06,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.35,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": -0.05,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 58%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 0,
+      "n_reference": 10,
+      "coverage_scale": 1.0
+    },
+    {
+      "race_id": "gov-ia",
+      "chamber": "governor",
+      "state": "IA",
+      "label": "Iowa",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.6991,
+      "p_alpha": 0.6991,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.66,
+        "polls": 0.8069
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.16,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.06,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2022,
+          "type": "governor",
+          "party": "R",
+          "margin": 19.0,
+          "who": "Reynolds"
+        },
+        {
+          "year": 2018,
+          "type": "governor",
+          "party": "R",
+          "margin": 2.8,
+          "who": "Reynolds"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 13.2,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "R",
+          "margin": 8.2,
+          "who": "Trump"
+        }
+      ],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 70%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 0,
+      "n_reference": 10,
+      "coverage_scale": 1.0
+    },
+    {
+      "race_id": "gov-oh",
+      "chamber": "governor",
+      "state": "OH",
+      "label": "Ohio",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4891,
+      "p_alpha": 0.4891,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.455,
+        "polls": 0.5832
+      },
+      "signals": [
+        {
+          "name": "주내 기부 비중(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.16,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "소액기부 건수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "고유 기부자 수(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "재기부율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.06,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "자금 소진율(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.04,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "structural",
+          "reason": "the FEC has no jurisdiction over state governor races"
+        },
+        {
+          "name": "예비선거 투표율 격차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "정당 등록 순변동",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.1,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.14,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "주 서브레딧 감성",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.08,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.05,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 조회 집중도",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.02,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        },
+        {
+          "name": "위키 편집 활동",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.01,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null,
+          "availability": "missing",
+          "reason": "source returned nothing"
+        }
+      ],
+      "history": [
+        {
+          "year": 2022,
+          "type": "governor",
+          "party": "R",
+          "margin": 25.1,
+          "who": "DeWine"
+        },
+        {
+          "year": 2018,
+          "type": "governor",
+          "party": "R",
+          "margin": 3.7,
+          "who": "DeWine"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 11.2,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "R",
+          "margin": 8.0,
+          "who": "Trump"
+        }
+      ],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 49%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null,
+      "n_available": 0,
+      "n_reference": 10,
+      "coverage_scale": 1.0
+    }
+  ],
+  "flag_history": [
+    {
+      "date": "2026-07-26",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-07-30",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ia",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    }
+  ]
+}

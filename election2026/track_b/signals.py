@@ -25,15 +25,14 @@ from __future__ import annotations
 from typing import Optional
 
 from .. import config
-from ..baseline import BaselineStore, structural_residual, z_score
+from ..baseline import structural_residual, z_score
 from ..signal import VariableReading
 from .adapters import (EconClaimsAdapter, EconCoincidentAdapter,
                        EconUnemploymentAdapter,
                        FecBurnRate, FecInStateShare, FecRepeatDonorRate,
-                       FecSmallDollarCount, FecUniqueDonors, GdeltAdapter,
+                       FecSmallDollarCount, FecUniqueDonors,
                        PartyRegistrationAdapter, PrimaryTurnoutAdapter,
-                       RedditAdapter, WikiEditCountAdapter,
-                       WikiPageviewsShareAdapter, YouTubeAdapter,
+                       WikiEditCountAdapter, WikiPageviewsShareAdapter,
                        is_unavailable)
 
 ADAPTERS = {
@@ -49,9 +48,6 @@ ADAPTERS = {
     "econ_unemployment": EconUnemploymentAdapter,
     "primary_turnout_ratio": PrimaryTurnoutAdapter,
     "party_reg_net_change": PartyRegistrationAdapter,
-    "gdelt": GdeltAdapter,
-    "reddit": RedditAdapter,
-    "youtube": YouTubeAdapter,
     "wiki_pageviews_share": WikiPageviewsShareAdapter,
     "wiki_edit_count": WikiEditCountAdapter,
 }
@@ -81,7 +77,19 @@ def residualize(raw_by_race: dict) -> dict:
     """
     provenance: dict = {rid: {} for rid in raw_by_race}
     for var in config.TRACK_B["weights"]:
-        for side in ("dem", "rep", "total"):
+        # Only "total" — the attention scalar, which IS compared across races
+        # and so still benefits from having population and media volume
+        # regressed out.
+        #
+        # The "dem"/"rep" sides are deliberately left raw (2026-08-08). They
+        # are compared to each other WITHIN one race now, where the structural
+        # covariates cancel on their own: both candidates run in the same
+        # district, before the same population. Residualizing them would be
+        # actively wrong — it replaces levels with signed residuals, and
+        # (d−r)/(d+r) on residuals is meaningless because both can be
+        # negative. That is what blanked the money model on Maine, Texas,
+        # Michigan and Georgia in the first snapshot run.
+        for side in ("total",):
             obs = {}
             for rid, per_var in raw_by_race.items():
                 payload = per_var.get(var)
@@ -102,166 +110,160 @@ def residualize(raw_by_race: dict) -> dict:
     return provenance
 
 
-def record_observation(store: Optional[BaselineStore], race_id: str,
-                       payload: Optional[dict], attention_only: bool,
-                       period: Optional[str] = None,
-                       at: Optional[str] = None,
-                       provenance: Optional[str] = None) -> bool:
-    """Append one variable's observation to the rolling baseline, no z-score.
+def _block_z(block: Optional[dict], var: str) -> Optional[float]:
+    """z against the baseline the payload carries with it.
 
-    THE SINGLE DEFINITION of which channels a variable writes: directional
-    variables keep separate "dem"/"rep" windows, attention-only ones keep a
-    single "total". Live runs (via compute_readings) and `backfill` both come
-    through here, which is what makes a backfilled week and a live week
-    directly comparable. Sides carrying their own in-payload `baseline` are
-    skipped — they never use the persistent store, and neither do payloads
-    that report an unavailability reason instead of a value.
-
-    Returns True when something was written.
+    There is no other baseline any more. The rolling BaselineStore was removed
+    on 2026-08-09: every remaining `oriented` payload ships its own history
+    from the source (FRED hands back the state's whole series), and the
+    two-sided variables stopped being z-scored entirely.
     """
-    if store is None or payload is None or is_unavailable(payload):
-        return False
-    if payload.get("oriented") is not None:
-        return False          # ships its own baseline; never uses the store
-    if attention_only:
-        total = payload.get("total")
-        if total is not None and total.get("value") is not None:
-            if total.get("baseline") is not None:
-                return False
-            store.append(race_id, float(total["value"]), channel="total",
-                         period=period, at=at, provenance=provenance)
-            return True
-        values = [float(b["value"]) for b in
-                  (payload.get("dem"), payload.get("rep"))
-                  if b and b.get("value") is not None
-                  and b.get("baseline") is None]
-        if not values:
-            return False
-        store.append(race_id, sum(values), channel="total",
-                     period=period, at=at, provenance=provenance)
-        return True
-    wrote = False
-    for side in ("dem", "rep"):
-        block = payload.get(side)
-        if not block or block.get("value") is None:
-            continue
-        if block.get("baseline") is not None:
-            continue
-        store.append(race_id, float(block["value"]), channel=side,
-                     period=period, at=at, provenance=provenance)
-        wrote = True
-    return wrote
-
-
-def _block_z(store: Optional[BaselineStore], race_id: str, channel: str,
-             block: Optional[dict], var: str) -> Optional[float]:
     if not block or block.get("value") is None:
         return None
-    value = float(block["value"])
-    if block.get("baseline") is not None:
-        return z_score(value, block["baseline"],
-                       min_obs=block.get("min_obs") or _min_obs_for(var))
-    if store is None:
+    if block.get("baseline") is None:
         return None
-    return store.z_score(race_id, value, channel=channel)
+    return z_score(float(block["value"]), block["baseline"],
+                   min_obs=block.get("min_obs") or _min_obs_for(var))
 
 
-def oriented_z(payload: Optional[dict], race_id: str,
-               store: Optional[BaselineStore] = None,
-               var: str = "") -> Optional[float]:
-    """Dem-positive z for one variable's payload; None when not computable."""
+def side_contrast(payload: Optional[dict]) -> Optional[float]:
+    """(dem - rep) / (dem + rep) for a two-sided variable. -1..+1, unit-free.
+
+    THE SNAPSHOT RULE (2026-08-08). The two sides are compared to EACH OTHER
+    today, not each to its own accumulated past. That drops the rolling
+    baseline store entirely: nothing has to be carried between runs, so a run
+    on a fresh machine gives the same answer as one on a machine that has been
+    running for weeks.
+
+    What it costs, stated plainly: this measures LEVEL, not CHANGE. A district
+    where the Republican always outraises 3:1 reads "R" even in a year the
+    Democrat tripled their haul. That trade was made deliberately.
+
+    Both sides must be present and positive. A zero side is not "maximal
+    dominance" — it is a candidate with no committee filing yet, and letting
+    it saturate to ±1 would manufacture the strongest possible reading out of
+    missing data. 17 of 83 races carried a zero side on 2026-08-08.
+    """
+    if payload is None or is_unavailable(payload):
+        return None
+    dem, rep = payload.get("dem"), payload.get("rep")
+    if not dem or not rep:
+        return None
+    d, r = dem.get("value"), rep.get("value")
+    if d is None or r is None:
+        return None
+    d, r = float(d), float(r)
+    if d <= 0 or r <= 0:
+        return None
+    return (d - r) / (d + r)
+
+
+def oriented_z(payload: Optional[dict], var: str = "") -> Optional[float]:
+    """Dem-positive reading for one variable's payload; None when unavailable.
+
+    Two paths, and which one applies is a property of the payload:
+
+    * `oriented` block — the variable is ALREADY one contrast and ships its
+      own baseline with it, straight from the source (FRED hands back the
+      state's whole series; the primary-turnout sheet carries the other
+      states). Those are z-scored against that in-payload history and were
+      never in the rolling store — their baseline files were empty.
+    * `dem`/`rep` blocks — the snapshot contrast above.
+    """
     if payload is None or is_unavailable(payload):
         return None
     direct = payload.get("oriented")
     if direct is not None:
+        # `direct` payloads are already a signed, oriented reading in their
+        # own units (the economy's year-over-year change). They are NOT
+        # z-scored: the sign is the whole signal, and models.py tallies signs
+        # rather than averaging quantities that share no unit.
+        if direct.get("direct") and direct.get("value") is not None:
+            return float(direct["value"])
         # Already a Dem-positive contrast — no differencing, no halving.
-        z = _block_z(store, race_id, "oriented", direct, var)
+        z = _block_z(direct, var)
         if z is None:
             return None
         clip = config.TRACK_B["z_clip"]
         return max(-clip, min(clip, z))
-    z_dem = _block_z(store, race_id, "dem", payload.get("dem"), var)
-    z_rep = _block_z(store, race_id, "rep", payload.get("rep"), var)
-    if z_dem is None and z_rep is None:
-        return None
-    clip = config.TRACK_B["z_clip"]
-    z = ((z_dem or 0.0) - (z_rep or 0.0)) / 2.0
-    return max(-clip, min(clip, z))
+    return side_contrast(payload)
 
 
-def attention_z(payload: Optional[dict], race_id: str,
-                store: Optional[BaselineStore] = None,
-                var: str = "") -> Optional[float]:
-    """Attention-only z: deviation of the race's attention level vs its own
-    baseline, NEVER oriented to a party. Direction is meaningless here — a
-    pageview cannot distinguish positive from negative interest, exactly as a
-    search query cannot.
+def attention_level(payload: Optional[dict]) -> Optional[float]:
+    """This race's raw attention total. NEVER oriented to a party.
 
-    Uses the payload's explicit "total" block when present (some attention
-    scalars are not simply dem + rep — pageview SHARES always sum to 1, so
-    their total carries no information), otherwise the sum of the two sides.
+    Direction is meaningless here — a pageview cannot distinguish support from
+    disgust, exactly as a search query cannot. The number is turned into
+    high/normal/low by comparing races to each other in `attention_z_across`.
+
+    Uses the explicit "total" block when present, otherwise the sum of sides.
+    A pageview SHARE sums to 1 by construction, so its total carries no
+    information and the adapter ships a separate total for that reason.
     """
     if payload is None or is_unavailable(payload):
         return None
-    clip = config.TRACK_B["z_clip"]
     total_block = payload.get("total")
     if total_block is not None and total_block.get("value") is not None:
-        z = _block_z(store, race_id, "total", total_block, var)
-        return None if z is None else max(-clip, min(clip, z))
-
-    sides = [payload.get("dem"), payload.get("rep")]
-    values = [float(b["value"]) for b in sides
+        return float(total_block["value"])
+    values = [float(b["value"]) for b in
+              (payload.get("dem"), payload.get("rep"))
               if b and b.get("value") is not None]
-    if not values:
+    return sum(values) if values else None
+
+
+def attention_z_across(level: Optional[float],
+                       all_levels: list, var: str = "") -> Optional[float]:
+    """Where this race's attention sits among THIS RUN's other races.
+
+    Cross-sectional, so it needs no accumulated history — the comparison set
+    is the board itself. It answers "busier than the other races on the board"
+    rather than "busier than this race's own past", which is a different
+    question but an answerable one from a single snapshot. The primary-turnout
+    variable already used a cross-sectional baseline for the same reason.
+    """
+    if level is None:
         return None
-    total = sum(values)
-    baselines = [b.get("baseline") for b in sides
-                 if b and b.get("baseline") is not None]
-    if baselines and all(b for b in baselines):
-        base_total = [sum(pair) for pair in zip(*baselines)]
-        z = z_score(total, base_total, min_obs=_min_obs_for(var))
-    elif store is not None:
-        z = store.z_score(race_id, total, channel="total")
-    else:
-        return None
+    others = [v for v in all_levels if v is not None]
+    z = z_score(level, others, min_obs=_min_obs_for(var))
     if z is None:
         return None
+    clip = config.TRACK_B["z_clip"]
     return max(-clip, min(clip, z))
 
 
+def attention_levels_across(raw_by_race: dict) -> dict:
+    """{variable: [level per race]} for the attention-only variables.
+
+    Built once per run and handed to every race, because "is this race busier
+    than usual" is now answered against the rest of the board rather than
+    against an accumulated history of this race.
+    """
+    out = {}
+    for var in config.TRACK_B.get("attention_only", []):
+        out[var] = [attention_level(raw.get(var))
+                    for raw in raw_by_race.values()]
+    return out
+
+
 def compute_readings(race_id: str, raw: dict,
-                     stores: Optional[dict] = None,
-                     record: bool = False,
                      provenance: Optional[dict] = None,
-                     periods: Optional[dict] = None) -> list:
+                     attention_levels: Optional[dict] = None) -> list:
     """VariableReading list for one race from its raw Track B pulls.
 
-    `raw` maps variable name -> payload-or-None. `stores` maps variable name
-    -> BaselineStore (omitted in tests/dry-run when payloads carry their own
-    baselines). `record=True` appends observations to the rolling windows —
-    the pipeline sets it once per run. `periods` maps variable -> the window
-    label its payload covers, which keeps that append idempotent when a
-    source has not advanced since the previous run.
-
-    z-scores are computed BEFORE recording, so an observation is never
-    compared against a baseline that already contains it.
+    `raw` maps variable name -> payload-or-None. Nothing is persisted: every
+    reading is computed from this run's own pulls (2026-08-09).
     """
-    stores = stores or {}
     provenance = provenance or {}
-    periods = periods or {}
     attention_only = set(config.TRACK_B.get("attention_only", []))
     readings = []
     for var in config.TRACK_B["weights"]:
         payload = raw.get(var)
         is_attention = var in attention_only
         if is_attention:
-            z = attention_z(payload, race_id, store=stores.get(var), var=var)
+            z = attention_z_across(attention_level(payload),
+                                   (attention_levels or {}).get(var, []), var)
         else:
-            z = oriented_z(payload, race_id, store=stores.get(var), var=var)
-        if record:
-            record_observation(stores.get(var), race_id, payload,
-                               is_attention, period=periods.get(var),
-                               provenance=provenance.get(var, "rolling"))
+            z = oriented_z(payload, var)
 
         # Four-valued availability. "Structurally unavailable" (Texas has no
         # party registration) and "missing this run" (the network was down)
@@ -279,8 +281,12 @@ def compute_readings(race_id: str, raw: dict,
                       "(%d개 필요) — backfill을 돌리거나 며칠 더 쌓이면 잡힌다"
                       % _min_obs_for(var))
 
+        sides = payload if isinstance(payload, dict) else {}
+        dv = (sides.get("dem") or {}).get("value") if not is_unavailable(payload) else None
+        rv = (sides.get("rep") or {}).get("value") if not is_unavailable(payload) else None
         readings.append(VariableReading(
             variable=var, z=z, directional=not is_attention,
+            dem_value=dv, rep_value=rv,
             provenance=provenance.get(var, "rolling"),
             availability=availability, reason=reason))
     return readings

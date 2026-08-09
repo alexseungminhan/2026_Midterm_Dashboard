@@ -1,0 +1,482 @@
+{
+  "metadata": {
+    "generated_at": "2026-07-19T05:52:26.840439+00:00",
+    "cycle": "2026",
+    "kind": "forecast-of-forecasts",
+    "dry_run": false,
+    "n_races": 20,
+    "ensemble_weights": {
+      "betting": 0.45,
+      "model": 0.35,
+      "polls": 0.2
+    },
+    "monte_carlo_sims": 50000
+  },
+  "chambers": {
+    "senate": {
+      "market_dem_prob": 0.435,
+      "threshold": 51,
+      "total_seats": 100,
+      "monte_carlo_dem_prob": 0.1813,
+      "exp_dem_seats": 49.05,
+      "competitive": 10,
+      "dem_safe": 43,
+      "rep_safe": 47,
+      "vp_party": "R",
+      "dem_prob": 0.435,
+      "source": "market"
+    },
+    "governor": {
+      "market_dem_prob": null,
+      "threshold": 26,
+      "total_seats": 50,
+      "monte_carlo_dem_prob": 0.1403,
+      "exp_dem_seats": 23.76,
+      "competitive": 10,
+      "dem_safe": 18,
+      "rep_safe": 22,
+      "vp_party": null,
+      "dem_prob": 0.1403,
+      "source": "monte_carlo"
+    },
+    "house": {
+      "market_dem_prob": 0.845,
+      "threshold": 218,
+      "total_seats": 435,
+      "competitive": 0,
+      "dem_prob": 0.845,
+      "source": "market"
+    }
+  },
+  "races": [
+    {
+      "race_id": "GA-SEN",
+      "chamber": "senate",
+      "state": "GA",
+      "district": null,
+      "incumbent": "Jon Ossoff",
+      "incumbent_party": "D",
+      "win_prob_dem": 0.8423,
+      "sources": {
+        "betting": 85.5,
+        "model": 88.0,
+        "polls": 74.8
+      },
+      "tier": "leaning",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 84% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Jon Ossoff",
+      "incP": "D"
+    },
+    {
+      "race_id": "NC-SEN",
+      "chamber": "senate",
+      "state": "NC",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "R",
+      "win_prob_dem": 0.7655,
+      "sources": {
+        "betting": 86.5,
+        "model": 68.0,
+        "polls": 69.2
+      },
+      "tier": "leaning",
+      "candidates": {
+        "dem": "Roy Cooper (D)",
+        "rep": "Michael Whatley (R)"
+      },
+      "momentum": null,
+      "comment": "통합 확률 77% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "R"
+    },
+    {
+      "race_id": "MI-SEN",
+      "chamber": "senate",
+      "state": "MI",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "D",
+      "win_prob_dem": 0.698,
+      "sources": {
+        "betting": 71.5,
+        "model": 68.0,
+        "polls": 69.2
+      },
+      "tier": "leaning",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 70% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "D"
+    },
+    {
+      "race_id": "ME-SEN",
+      "chamber": "senate",
+      "state": "ME",
+      "district": null,
+      "incumbent": "Susan Collins",
+      "incumbent_party": "R",
+      "win_prob_dem": 0.6075,
+      "sources": {
+        "betting": 65.5,
+        "model": 57.0,
+        "polls": 56.6
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Susan Collins",
+      "incP": "R"
+    },
+    {
+      "race_id": "NH-SEN",
+      "chamber": "senate",
+      "state": "NH",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "D",
+      "win_prob_dem": 0.8388,
+      "sources": {
+        "betting": 82.5,
+        "model": 88.0,
+        "polls": 79.8
+      },
+      "tier": "leaning",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 84% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "D"
+    },
+    {
+      "race_id": "TX-SEN",
+      "chamber": "senate",
+      "state": "TX",
+      "district": null,
+      "incumbent": "John Cornyn",
+      "incumbent_party": "R",
+      "win_prob_dem": 0.4201,
+      "sources": {
+        "betting": 43.5,
+        "model": 43.0,
+        "polls": 36.9
+      },
+      "tier": "battleground",
+      "candidates": {
+        "dem": "James Talarico (D)",
+        "rep": "Ken Paxton (R)"
+      },
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "John Cornyn",
+      "incP": "R"
+    },
+    {
+      "race_id": "OH-SEN",
+      "chamber": "senate",
+      "state": "OH",
+      "district": null,
+      "incumbent": "Jon Husted",
+      "incumbent_party": "R",
+      "win_prob_dem": 0.4844,
+      "sources": {
+        "betting": 48.0,
+        "model": 50.0,
+        "polls": 46.7
+      },
+      "tier": "battleground",
+      "candidates": {
+        "dem": "Sherrod Brown (D)",
+        "rep": "Jon Husted (R)"
+      },
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Jon Husted",
+      "incP": "R"
+    },
+    {
+      "race_id": "IA-SEN",
+      "chamber": "senate",
+      "state": "IA",
+      "district": null,
+      "incumbent": "Joni Ernst",
+      "incumbent_party": "R",
+      "win_prob_dem": 0.3515,
+      "sources": {
+        "betting": 39.5,
+        "model": 32.0,
+        "polls": 30.9
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Joni Ernst",
+      "incP": "R"
+    },
+    {
+      "race_id": "MN-SEN",
+      "chamber": "senate",
+      "state": "MN",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "D",
+      "win_prob_dem": 0.9557,
+      "sources": {
+        "betting": 93.5,
+        "model": 97.0,
+        "polls": 97.7
+      },
+      "tier": "safe",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 96% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "D"
+    },
+    {
+      "race_id": "FL-SEN",
+      "chamber": "senate",
+      "state": "FL",
+      "district": null,
+      "incumbent": "Ashley Moody",
+      "incumbent_party": "R",
+      "win_prob_dem": 0.1258,
+      "sources": {
+        "betting": 16.5,
+        "model": 12.0,
+        "polls": 4.8
+      },
+      "tier": "safe",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 13% 기준 공화 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Ashley Moody",
+      "incP": "R"
+    },
+    {
+      "race_id": "AZ-GOV",
+      "chamber": "governor",
+      "state": "AZ",
+      "district": null,
+      "incumbent": "Katie Hobbs",
+      "incumbent_party": "D",
+      "win_prob_dem": 0.814,
+      "sources": {
+        "betting": 77.0,
+        "model": 88.0,
+        "polls": 79.8
+      },
+      "tier": "leaning",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 81% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Katie Hobbs",
+      "incP": "D"
+    },
+    {
+      "race_id": "NV-GOV",
+      "chamber": "governor",
+      "state": "NV",
+      "district": null,
+      "incumbent": "Joe Lombardo",
+      "incumbent_party": "R",
+      "win_prob_dem": 0.5134,
+      "sources": {
+        "betting": 51.5,
+        "model": 50.0,
+        "polls": 53.3
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Joe Lombardo",
+      "incP": "R"
+    },
+    {
+      "race_id": "GA-GOV",
+      "chamber": "governor",
+      "state": "GA",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "R",
+      "win_prob_dem": 0.5602,
+      "sources": {
+        "betting": 55.0,
+        "model": 57.0,
+        "polls": 56.6
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "R"
+    },
+    {
+      "race_id": "KS-GOV",
+      "chamber": "governor",
+      "state": "KS",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "D",
+      "win_prob_dem": 0.3132,
+      "sources": {
+        "betting": 33.5,
+        "model": 32.0,
+        "polls": 25.2
+      },
+      "tier": "leaning",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 31% 기준 공화 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "D"
+    },
+    {
+      "race_id": "WI-GOV",
+      "chamber": "governor",
+      "state": "WI",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "D",
+      "win_prob_dem": 0.6114,
+      "sources": {
+        "betting": 63.5,
+        "model": 57.0,
+        "polls": 63.1
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "D"
+    },
+    {
+      "race_id": "MI-GOV",
+      "chamber": "governor",
+      "state": "MI",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "D",
+      "win_prob_dem": 0.8678,
+      "sources": {
+        "betting": 84.0,
+        "model": 88.0,
+        "polls": 90.9
+      },
+      "tier": "safe",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 87% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "D"
+    },
+    {
+      "race_id": "OH-GOV",
+      "chamber": "governor",
+      "state": "OH",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "R",
+      "win_prob_dem": 0.4111,
+      "sources": {
+        "betting": 41.5,
+        "model": 43.0,
+        "polls": 36.9
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "R"
+    },
+    {
+      "race_id": "IA-GOV",
+      "chamber": "governor",
+      "state": "IA",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "R",
+      "win_prob_dem": 0.5937,
+      "sources": {
+        "betting": 61.0,
+        "model": 57.0,
+        "polls": 59.9
+      },
+      "tier": "battleground",
+      "candidates": null,
+      "momentum": null,
+      "comment": "완전한 초박빙. 통합 확률과 모멘텀 모두 중립에 가까워 오차범위 내 접전.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "R"
+    },
+    {
+      "race_id": "PA-GOV",
+      "chamber": "governor",
+      "state": "PA",
+      "district": null,
+      "incumbent": "Josh Shapiro",
+      "incumbent_party": "D",
+      "win_prob_dem": 0.9557,
+      "sources": {
+        "betting": 93.5,
+        "model": 97.0,
+        "polls": 97.7
+      },
+      "tier": "safe",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 96% 기준 민주 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "Josh Shapiro",
+      "incP": "D"
+    },
+    {
+      "race_id": "FL-GOV",
+      "chamber": "governor",
+      "state": "FL",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": "R",
+      "win_prob_dem": 0.1341,
+      "sources": {
+        "betting": 17.5,
+        "model": 12.0,
+        "polls": 6.7
+      },
+      "tier": "safe",
+      "candidates": null,
+      "momentum": null,
+      "comment": "통합 확률 13% 기준 공화 우위. 경합 밖 레이스로 소셜 지표는 비수집.",
+      "updated": "2026-07-19T05:52:26.817139+00:00",
+      "inc": "오픈",
+      "incP": "R"
+    }
+  ]
+}

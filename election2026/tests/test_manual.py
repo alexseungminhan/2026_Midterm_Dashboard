@@ -16,20 +16,6 @@ def _write_csv(path, headers, rows):
         w.writerows(rows)
 
 
-def test_make_templates(tmp_path):
-    written = manual.make_templates(str(tmp_path))
-    # polls, ratings, primary turnout (levels), primary turnout (relative),
-    # party registration
-    assert len(written) == 5
-    from openpyxl import load_workbook
-    by_name = {p.split("/")[-1]: p for p in written}
-    wb = load_workbook(by_name["polls_template.xlsx"])
-    headers = [c.value for c in next(wb.active.iter_rows(max_row=1))]
-    assert headers == ["race_id", "pollster", "date", "sample_size",
-                       "margin_dem", "matchup", "weight", "notes"]
-    assert "adspend_template.xlsx" not in by_name    # removed 2026-07-30
-
-
 def test_load_polls_happy_path(tmp_path):
     _write_csv(tmp_path / "polls.csv",
                ["race_id", "pollster", "date", "sample_size", "margin_dem"],

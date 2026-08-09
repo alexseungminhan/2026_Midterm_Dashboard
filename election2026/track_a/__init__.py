@@ -8,11 +8,9 @@ The package stays structurally isolated from track_b — nothing here imports
 from election2026.track_b, and its configuration lives in config.TRACK_A only.
 """
 
-from .adapters import KalshiAdapter, ManualPollsAdapter, PolymarketAdapter  # noqa: F401
 from .polls import margin_to_prob  # noqa: F401
 
-ADAPTERS = {
-    "polymarket": PolymarketAdapter,
-    "kalshi": KalshiAdapter,
-    "polls": ManualPollsAdapter,
-}
+# adapters.py was deleted on 2026-08-09. Its three classes had no callers
+# left: board.py pulls Polymarket itself (it needs the whole midterms tag,
+# not one race at a time), manual.py loads the poll workbook, and the Kalshi
+# adapter never ran — its ticker map was empty from the start.

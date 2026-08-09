@@ -13,8 +13,10 @@ import pytest
 
 from election2026 import config
 from election2026.track_b import adapters as A
-from election2026.track_b.signals import (attention_z, compute_readings,
-                                          oriented_z, record_observation)
+from election2026.track_b.signals import (attention_level,
+                                          attention_z_across,
+                                          compute_readings,
+                                          oriented_z, side_contrast)
 
 
 # ---------------------------------------------------------------------------
@@ -217,7 +219,10 @@ def test_structural_and_missing_render_differently_in_readings():
     readings = {r.variable: r for r in compute_readings("sen-mi", raw)}
     assert readings["party_reg_net_change"].availability == "structural"
     assert readings["primary_turnout_ratio"].availability == "pending"
-    assert readings["gdelt"].availability == "missing"
+    # gdelt/reddit/youtube were removed on 2026-08-09 — all three were
+    # blocked at the source and carried weight 0. wiki stands in for "the
+    # source returned nothing this run".
+    assert readings["wiki_edit_count"].availability == "missing"
     for r in readings.values():
         assert r.z is None
 
@@ -264,10 +269,33 @@ def test_wiki_unresolvable_candidate_fails_loudly_not_zero(monkeypatch,
                         lambda rid, meta: {"dem": ["Nobody Realname"],
                                            "rep": ["Someone Else"]})
     adapter = A.WikiPageviewsShareAdapter()
+    # Nobody on either side resolves, so neither side has a denominator.
     assert adapter._titles("sen-xx", {"state": "GA"}) is None
     out = capsys.readouterr().out
-    assert "could not resolve" in out
+    assert "no Wikipedia article" in out
     assert "Nobody Realname" in out
+
+
+def test_wiki_unresolvable_minor_candidate_does_not_blank_the_race(
+        monkeypatch, tmp_path):
+    """One unknown name must not cost the whole contest.
+
+    Ohio Senate was dropped on 2026-08-08 because 'Frederick J Ode' has no
+    article — while Sherrod Brown and Jon Husted both resolve. 28 of 40 races
+    were blanked this way. The unresolved name is SKIPPED, which is not the
+    same as scoring it zero: zero would say nobody looked them up and inflate
+    the other side.
+    """
+    _isolate_cache(monkeypatch, tmp_path)
+    known = {"Sherrod Brown": "Sherrod Brown", "Jon Husted": "Jon Husted"}
+    monkeypatch.setattr(A.WikiPageviewsShareAdapter, "_resolve",
+                        lambda self, name, meta: known.get(name))
+    monkeypatch.setattr(A, "candidate_roster",
+                        lambda rid, meta: {
+                            "dem": ["Sherrod Brown", "Frederick J Ode"],
+                            "rep": ["Jon Husted"]})
+    titles = A.WikiPageviewsShareAdapter()._titles("sen-oh", {"state": "OH"})
+    assert titles == {"dem": ["Sherrod Brown"], "rep": ["Jon Husted"]}
 
 
 def test_wiki_hand_override_wins(monkeypatch):
@@ -278,7 +306,7 @@ def test_wiki_hand_override_wins(monkeypatch):
         == "Jon Ossoff (politician)"
 
 
-def test_wiki_share_reduction_is_proportional_and_attention_only():
+def test_wiki_share_reduction_is_proportional():
     adapter = A.WikiPageviewsShareAdapter()
     series = {"dem": {date(2026, 7, 20): (300.0, 2.0)},
               "rep": {date(2026, 7, 20): (100.0, 1.0)}}
@@ -287,8 +315,9 @@ def test_wiki_share_reduction_is_proportional_and_attention_only():
     assert payload["rep"]["value"] == pytest.approx(0.25)
     # The recorded scalar is CONCENTRATION, not direction.
     assert payload["total"]["value"] == pytest.approx(0.5)
-    assert "wiki_pageviews_share" in config.TRACK_B["attention_only"]
-    assert "wiki_edit_count" in config.TRACK_B["attention_only"]
+    # No longer attention-only: the wiki variables became directional on
+    # 2026-08-09, comparing the two candidates' pageviews to each other.
+    assert config.TRACK_B["attention_only"] == []
 
 
 def test_wiki_zero_views_yield_no_payload():
@@ -302,57 +331,49 @@ def test_wiki_zero_views_yield_no_payload():
 # Reddit: sentiment lexicon + throttle bookkeeping (no live API)
 # ---------------------------------------------------------------------------
 
-def test_reddit_sentiment_polarity_and_negation():
-    assert A._sentiment("great win, so proud") > 0
-    assert A._sentiment("corrupt liar, total disaster") < 0
-    assert A._sentiment("not great, honestly") < 0          # negation flips
-    assert A._sentiment("the weather is cloudy") == 0.0
-
-
-def test_reddit_unmapped_state_is_structural():
-    adapter = A.RedditAdapter()
-    payload = adapter._pull_live("sen-xx", {"state": "XX", "chamber": "senate"})
-    assert payload["unavailable"] == "structural"
-
-
-def test_reddit_unavailable_without_credentials(monkeypatch):
-    monkeypatch.delenv("REDDIT_CLIENT_ID", raising=False)
-    monkeypatch.delenv("REDDIT_CLIENT_SECRET", raising=False)
-    assert not A.RedditAdapter().is_available()
-
-
-# ---------------------------------------------------------------------------
-# Payload-shape normalization paths shared by the new adapters
-# ---------------------------------------------------------------------------
-
 def test_oriented_payload_skips_differencing_and_store():
     payload = {"oriented": {"value": 4.0, "baseline": [1.0, 2.0, 3.0],
                             "min_obs": 3}}
-    z = oriented_z(payload, "race-1", var="primary_turnout_ratio")
+    z = oriented_z(payload, var="primary_turnout_ratio")
     assert z is not None and z > 0
-    # Never persisted: the baseline is prior cycles inside the payload.
-    assert record_observation(_SpyStore(), "race-1", payload, False) is False
 
 
 def test_attention_total_block_is_used_directly():
+    """A pageview SHARE sums to 1, so the adapter ships a separate total."""
     payload = {"dem": {"value": 0.9}, "rep": {"value": 0.1},
-               "total": {"value": 0.8,
-                         "baseline": [0.1, 0.2, 0.15, 0.25, 0.2]}}
-    z = attention_z(payload, "race-1", var="wiki_pageviews_share")
+               "total": {"value": 0.8}}
+    assert attention_level(payload) == 0.8
+
+
+def test_attention_is_graded_against_the_rest_of_the_board():
+    """Cross-sectional, so no accumulated history is needed."""
+    others = [0.1, 0.2, 0.15, 0.25, 0.2]
+    z = attention_z_across(0.8, others, var="wiki_pageviews_share")
     assert z is not None and z > 0
+    # A race sitting mid-pack is not "busy".
+    mid = attention_z_across(0.18, others, var="wiki_pageviews_share")
+    assert mid is not None and abs(mid) < 1.0
+
+
+def test_side_contrast_needs_both_sides_present_and_positive():
+    """A zero side is a candidate with no filing, not maximal dominance.
+
+    Delaware Senate reported a Republican in-state share of exactly 0.0;
+    letting that saturate to +1.0 would manufacture the strongest possible
+    Democratic reading out of missing data. 17 of 83 races on 2026-08-08.
+    """
+    assert side_contrast({"dem": {"value": 1086.0},
+                          "rep": {"value": 397.0}}) == pytest.approx(0.4646,
+                                                                     abs=1e-4)
+    assert side_contrast({"dem": {"value": 0.735},
+                          "rep": {"value": 0.0}}) is None
+    assert side_contrast({"dem": {"value": 5.0}}) is None
 
 
 def test_unavailable_payloads_never_reach_a_store_or_a_z():
     payload = A.unavailable("structural", "because")
-    assert oriented_z(payload, "r") is None
-    assert attention_z(payload, "r") is None
-    assert record_observation(_SpyStore(), "r", payload, False) is False
-
-
-class _SpyStore:
-    def append(self, *args, **kwargs):
-        raise AssertionError("append must not be called")
-
+    assert oriented_z(payload) is None
+    assert attention_level(payload) is None
 
 def _isolate_cache(monkeypatch, tmp_path):
     monkeypatch.setattr(A.cache, "RAW_DIR", str(tmp_path))
@@ -496,21 +517,28 @@ def test_relative_turnout_equals_the_ratio_shift(tmp_path):
     assert abs(math.log(122 / 108) - math.log(1.227 / 1.092)) < 0.02
 
 
-def test_relative_turnout_scores_against_the_other_states(tmp_path):
+def test_relative_turnout_compares_the_two_parties_in_the_state(tmp_path):
+    """The two parties' growth, against each other, in this state only.
+
+    It replaced a cross-state z-score on 2026-08-09. That version answered
+    "unusual among the states reporting this cycle", which is a real question
+    but not the one the card asks — and it meant Maine's reading moved when
+    Ohio's numbers arrived.
+    """
     from election2026 import manual, track_b
+    from election2026.track_b.signals import side_contrast
     d = _write_change(tmp_path, [("IA", 122, 108), ("OH", 154, 76),
                                  ("GA", 148, 78), ("NV", 107, 83),
                                  ("TX", 216, 111), ("PA", 87, 48)])
     a = track_b.ADAPTERS["primary_turnout_ratio"]()
     a._changes = manual.load_primary_turnout_change(directory=d)
     a._loaded = {}          # no vote-count history, so the relative path runs
-    o = a._pull_live("gov-oh", {"state": "OH", "chamber": "governor"})["oriented"]
-    # Ohio's D side nearly doubled while its R side fell — a strong D-positive
-    # contrast. The baseline is the OTHER five states, not Ohio's own past.
-    assert o["value"] > 0
-    assert len(o["baseline"]) == 5
-    import math
-    assert math.log(154 / 76) not in o["baseline"]
+    payload = a._pull_live("gov-oh", {"state": "OH", "chamber": "governor"})
+    # Ohio's D side grew to 154% of 2022 while its R side fell to 76%.
+    assert payload["dem"]["value"] == 154 and payload["rep"]["value"] == 76
+    assert side_contrast(payload) == pytest.approx((154 - 76) / (154 + 76))
+    # No other state appears anywhere in the reading.
+    assert "baseline" not in payload and "oriented" not in payload
 
 
 def test_relative_turnout_rejects_an_implausible_percentage(tmp_path):
@@ -522,3 +550,42 @@ def test_relative_turnout_rejects_an_implausible_percentage(tmp_path):
         assert "rep_pct_of_prior" in str(exc)
     else:
         raise AssertionError("a 0% turnout ratio must be refused")
+
+
+def test_two_sided_variables_are_not_residualized():
+    """Residualizing the sides blanks the money model.
+
+    `residualize` replaces a level with a SIGNED structural residual. That was
+    correct while each side was z-scored against its own history, but the
+    snapshot contrast (d-r)/(d+r) needs levels: residuals can both be
+    negative, and `side_contrast` rejects non-positive values. Maine, Texas,
+    Michigan and Georgia all lost their money reading this way on the first
+    snapshot run — every one of them has healthy FEC data.
+    """
+    from election2026.track_b.signals import residualize
+    raw = {
+        "sen-me": {"fec_small_dollar_count": {"dem": {"value": 2122.0},
+                                              "rep": {"value": 399.0}}},
+        "sen-tx": {"fec_small_dollar_count": {"dem": {"value": 5470.0},
+                                              "rep": {"value": 799.0}}},
+        "sen-ga": {"fec_small_dollar_count": {"dem": {"value": 10195.0},
+                                              "rep": {"value": 728.0}}},
+    }
+    residualize(raw)
+    for rid, payload in raw.items():
+        block = payload["fec_small_dollar_count"]
+        assert block["dem"]["value"] > 0 and block["rep"]["value"] > 0, rid
+        assert side_contrast(block) is not None, rid
+
+
+def test_disambiguation_pages_are_not_people(monkeypatch, tmp_path):
+    """"Susan Collins (disambiguation)" is not Susan Collins.
+
+    It resolves, so nothing errors, and it carries almost no traffic — Maine's
+    Republican side scored ~0 against the real article's 15,914 weekly views,
+    putting the Democratic pageview share at 99.8% in a 67.8% race.
+    """
+    _isolate_cache(monkeypatch, tmp_path)
+    assert A.WikiPageviewsShareAdapter._NOT_A_PERSON.search(
+        "Susan Collins (disambiguation)")
+    assert not A.WikiPageviewsShareAdapter._NOT_A_PERSON.search("Susan Collins")

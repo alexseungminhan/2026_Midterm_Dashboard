@@ -15,13 +15,14 @@ how long a market has been listed and how much has churned through it, NOT how
 contested the seat is. Polymarket lists 443 House districts, and the top of the
 cumulative list is safe seats (CA-28, FL-01, MS-01) where volume accreted from
 cheap speculation. Measured 2026-08-08: every one of the 18 hand-picked
-battleground districts sits BELOW the House median of $23.7K. `volume1wk`
-tracks live attention better. `volume` is the default anyway, so that the
-board matches the order polymarket.com shows — the user's explicit decision
-(2026-08-08) after being shown these numbers.
+battleground districts sits BELOW the House median of $23.7K. The board is
+ranked on it anyway, so the order matches what polymarket.com shows — the
+user's explicit decision (2026-08-08) after being shown these numbers.
 
-Both are carried and the dashboard toggles between them, so `rank` keeps the
-UNION of the two top-N lists. See its docstring.
+The recency fields are NOT rankable. Polymarket omits `volume1wk` and
+`volume24hr` from any event that has not traded in the window (435 of 697 on
+2026-08-08), so they arrive as absent, not as zero. `volume1wk` is carried as
+Optional for reference only; nothing sorts or displays it.
 """
 
 from __future__ import annotations
@@ -66,7 +67,7 @@ class RaceMarket:
     title: str
     prob_dem: Optional[float]       # two-party normalized, D / (D + R)
     volume: float                   # cumulative USD since listing
-    volume1wk: float
+    volume1wk: Optional[float]     # None = 최근 거래 없어 폴리마켓이 안 보냄
     liquidity: float
     candidates: dict = field(default_factory=dict)   # {"D": name, "R": name}
     # Share of market probability on candidates who are neither D nor R. Above
@@ -83,7 +84,7 @@ class RaceMarket:
         state = config.STATE_NAMES_KO.get(
             self.state, config.STATE_NAMES.get(self.state, self.state))
         if self.chamber == "house":
-            return "%s %s지구" % (state, self.district.lstrip("0") or "AL")
+            return "%s %s 선거구" % (state, self.district.lstrip("0") or "AL")
         return "%s %s" % (state, "주지사" if self.chamber == "governor" else "상원")
 
 
@@ -277,11 +278,26 @@ def parse_event(event: dict) -> Optional[RaceMarket]:
         except (TypeError, ValueError):
             return 0.0
 
+    def _opt(key):
+        """None when the key is absent — absent is not zero.
+
+        Polymarket ships `volume1wk` only on events that traded in the window.
+        Coercing the missing key to 0.0 printed "$0 this week" next to
+        $118,980 cumulative on South Carolina Senate, which reads as a dead
+        market rather than as no data. 435 of 697 events on 2026-08-08.
+        """
+        if event.get(key) is None:
+            return None
+        try:
+            return float(event[key])
+        except (TypeError, ValueError):
+            return None
+
     return RaceMarket(
         race_id="%s-%s%s" % (prefix, state.lower(), suffix),
         chamber=chamber, state=state, district=district,
         slug=str(event.get("slug") or ""), title=title,
-        prob_dem=prob_dem, volume=_f("volume"), volume1wk=_f("volume1wk"),
+        prob_dem=prob_dem, volume=_f("volume"), volume1wk=_opt("volume1wk"),
         liquidity=_f("liquidity"), candidates=names, unmapped_mass=unmapped,
     )
 
@@ -309,15 +325,11 @@ def rank(races: list, metric: Optional[str] = None,
          top_n: Optional[dict] = None) -> dict:
     """{chamber: [RaceMarket, ...]} sorted by `metric`, truncated per chamber.
 
-    Ties on volume1wk are common (many markets trade $0 in a week), so
-    cumulative volume breaks them — otherwise the tail order churns randomly
-    between runs and the day-over-day diff is unreadable.
-
-    SELECTION IS THE UNION OF BOTH METRICS, ordering is by `metric` alone.
-    The dashboard lets a reader re-sort between cumulative and weekly volume,
-    and re-sorting a set that was *selected* on one of them silently lies: its
-    real top entries would simply be absent. Carrying the union costs Track B
-    fetches for the extra races but makes both orderings honest.
+    Cumulative volume is the only ranking the board offers (2026-08-08). The
+    recency metrics cannot be ranked on: Polymarket OMITS `volume1wk` and
+    `volume24hr` from an event that has not traded recently — 435 of 697
+    events on 2026-08-08 — so an absent key is "unknown", not "zero", and
+    ranking on it would sort two thirds of the board on a fabricated 0.
     """
     metric = metric or config.BOARD["rank_by"]
     top_n = top_n or config.BOARD["top_n"]
@@ -325,16 +337,9 @@ def rank(races: list, metric: Optional[str] = None,
     out = {}
     for chamber in ("senate", "house", "governor"):
         rows = [r for r in races if r.chamber == chamber]
-        limit = top_n.get(chamber)
-        if limit:
-            keep = set()
-            for m in ("volume", "volume1wk"):
-                ordered = sorted(rows, key=lambda r: (getattr(r, m), r.volume),
-                                 reverse=True)
-                keep.update(r.race_id for r in ordered[:limit])
-            rows = [r for r in rows if r.race_id in keep]
         rows.sort(key=lambda r: (getattr(r, metric), r.volume), reverse=True)
-        out[chamber] = rows
+        limit = top_n.get(chamber)
+        out[chamber] = rows[:limit] if limit else rows
     return out
 
 

@@ -35,7 +35,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass, field
 from typing import Optional
 
-SCHEMA_VERSION = "3.1.0"
+SCHEMA_VERSION = "3.3.0"
 
 CHAMBERS = ("senate", "house", "governor")
 PARTIES = ("D", "R")
@@ -60,7 +60,7 @@ class Betting:
     """The market's price for this race."""
     prob_dem: Optional[float]         # two-party normalized, D / (D + R)
     volume: float                     # cumulative USD since listing
-    volume1wk: float
+    volume1wk: Optional[float]
     liquidity: float
     slug: str
     # Share of probability on non-D/R candidates. Above board.UNMAPPED_WARN the
@@ -128,6 +128,8 @@ class Chamber:
     control_volume: float = 0.0
     expected_dem_seats: Optional[float] = None
     expected_rep_seats: Optional[float] = None
+    favourite_dem_seats: Optional[int] = None
+    favourite_rep_seats: Optional[int] = None
     seats_volume: float = 0.0
     # True whenever the seat distribution has open-ended end buckets, which it
     # always does. The expectation then rests on an assumed midpoint for
@@ -196,6 +198,8 @@ _VARIABLE_SCHEMA = {
         "label": {"type": "string"},
         "z": _nullable("number"),
         "weight": {"type": "number", "minimum": 0},
+        "dem_value": _nullable("number"),
+        "rep_value": _nullable("number"),
         "availability": {"enum": list(AVAILABILITY)},
         "reason": _nullable("string"),
     },
@@ -227,11 +231,11 @@ _MODEL_SCHEMA = {
 
 _BETTING_SCHEMA = {
     "type": "object",
-    "required": ["prob_dem", "volume", "volume1wk", "slug", "trustworthy"],
+    "required": ["prob_dem", "volume", "slug", "trustworthy"],
     "properties": {
         "prob_dem": _NULLABLE_PROB,
         "volume": {"type": "number", "minimum": 0},
-        "volume1wk": {"type": "number", "minimum": 0},
+        "volume1wk": {"type": ["number", "null"], "minimum": 0},
         "liquidity": {"type": "number", "minimum": 0},
         "slug": {"type": "string"},
         "unmapped_mass": {"type": "number", "minimum": 0, "maximum": 1},
@@ -307,6 +311,8 @@ _CHAMBER_SCHEMA = {
         "control_volume": {"type": "number", "minimum": 0},
         "expected_dem_seats": _nullable("number"),
         "expected_rep_seats": _nullable("number"),
+        "favourite_dem_seats": _nullable("integer"),
+        "favourite_rep_seats": _nullable("integer"),
         "seats_volume": {"type": "number", "minimum": 0},
         "expectation_is_approximate": {"type": "boolean"},
         "seat_buckets": {"type": "array", "items": _BUCKET_SCHEMA},

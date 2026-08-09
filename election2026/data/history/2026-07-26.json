@@ -1,0 +1,7047 @@
+{
+  "meta": {
+    "generated_at": "2026-07-26T14:38:02.055090+00:00",
+    "schema_version": "2.1.0",
+    "sources_used": [
+      "adspend",
+      "fec",
+      "gdelt",
+      "kalshi",
+      "polls",
+      "polymarket",
+      "trends",
+      "twitter",
+      "youtube"
+    ],
+    "sources_missing": [],
+    "flag_threshold": 0.05,
+    "signal_confidence": 0.3724,
+    "dry_run": true,
+    "lambda": 0.1
+  },
+  "chambers": {
+    "senate": {
+      "monitored": 11,
+      "flagged": 0,
+      "safe_d": 43,
+      "safe_r": 46,
+      "control_threshold_d": 51,
+      "control_threshold_r": 50,
+      "total_seats": 100,
+      "ratings_count": {
+        "tossup": 4,
+        "lean_d": 3,
+        "lean_r": 2,
+        "likely_d": 1,
+        "likely_r": 1
+      }
+    },
+    "house": {
+      "monitored": 37,
+      "flagged": 0,
+      "safe_d": 195,
+      "safe_r": 203,
+      "control_threshold_d": 218,
+      "control_threshold_r": 218,
+      "total_seats": 435,
+      "ratings_count": {
+        "tossup": 18,
+        "lean_d": 10,
+        "lean_r": 9,
+        "likely_d": 0,
+        "likely_r": 0
+      }
+    },
+    "governor": {
+      "monitored": 8,
+      "flagged": 0,
+      "safe_d": 18,
+      "safe_r": 24,
+      "control_threshold_d": 26,
+      "control_threshold_r": 25,
+      "total_seats": null,
+      "ratings_count": {
+        "tossup": 5,
+        "lean_d": 2,
+        "lean_r": 1,
+        "likely_d": 0,
+        "likely_r": 0
+      }
+    }
+  },
+  "races": [
+    {
+      "race_id": "sen-ne",
+      "chamber": "senate",
+      "state": "NE",
+      "label": "Neb.",
+      "district": null,
+      "incumbent": "Pete Ricketts",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Likely R",
+      "p_consensus": 0.2287,
+      "p_alpha": 0.2289,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.23,
+        "polls": 0.2251
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 23%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-tx",
+      "chamber": "senate",
+      "state": "TX",
+      "label": "Texas",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.3737,
+      "p_alpha": 0.3734,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.375,
+        "polls": 0.3701
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 37%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-ia",
+      "chamber": "senate",
+      "state": "IA",
+      "label": "Iowa",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4037,
+      "p_alpha": 0.4038,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.405,
+        "polls": 0.4
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 40%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-oh",
+      "chamber": "senate",
+      "state": "OH",
+      "label": "Ohio",
+      "district": null,
+      "incumbent": "Jon Husted",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4538,
+      "p_alpha": 0.4535,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.455,
+        "polls": 0.4503
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 45%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-ak",
+      "chamber": "senate",
+      "state": "AK",
+      "label": "Alaska",
+      "district": null,
+      "incumbent": "Dan S. Sullivan",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4737,
+      "p_alpha": 0.4738,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.475,
+        "polls": 0.4701
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 47%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-mi",
+      "chamber": "senate",
+      "state": "MI",
+      "label": "Mich.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5037,
+      "p_alpha": 0.5211,
+      "delta": 0.0174,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.505,
+        "polls": 0.5
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 2.83,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.005
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 1.89,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 1.22,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.005
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.54,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -2.16
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "senate",
+          "party": "D",
+          "margin": 0.4,
+          "who": "Slotkin"
+        },
+        {
+          "year": 2020,
+          "type": "senate",
+          "party": "D",
+          "margin": 1.5,
+          "who": "Peters"
+        },
+        {
+          "year": 2018,
+          "type": "senate",
+          "party": "D",
+          "margin": 6.5,
+          "who": "Stabenow"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 1.4,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 2.7,
+          "who": "Biden"
+        },
+        {
+          "year": 2016,
+          "type": "presidential",
+          "party": "R",
+          "margin": 0.2,
+          "who": "Trump"
+        }
+      ],
+      "comment": "기저 신호(소액기부(FEC) +2.8σ · 채널 열의 +1.9σ)가 컨센서스와 같은 민주 방향으로 +1.7%p 보정. 우위를 재확인하는 수준으로, FLAG 기준(±5%p)에는 못 미친다.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-me",
+      "chamber": "senate",
+      "state": "ME",
+      "label": "Maine",
+      "district": null,
+      "incumbent": "Susan Collins",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5237,
+      "p_alpha": 0.5239,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.525,
+        "polls": 0.5199
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 52%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-nc",
+      "chamber": "senate",
+      "state": "NC",
+      "label": "N.C.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean D",
+      "p_consensus": 0.5786,
+      "p_alpha": 0.5783,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.58,
+        "polls": 0.5747
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 58%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-nh",
+      "chamber": "senate",
+      "state": "NH",
+      "label": "N.H.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.6138,
+      "p_alpha": 0.6139,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.615,
+        "polls": 0.6103
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 61%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-ga",
+      "chamber": "senate",
+      "state": "GA",
+      "label": "Ga.",
+      "district": null,
+      "incumbent": "Jon Ossoff",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.6337,
+      "p_alpha": 0.6163,
+      "delta": -0.0174,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.635,
+        "polls": 0.6299
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 2.9,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 2.83,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.005
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 1.62,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.81,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.09,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 2.56
+        }
+      ],
+      "history": [
+        {
+          "year": 2022,
+          "type": "senate",
+          "party": "D",
+          "margin": 2.8,
+          "who": "Warnock"
+        },
+        {
+          "year": 2020,
+          "type": "senate",
+          "party": "D",
+          "margin": 1.2,
+          "who": "Ossoff"
+        },
+        {
+          "year": 2016,
+          "type": "senate",
+          "party": "R",
+          "margin": 13.8,
+          "who": "Isakson"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 2.2,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 0.2,
+          "who": "Biden"
+        },
+        {
+          "year": 2016,
+          "type": "presidential",
+          "party": "R",
+          "margin": 5.1,
+          "who": "Trump"
+        }
+      ],
+      "comment": "컨센서스는 민주 우위(63%)이나 기저 신호는 공화 방향으로 -1.7%p 반대 보정. 임계값 미달로 FLAG는 아니며, 다음 주 데이터로 지속 여부 확인 필요. 주요 지표: 소액기부(FEC) −2.9σ · 채널 열의 −2.8σ",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "sen-mn",
+      "chamber": "senate",
+      "state": "MN",
+      "label": "Minn.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Likely D",
+      "p_consensus": 0.7837,
+      "p_alpha": 0.7838,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.785,
+        "polls": 0.7798
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 78%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-tx15",
+      "chamber": "house",
+      "state": "TX",
+      "label": "Texas 15",
+      "district": "TX-15",
+      "incumbent": "Monica De La Cruz",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4337,
+      "p_alpha": 0.4154,
+      "delta": -0.0183,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.435,
+        "polls": 0.4299
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 2.9,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 2.03,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.005
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 1.48,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.005
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.68,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.005
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 2.43
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "house",
+          "party": "R",
+          "margin": 9.6,
+          "who": "De La Cruz"
+        },
+        {
+          "year": 2022,
+          "type": "house",
+          "party": "R",
+          "margin": 8.5,
+          "who": "De La Cruz"
+        },
+        {
+          "year": 2020,
+          "type": "house",
+          "party": "D",
+          "margin": 3.0,
+          "who": "Gonzalez"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 12.4,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "R",
+          "margin": 2.9,
+          "who": "Trump"
+        },
+        {
+          "year": 2016,
+          "type": "presidential",
+          "party": "D",
+          "margin": 14.6,
+          "who": "Clinton"
+        }
+      ],
+      "comment": "기저 신호(소액기부(FEC) −2.9σ · 광고 집행 −2.0σ)가 컨센서스와 같은 공화 방향으로 -1.8%p 보정. 우위를 재확인하는 수준으로, FLAG 기준(±5%p)에는 못 미친다.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-fl27",
+      "chamber": "house",
+      "state": "FL",
+      "label": "Fla. 27",
+      "district": "FL-27",
+      "incumbent": "María Elvira Salazar",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4237,
+      "p_alpha": 0.4239,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.425,
+        "polls": 0.4201
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 42%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-fl28",
+      "chamber": "house",
+      "state": "FL",
+      "label": "Fla. 28",
+      "district": "FL-28",
+      "incumbent": "Carlos Giménez",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4037,
+      "p_alpha": 0.4034,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.405,
+        "polls": 0.4
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 40%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-nc8",
+      "chamber": "house",
+      "state": "NC",
+      "label": "N.C. 8",
+      "district": "NC-08",
+      "incumbent": "Mark Harris",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4187,
+      "p_alpha": 0.4188,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.42,
+        "polls": 0.4149
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 42%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-nc11",
+      "chamber": "house",
+      "state": "NC",
+      "label": "N.C. 11",
+      "district": "NC-11",
+      "incumbent": "Chuck Edwards",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4337,
+      "p_alpha": 0.4334,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.435,
+        "polls": 0.4299
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 43%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ia2",
+      "chamber": "house",
+      "state": "IA",
+      "label": "Iowa 2",
+      "district": "IA-02",
+      "incumbent": "Ashley Hinson",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4288,
+      "p_alpha": 0.4289,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.43,
+        "polls": 0.4253
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 43%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-mi4",
+      "chamber": "house",
+      "state": "MI",
+      "label": "Mich. 4",
+      "district": "MI-04",
+      "incumbent": "Bill Huizenga",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4387,
+      "p_alpha": 0.4386,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.44,
+        "polls": 0.4351
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 44%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-wi1",
+      "chamber": "house",
+      "state": "WI",
+      "label": "Wis. 1",
+      "district": "WI-01",
+      "incumbent": "Bryan Steil",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4436,
+      "p_alpha": 0.4438,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.445,
+        "polls": 0.4397
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 44%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-pa10",
+      "chamber": "house",
+      "state": "PA",
+      "label": "Pa. 10",
+      "district": "PA-10",
+      "incumbent": "Scott Perry",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4487,
+      "p_alpha": 0.4484,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.45,
+        "polls": 0.445
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 45%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-az6",
+      "chamber": "house",
+      "state": "AZ",
+      "label": "Ariz. 6",
+      "district": "AZ-06",
+      "incumbent": "Juan Ciscomani",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4737,
+      "p_alpha": 0.4738,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.475,
+        "polls": 0.4701
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 47%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ia3",
+      "chamber": "house",
+      "state": "IA",
+      "label": "Iowa 3",
+      "district": "IA-03",
+      "incumbent": "Zach Nunn",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4637,
+      "p_alpha": 0.4634,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.465,
+        "polls": 0.4602
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 46%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-wi3",
+      "chamber": "house",
+      "state": "WI",
+      "label": "Wis. 3",
+      "district": "WI-03",
+      "incumbent": "Derrick Van Orden",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4587,
+      "p_alpha": 0.4588,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.46,
+        "polls": 0.4549
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 46%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-va2",
+      "chamber": "house",
+      "state": "VA",
+      "label": "Va. 2",
+      "district": "VA-02",
+      "incumbent": "Jen Kiggans",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4837,
+      "p_alpha": 0.4836,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.485,
+        "polls": 0.4801
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 48%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-az1",
+      "chamber": "house",
+      "state": "AZ",
+      "label": "Ariz. 1",
+      "district": "AZ-01",
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4886,
+      "p_alpha": 0.4888,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.49,
+        "polls": 0.4847
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 49%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-co8",
+      "chamber": "house",
+      "state": "CO",
+      "label": "Colo. 8",
+      "district": "CO-08",
+      "incumbent": "Gabe Evans",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4937,
+      "p_alpha": 0.5089,
+      "delta": 0.0152,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.495,
+        "polls": 0.49
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 2.9,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 2.56,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.005
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 1.35,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.94,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.005
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -2.29
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "house",
+          "party": "R",
+          "margin": 0.7,
+          "who": "Evans"
+        },
+        {
+          "year": 2022,
+          "type": "house",
+          "party": "D",
+          "margin": 0.7,
+          "who": "Caraveo"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "D",
+          "margin": 2.4,
+          "who": "Harris"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 11.0,
+          "who": "Biden"
+        }
+      ],
+      "comment": "컨센서스는 공화 우위(49%)이나 기저 신호는 민주 방향으로 +1.5%p 반대 보정. 임계값 미달로 FLAG는 아니며, 다음 주 데이터로 지속 여부 확인 필요. 주요 지표: 소액기부(FEC) +2.9σ · 소셜 감성 편차 +2.6σ",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ny17",
+      "chamber": "house",
+      "state": "NY",
+      "label": "N.Y. 17",
+      "district": "NY-17",
+      "incumbent": "Mike Lawler",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5037,
+      "p_alpha": 0.5038,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.505,
+        "polls": 0.5
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 50%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-oh9",
+      "chamber": "house",
+      "state": "OH",
+      "label": "Ohio 9",
+      "district": "OH-09",
+      "incumbent": "Marcy Kaptur",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5088,
+      "p_alpha": 0.5085,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.51,
+        "polls": 0.5053
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 51%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ca22",
+      "chamber": "house",
+      "state": "CA",
+      "label": "Calif. 22",
+      "district": "CA-22",
+      "incumbent": "David Valadao",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5088,
+      "p_alpha": 0.5089,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.51,
+        "polls": 0.5053
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 51%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-nj7",
+      "chamber": "house",
+      "state": "NJ",
+      "label": "N.J. 7",
+      "district": "NJ-07",
+      "incumbent": "Thomas Kean Jr.",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5137,
+      "p_alpha": 0.5136,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.515,
+        "polls": 0.51
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 51%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-pa8",
+      "chamber": "house",
+      "state": "PA",
+      "label": "Pa. 8",
+      "district": "PA-08",
+      "incumbent": "Rob Bresnahan",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5188,
+      "p_alpha": 0.519,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.52,
+        "polls": 0.5153
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 52%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-me2",
+      "chamber": "house",
+      "state": "ME",
+      "label": "Maine 2",
+      "district": "ME-02",
+      "incumbent": "Jared Golden",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5188,
+      "p_alpha": 0.5185,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.52,
+        "polls": 0.5153
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 52%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-fl25",
+      "chamber": "house",
+      "state": "FL",
+      "label": "Fla. 25",
+      "district": "FL-25",
+      "incumbent": "Jared Moskowitz",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5237,
+      "p_alpha": 0.5238,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.525,
+        "polls": 0.5199
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 52%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-mi7",
+      "chamber": "house",
+      "state": "MI",
+      "label": "Mich. 7",
+      "district": "MI-07",
+      "incumbent": "Tom Barrett",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4986,
+      "p_alpha": 0.5142,
+      "delta": 0.0156,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.5,
+        "polls": 0.4947
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 2.9,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 2.43,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 1.08,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.81,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.09,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -1.75
+        }
+      ],
+      "history": [
+        {
+          "year": 2024,
+          "type": "house",
+          "party": "R",
+          "margin": 3.7,
+          "who": "Barrett"
+        },
+        {
+          "year": 2022,
+          "type": "house",
+          "party": "D",
+          "margin": 5.0,
+          "who": "Slotkin"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 1.9,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 0.6,
+          "who": "Biden"
+        }
+      ],
+      "comment": "컨센서스는 공화 우위(50%)이나 기저 신호는 민주 방향으로 +1.6%p 반대 보정. 임계값 미달로 FLAG는 아니며, 다음 주 데이터로 지속 여부 확인 필요. 주요 지표: 소액기부(FEC) +2.9σ · 채널 열의 +2.4σ",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-tx34",
+      "chamber": "house",
+      "state": "TX",
+      "label": "Texas 34",
+      "district": "TX-34",
+      "incumbent": "Vicente Gonzalez",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.4937,
+      "p_alpha": 0.4938,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.495,
+        "polls": 0.49
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 49%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ia1",
+      "chamber": "house",
+      "state": "IA",
+      "label": "Iowa 1",
+      "district": "IA-01",
+      "incumbent": "Mariannette Miller-Meeks",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4786,
+      "p_alpha": 0.4785,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.48,
+        "polls": 0.4748
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 48%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-pa7",
+      "chamber": "house",
+      "state": "PA",
+      "label": "Pa. 7",
+      "district": "PA-07",
+      "incumbent": "Ryan Mackenzie",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.5337,
+      "p_alpha": 0.5339,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.535,
+        "polls": 0.5299
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 53%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-wa3",
+      "chamber": "house",
+      "state": "WA",
+      "label": "Wash. 3",
+      "district": "WA-03",
+      "incumbent": "Marie Gluesenkamp Perez",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5437,
+      "p_alpha": 0.5434,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.545,
+        "polls": 0.5398
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 54%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ne2",
+      "chamber": "house",
+      "state": "NE",
+      "label": "Neb. 2",
+      "district": "NE-02",
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean D",
+      "p_consensus": 0.5638,
+      "p_alpha": 0.5639,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.565,
+        "polls": 0.5603
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 56%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-mi8",
+      "chamber": "house",
+      "state": "MI",
+      "label": "Mich. 8",
+      "district": "MI-08",
+      "incumbent": "Kristen McDonald Rivet",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5687,
+      "p_alpha": 0.5684,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.57,
+        "polls": 0.5649
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 57%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ny19",
+      "chamber": "house",
+      "state": "NY",
+      "label": "N.Y. 19",
+      "district": "NY-19",
+      "incumbent": "Josh Riley",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5737,
+      "p_alpha": 0.5738,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.575,
+        "polls": 0.5701
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 57%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ca13",
+      "chamber": "house",
+      "state": "CA",
+      "label": "Calif. 13",
+      "district": "CA-13",
+      "incumbent": "Adam Gray",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5786,
+      "p_alpha": 0.5785,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.58,
+        "polls": 0.5747
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 58%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-nv3",
+      "chamber": "house",
+      "state": "NV",
+      "label": "Nev. 3",
+      "district": "NV-03",
+      "incumbent": "Susie Lee",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5837,
+      "p_alpha": 0.5839,
+      "delta": 0.0002,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.585,
+        "polls": 0.5799
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 58%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ca45",
+      "chamber": "house",
+      "state": "CA",
+      "label": "Calif. 45",
+      "district": "CA-45",
+      "incumbent": "Derek Tran",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5887,
+      "p_alpha": 0.5884,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.59,
+        "polls": 0.5851
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 59%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ny4",
+      "chamber": "house",
+      "state": "NY",
+      "label": "N.Y. 4",
+      "district": "NY-04",
+      "incumbent": "Laura Gillen",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5938,
+      "p_alpha": 0.5939,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.595,
+        "polls": 0.5903
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 59%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-nm2",
+      "chamber": "house",
+      "state": "NM",
+      "label": "N.M. 2",
+      "district": "NM-02",
+      "incumbent": "Gabe Vasquez",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5987,
+      "p_alpha": 0.5984,
+      "delta": -0.0003,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.6,
+        "polls": 0.5948
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 60%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-or5",
+      "chamber": "house",
+      "state": "OR",
+      "label": "Ore. 5",
+      "district": "OR-05",
+      "incumbent": "Janelle Bynum",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.6037,
+      "p_alpha": 0.6038,
+      "delta": 0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.605,
+        "polls": 0.6
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 60%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "ho-ct5",
+      "chamber": "house",
+      "state": "CT",
+      "label": "Conn. 5",
+      "district": "CT-05",
+      "incumbent": "Jahana Hayes",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.6237,
+      "p_alpha": 0.6236,
+      "delta": -0.0001,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.625,
+        "polls": 0.6198
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.0
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 62%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-fl",
+      "chamber": "governor",
+      "state": "FL",
+      "label": "Fla.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Lean R",
+      "p_consensus": 0.4037,
+      "p_alpha": 0.4037,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.405,
+        "polls": 0.4
+      },
+      "signals": [
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 40%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-nv",
+      "chamber": "governor",
+      "state": "NV",
+      "label": "Nev.",
+      "district": null,
+      "incumbent": "Joe Lombardo",
+      "incumbent_party": "R",
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4737,
+      "p_alpha": 0.4615,
+      "delta": -0.0122,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.475,
+        "polls": 0.4701
+      },
+      "signals": [
+        {
+          "name": "소액기부(FEC)",
+          "direction": "R",
+          "sigma": 2.7,
+          "weight": 0.34,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.0
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 2.03,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.005
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.94,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.005
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.18,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 2.29
+        }
+      ],
+      "history": [
+        {
+          "year": 2022,
+          "type": "governor",
+          "party": "R",
+          "margin": 1.5,
+          "who": "Lombardo"
+        },
+        {
+          "year": 2018,
+          "type": "governor",
+          "party": "D",
+          "margin": 4.1,
+          "who": "Sisolak"
+        },
+        {
+          "year": 2024,
+          "type": "presidential",
+          "party": "R",
+          "margin": 3.1,
+          "who": "Trump"
+        },
+        {
+          "year": 2020,
+          "type": "presidential",
+          "party": "D",
+          "margin": 2.4,
+          "who": "Biden"
+        }
+      ],
+      "comment": "기저 신호(소액기부(FEC) −2.7σ · 채널 열의 −2.0σ)가 컨센서스와 같은 공화 방향으로 -1.2%p 보정. 우위를 재확인하는 수준으로, FLAG 기준(±5%p)에는 못 미친다.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-ga",
+      "chamber": "governor",
+      "state": "GA",
+      "label": "Ga.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "R",
+      "rating": "Tossup",
+      "p_consensus": 0.4886,
+      "p_alpha": 0.4886,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.49,
+        "polls": 0.4847
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 49%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-ks",
+      "chamber": "governor",
+      "state": "KS",
+      "label": "Kan.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.4937,
+      "p_alpha": 0.4937,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.495,
+        "polls": 0.49
+      },
+      "signals": [
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.1
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 49%(공화 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-mi",
+      "chamber": "governor",
+      "state": "MI",
+      "label": "Mich.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5337,
+      "p_alpha": 0.5337,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.535,
+        "polls": 0.5299
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 53%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-az",
+      "chamber": "governor",
+      "state": "AZ",
+      "label": "Ariz.",
+      "district": null,
+      "incumbent": "Katie Hobbs",
+      "incumbent_party": "D",
+      "seat_party": "D",
+      "rating": "Tossup",
+      "p_consensus": 0.5487,
+      "p_alpha": 0.5487,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.55,
+        "polls": 0.5451
+      },
+      "signals": [
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.45
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.25
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 55%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-wi",
+      "chamber": "governor",
+      "state": "WI",
+      "label": "Wis.",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5638,
+      "p_alpha": 0.5638,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.565,
+        "polls": 0.5603
+      },
+      "signals": [
+        {
+          "name": "광고 집행",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "R",
+          "sigma": 0.2,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "미디어 노출·톤",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.2
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 56%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    },
+    {
+      "race_id": "gov-me",
+      "chamber": "governor",
+      "state": "ME",
+      "label": "Maine",
+      "district": null,
+      "incumbent": null,
+      "incumbent_party": null,
+      "seat_party": "D",
+      "rating": "Lean D",
+      "p_consensus": 0.5786,
+      "p_alpha": 0.5786,
+      "delta": 0.0,
+      "flagged": false,
+      "consensus_sources": {
+        "betting": 0.58,
+        "polls": 0.5747
+      },
+      "signals": [
+        {
+          "name": "미디어 노출·톤",
+          "direction": "R",
+          "sigma": 0.25,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.35
+        },
+        {
+          "name": "채널 열의",
+          "direction": "D",
+          "sigma": 0.15,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.4
+        },
+        {
+          "name": "소셜 감성 편차",
+          "direction": "R",
+          "sigma": 0.15,
+          "weight": 0.09,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.4
+        },
+        {
+          "name": "광고 집행",
+          "direction": "D",
+          "sigma": 0.1,
+          "weight": 0.18,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": 0.25
+        },
+        {
+          "name": "소액기부(FEC)",
+          "direction": "D",
+          "sigma": 0.0,
+          "weight": 0.34,
+          "available": false,
+          "provenance": "rolling",
+          "momentum_delta": null
+        },
+        {
+          "name": "검색 트렌드",
+          "direction": "N",
+          "sigma": 0.0,
+          "weight": 0.03,
+          "available": true,
+          "provenance": "rolling",
+          "momentum_delta": -0.15
+        }
+      ],
+      "history": [],
+      "comment": "기저 신호가 모두 baseline 부근에 머물러 있다. 컨센서스 58%(민주 우위)와 이견 없음.",
+      "flag_changed_at": null
+    }
+  ],
+  "flag_history": [
+    {
+      "date": "2026-02-03",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Safe R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-03-05",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    },
+    {
+      "date": "2026-07-26",
+      "races": [
+        {
+          "race_id": "sen-ne",
+          "rating": "Likely R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-tx",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ia",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-oh",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ak",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-me",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nc",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-nh",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-ga",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "sen-mn",
+          "rating": "Likely D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx15",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-fl27",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl28",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc8",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nc11",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia2",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi4",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi1",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa10",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az6",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wi3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-va2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-az1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-co8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny17",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-oh9",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca22",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nj7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa8",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-me2",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-fl25",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-tx34",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ia1",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-pa7",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-wa3",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ne2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-mi8",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ny19",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca13",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nv3",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ca45",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "ho-ny4",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-nm2",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-or5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "ho-ct5",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-fl",
+          "rating": "Lean R",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-nv",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": true
+        },
+        {
+          "race_id": "gov-ga",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-ks",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-mi",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-az",
+          "rating": "Tossup",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-wi",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        },
+        {
+          "race_id": "gov-me",
+          "rating": "Lean D",
+          "flagged": false,
+          "changed": false
+        }
+      ]
+    }
+  ]
+}

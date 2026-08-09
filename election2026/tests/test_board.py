@@ -180,34 +180,34 @@ def test_ranking_uses_the_requested_metric_and_breaks_ties_on_volume():
 
 
 def test_ranking_is_per_chamber_and_capped():
-    """The cap is per metric, and the kept set is the union of both.
-
-    The dashboard re-sorts between cumulative and 24h volume, so a set
-    selected on only one of them would make the other ordering a lie — its
-    real top entries would simply be absent. Ordering still follows the
-    requested metric; only membership is the union.
-    """
     legs = [("Democratic Party", 0.5), ("Republican Party", 0.5)]
-    # Cumulative volume ascends with i; 24h volume descends. The two top-3
-    # lists are therefore disjoint: {09,10,11} by volume, {01,02,03} by 24h.
     rows = board.build([
         _event("CA-%02d House Election Winner" % i, legs, slug=str(i),
-               volume=1000.0 * i, volume1wk=100.0 - i)
+               volume=1000.0 * i)
         for i in range(1, 12)])
 
     ranked = board.rank(rows, "volume", top_n={"house": 3})
-    ids = [r.race_id for r in ranked["house"]]
-    assert ids[:3] == ["ho-ca11", "ho-ca10", "ho-ca9"]     # ordered by volume
-    assert set(ids) == {"ho-ca11", "ho-ca10", "ho-ca9",    # + the 24h top 3
-                        "ho-ca1", "ho-ca2", "ho-ca3"}
-
-    # Same membership under the other metric, reordered.
-    flipped = [r.race_id for r in board.rank(rows, "volume1wk",
-                                             top_n={"house": 3})["house"]]
-    assert flipped[:3] == ["ho-ca1", "ho-ca2", "ho-ca3"]
-    assert set(flipped) == set(ids)
-
+    assert [r.race_id for r in ranked["house"]] == \
+        ["ho-ca11", "ho-ca10", "ho-ca9"]
     assert ranked["senate"] == [] and ranked["governor"] == []
+
+
+def test_absent_weekly_volume_is_none_not_zero():
+    """Polymarket omits volume1wk on markets with no trades in the window.
+
+    Reading the missing key as 0.0 put "$0 this week" beside $118,980
+    cumulative on South Carolina Senate — which reads as a dead market rather
+    than as no data. 435 of 697 events carried no such key on 2026-08-08.
+    """
+    legs = [("Democratic Party", 0.5), ("Republican Party", 0.5)]
+    quiet = _event("South Carolina Senate Election Winner", legs,
+                   volume=118980.0)
+    del quiet["volume1wk"]
+    assert board.parse_event(quiet).volume1wk is None
+    # A real figure still comes through untouched.
+    busy = _event("Michigan Senate Election Winner", legs, volume=270523.0,
+                  volume1wk=125623.6)
+    assert board.parse_event(busy).volume1wk == 125623.6
 
 
 def test_ranking_without_a_cap_keeps_everything():
@@ -226,7 +226,7 @@ def test_labels_are_korean_and_name_the_office():
     assert board.parse_event(
         _event("Ohio Governor Election Winner", legs)).label == "오하이오 주지사"
     assert board.parse_event(
-        _event("NJ-07 House Election Winner", legs)).label == "뉴저지 7지구"
+        _event("NJ-07 House Election Winner", legs)).label == "뉴저지 7 선거구"
 
 
 def test_a_leg_quoted_at_zero_is_still_a_leg():

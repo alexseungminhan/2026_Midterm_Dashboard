@@ -5,8 +5,6 @@
       --races GA,MI   state codes and/or race_ids
       --skip fec,...  skip specific Track B sources (quota conservation)
       --rank-by       volume1wk (default) | volume — see board.py
-    backfill        reconstruct N weeks of Track B baselines in one pass, so
-                    z-scores work now instead of after 4+ weekly runs
     make-templates  blank manual-input spreadsheets into data/manual/
     validate        check an existing forecast.json against the schema
 """
@@ -31,18 +29,6 @@ def main(argv=None):
     run_p.add_argument("--rank-by", choices=["volume1wk", "volume"],
                        help="which trading volume orders the board "
                             "(default: config.BOARD['rank_by'])")
-
-    bf = sub.add_parser("backfill",
-                        help="reconstruct Track B baseline history in one pass")
-    bf.add_argument("--weeks", type=int,
-                    help="weeks of history to reconstruct (default: config "
-                         "TRACK_B['backfill_weeks'])")
-    bf.add_argument("--chamber", choices=["senate", "house", "governor"])
-    bf.add_argument("--races", help="comma-separated state codes / race_ids")
-    bf.add_argument("--skip", help="comma-separated Track B sources to skip")
-
-    sub.add_parser("make-templates",
-                   help="write blank manual-input templates to data/manual/")
 
     imp = sub.add_parser("import-polls",
                          help="convert NYT poll workbooks into data/manual/polls")
@@ -76,19 +62,6 @@ def main(argv=None):
             kwargs["output_path"] = args.output
         pipeline.run(**kwargs)
 
-    elif args.command == "backfill":
-        from . import backfill
-        kwargs = dict(weeks=args.weeks, chamber=args.chamber)
-        if args.races:
-            kwargs["races_filter"] = args.races.split(",")
-        if args.skip:
-            kwargs["skip_sources"] = set(args.skip.split(","))
-        backfill.run(**kwargs)
-
-    elif args.command == "make-templates":
-        from . import manual
-        for path in manual.make_templates():
-            print("[templates] wrote %s" % path)
 
     elif args.command == "import-polls":
         from . import import_polls

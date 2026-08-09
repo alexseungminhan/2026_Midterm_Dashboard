@@ -110,7 +110,7 @@ def days_to_election(as_of: "date" = None) -> int:
 # that MANIFEST.md asks for. Only then does mapping an indicator to a
 # probability become defensible.
 CALIBRATION_VALIDATED = False
-CALIBRATION_NOTE = ("기초 지표 모델의 눈금(가중치·표준편차→%p 환산)은 과거 데이터로 적합한 값이 아니라 수기 설정값입니다. 쓸 수 있는 과거 표본이 47개뿐이고 그중 상당수가 근사 재구성값이라(data/historical/MANIFEST.md) 적합이 의미를 갖지 못합니다. 그래서 v3는 이 값들로 확률을 만들지 않고 방향과 세기만 보여줍니다.")
+CALIBRATION_NOTE = ("매크로 지표의 세기 구간과 최소 변화량은 과거 데이터로 적합한 값이 아니라 수기 설정값입니다. 쓸 수 있는 과거 표본이 47개뿐이고 그중 상당수가 근사 재구성값이라(data/historical/MANIFEST.md) 적합이 의미를 갖지 못합니다. 그래서 이 값들로 확률을 만들지 않고 방향만 보여줍니다.")
 
 # ---------------------------------------------------------------------------
 # Board — which races are shown, and in what order (2026-08-08 redesign)
@@ -126,8 +126,12 @@ BOARD = {
     # 2026-08-08: default is "volume" at the user's request, so the board
     # matches the order polymarket.com shows when you sort its own Senate list
     # by volume. The caveat above still holds and is not fixed by this choice —
-    # on the House, cumulative volume ranks SAFE seats highest. The dashboard
-    # says so in the House table header, and offers the other ordering.
+    # on the House, cumulative volume ranks SAFE seats highest, so the House
+    # tab leads with CA-28 and CA-15 rather than with battlegrounds.
+    #
+    # The dashboard NO LONGER says so: the warning was removed from the House
+    # table on request (2026-08-08). The limitation is unchanged, it is just
+    # documented here and in README instead of on the page.
     #
     # The recency metric is the WEEK, not the day. A day is too short to mean
     # anything here: Alaska Senate on 2026-08-08 carried $383K cumulative and
@@ -135,8 +139,9 @@ BOARD = {
     # over the week. Ranking on the daily figure reshuffles the board for
     # reasons that have nothing to do with the races.
     "rank_by": "volume",
-    # Per chamber. None = no limit.
-    "top_n": {"senate": 20, "house": 25, "governor": 20},
+    # Per chamber. None = no limit. Matches dashboard.html's SHOW_N — fetching
+    # Track B for races the board never shows is pure run time.
+    "top_n": {"senate": 10, "house": 10, "governor": 10},
 }
 
 # Percentage points per standard deviation, for the detail view's `shift_pp`.
@@ -234,15 +239,22 @@ TRACK_B = {
     # documented, behaviour-based sources and the FEC, which was already
     # wired up and emitting one variable out of five it supports.
     "weights": {
-        # -- FEC: five variables off the SAME API responses, no extra auth
-        #    or quota. Confounders are documented per variable below and
-        #    handled by the structural-residual layer (see baseline.py).
-        # in-state share is weighted highest of the five: it separates a
-        # candidate with a strong NATIONAL fundraising operation from one
-        # whose OWN electorate is energized. A Senate candidate can raise the
-        # large majority of their money out of state, which makes raw totals
-        # a poor proxy for local enthusiasm.
-        "fec_in_state_share": 0.2,
+        # -- FEC. All weights within a model are now EQUAL (2026-08-09).
+        #    Nothing here was ever fitted, so an unequal split was a claim
+        #    about which variable matters more that we could not defend.
+        #
+        #    Equal weighting only works once redundant variables are gone.
+        #    fec_small_dollar_count and fec_unique_donors correlated at
+        #    r = +0.962 across 83 races — the same quantity counted twice —
+        #    so unique_donors is zeroed. Left in place, the pair would have
+        #    outvoted in-state share 2 to 1 and quietly reintroduced the
+        #    weighting we just removed.
+        #
+        # in-state share separates a candidate with a strong NATIONAL
+        # fundraising operation from one whose OWN electorate is energized.
+        # A Senate candidate can raise most of their money out of state,
+        # which makes raw totals a poor proxy for local enthusiasm.
+        "fec_in_state_share": 0.1,
         # CONFOUNDER (all five): small-dollar fundraising correlates with
         # ideological EXTREMITY, not only enthusiasm — the most ideologically
         # extreme incumbents raise the most from small donors. Routed through
@@ -254,9 +266,28 @@ TRACK_B = {
         # other battlegrounds — never from all races. Do not widen the race
         # universe without revisiting this.
         "fec_small_dollar_count": 0.1,
-        "fec_unique_donors": 0.1,
-        "fec_repeat_donor_rate": 0.08,
-        "fec_burn_rate": 0.06,
+        # ZEROED 2026-08-09: r = +0.962 with small_dollar_count.
+        "fec_unique_donors": 0.0,
+        # ZEROED 2026-08-08, when the two-sided variables moved from
+        # "each side vs its own past" to "side vs side today". Both of these
+        # survive z-scoring but not a direct comparison:
+        #
+        #   repeat_donor_rate — takes exactly two values across all 83 races
+        #     (0.0 and 1.0) and is 1.0 almost everywhere. Under z-scoring its
+        #     zero variance made it drop out as None; as a raw contrast it
+        #     becomes a hard 0.0 that drags the money model toward neutral.
+        #     A dead variable must not vote.
+        #   burn_rate — disbursements over cash on hand, so it is unbounded
+        #     and ran −43.9 to 12,873 on the same board. Georgia Senate read
+        #     R 87.3 vs D 0.93, which is a committee nearly out of cash, not
+        #     a committee campaigning hard; a ratio contrast turns that into
+        #     a near-maximal Republican reading.
+        #
+        # No redistribution is needed: models.py renormalizes over whichever
+        # variables are live INSIDE each model, and all three survivors sit in
+        # the same model, so their 20:10:10 ratio is what actually applies.
+        "fec_repeat_donor_rate": 0.0,
+        "fec_burn_rate": 0.0,
 
         # -- Behavioural, fires once per cycle. Actual ballots cast, not
         #    survey responses: this operationalizes the enthusiasm gap the
@@ -288,9 +319,9 @@ TRACK_B = {
         # Claims takes the largest share of the three: it is the only WEEKLY
         # one, so it is the only one that yields a real observation per
         # backfill window instead of repeating a month's value.
-        "econ_claims": 0.08,
-        "econ_coincident": 0.07,
-        "econ_unemployment": 0.03,
+        "econ_claims": 0.1,
+        "econ_coincident": 0.1,
+        "econ_unemployment": 0.1,
 
         # -- Media / social
         # GDELT ZEROED 2026-08-02, not deleted. Its DOC API answers 429 to
@@ -299,8 +330,7 @@ TRACK_B = {
         # meaning the failure is our access pattern, not an outage. Rebuild it
         # against data.gdeltproject.org's bulk files (no rate limit,
         # backfillable to 2015) and restore the weight then. Left at 0.0 so
-        # the adapter, its cache and its tests stay exercised.
-        "gdelt": 0.0,      # media volume/tone deviation — see note above
+        # the adapter, its cache and its tests stay exercised.      # media volume/tone deviation — see note above
         # REDDIT AND YOUTUBE ZEROED 2026-08-02. Both need credentials the
         # project has decided not to obtain (Reddit OAuth, which additionally
         # requires pre-approval under the November 2025 Responsible Builder
@@ -310,13 +340,11 @@ TRACK_B = {
         # inflates n_reference and shrinks the sqrt(n/N) coverage scale of
         # EVERY race for evidence that does not exist. Zeroing them lifted the
         # reference count from 12 to 10 and the adapters stay wired, so
-        # restoring a weight is the only step needed if keys ever arrive.
-        "reddit": 0.0,    # state-subreddit mention volume + comment sentiment
-        "youtube": 0.0,   # channel-enthusiasm proxies
+        # restoring a weight is the only step needed if keys ever arrive.    # state-subreddit mention volume + comment sentiment   # channel-enthusiasm proxies
 
         # -- ATTENTION-ONLY (never vote a D/R direction; see below).
-        "wiki_pageviews_share": 0.02,
-        "wiki_edit_count": 0.01,
+        "wiki_pageviews_share": 0.1,
+        "wiki_edit_count": 0.1,
     },
 
     # Variables excluded from any directional (D/R) computation; they enter
@@ -327,7 +355,11 @@ TRACK_B = {
     # candidate's article traffic spikes on a scandal just as it does on a
     # surge of support. This constraint is carried over verbatim from the
     # Google Trends variable these replaced.
-    "attention_only": ["wiki_pageviews_share", "wiki_edit_count"],
+    # EMPTY since 2026-08-09. The wiki variables now compare the two
+    # candidates' pageviews directly, which gives them a direction, so nothing
+    # is attention-only any more. Kept as a hook: a future scalar with no
+    # party side belongs here.
+    "attention_only": [],
 
     # Korean display names emitted into signals[] for the UI.
     "display_names": {

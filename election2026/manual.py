@@ -86,56 +86,6 @@ MATCHUP_KINDS = tuple(MATCHUP_WEIGHTS)
 # Template generation
 # ---------------------------------------------------------------------------
 
-def make_templates(directory: Optional[str] = None) -> list:
-    """Write blank, correctly-headed templates into data/manual/."""
-    from openpyxl import Workbook
-
-    directory = directory or config.MANUAL_DIR
-    os.makedirs(directory, exist_ok=True)
-    written = []
-    for fname, headers in TEMPLATES.items():
-        wb = Workbook()
-        ws = wb.active
-        ws.title = fname.replace("_template.xlsx", "")
-        ws.append(headers)
-        # One illustrative row so column formats are obvious.
-        example = {
-            "polls_template.xlsx":
-                ["sen-ga", "ExamplePoll/UGA", "2026-07-20", 800, 2.5,
-                 "confirmed", 1.0,
-                 "margin_dem = D% - R%, positive = Dem ahead; matchup ∈ "
-                 + "/".join(MATCHUP_KINDS)],
-            "ratings_template.xlsx":
-                ["sen-ga", "Lean D", "2026-07-20", "Cook",
-                 "rating ∈ Tossup/Lean D/Lean R/Likely D/Likely R/Safe D/Safe R"],
-            "primary_turnout_template.xlsx":
-                ["GA", 2026, 742000, 1180000, True, True, "2026-06-16",
-                 "https://sos.ga.gov/...",
-                 "votes cast in each party's statewide primary; add prior "
-                 "midterm cycles (2018/2022) as their own rows for the "
-                 "state baseline"],
-            "primary_turnout_change_template.xlsx":
-                ["IA", 2026, 2022, 122, 108, "governor",
-                 "https://sos.iowa.gov/elections/...",
-                 "each party's 2026 primary turnout as a PERCENT of its own "
-                 "2022 turnout; 100 = unchanged"],
-            "party_registration_template.xlsx":
-                ["NC", "2026-07-25", 2380000, 2290000,
-                 "https://www.ncsbe.gov/results-data/voter-registration-data",
-                 "registered voters by party as of report_date; only AK, ME, "
-                 "NH, NC, IA, NE have party registration"],
-        }[fname]
-        ws.append(example)
-        path = os.path.join(directory, fname)
-        wb.save(path)
-        written.append(path)
-    return written
-
-
-# ---------------------------------------------------------------------------
-# Loading (.xlsx via openpyxl, .csv via stdlib)
-# ---------------------------------------------------------------------------
-
 def _find_file(name: str, directory: str) -> Optional[str]:
     for ext in (".xlsx", ".csv"):
         path = os.path.join(directory, name + ext)

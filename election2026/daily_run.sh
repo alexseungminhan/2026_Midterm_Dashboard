@@ -3,9 +3,6 @@
 #   등록: launchctl bootstrap gui/$UID ~/Library/LaunchAgents/com.scbk.election2026.daily.plist
 #   해제: launchctl bootout gui/$UID/com.scbk.election2026.daily
 #   즉시 1회: launchctl kickstart -k gui/$UID/com.scbk.election2026.daily
-#
-# --skip gdelt,reddit,youtube 는 필수다. 셋 다 가중치 0이라 결과는 같은데,
-# 빼면 GDELT가 차단당한 채 재시도를 반복해 약 1시간 40분 멈춘다.
 
 set -u
 PROJECT="$HOME/Desktop/SCBK_Intern_Project/2026_election_prediction"
@@ -32,7 +29,7 @@ for i in {1..10}; do
 done
 
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') 시작 =====" >>"$LOG"
-/usr/bin/python3 -m election2026 run --skip gdelt,reddit,youtube >>"$LOG" 2>&1
+/usr/bin/python3 -m election2026 run >>"$LOG" 2>&1
 STATUS=$?
 echo "===== $(date '+%Y-%m-%d %H:%M:%S') 종료 (exit $STATUS) =====" >>"$LOG"
 

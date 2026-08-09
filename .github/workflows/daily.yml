@@ -52,7 +52,7 @@ jobs:
       - name: Run pipeline
         env:
           FEC_API_KEY: ${{ secrets.FEC_API_KEY }}
-        run: python -m election2026 run --skip gdelt,reddit,youtube
+        run: python -m election2026 run
 
       # 스키마를 통과하지 못한 결과는 커밋하지 않는다. 깨진 forecast.json 이
       # 배포되면 대시보드가 빈 화면이 된다.
@@ -63,11 +63,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # forecast.json 과, 다음 run 이 z-score 를 내는 데 필요한 상태.
-          # baselines/ 와 history/ 를 빼면 러너가 매번 빈 상태로 시작해
-          # 기초 지표가 통째로 "기준선 없음"이 된다.
+          # 2026-08-08 이후 기초 지표는 런 사이에 아무 상태도 이어받지
+          # 않는다 — 양면 변수는 그날의 두 값을 서로 비교하고, 관심도는
+          # 같은 런의 다른 레이스와 비교하며, 경제·예비선거는 소스가 과거를
+          # 함께 준다. 그래서 baselines/ 를 커밋할 이유가 없다.
+          # history/ 는 남긴다: 전일 대비 변화(movers)의 비교 대상이다.
           git add election2026/data/forecast.json \
-                  election2026/data/baselines \
                   election2026/data/history \
                   election2026/data/prediction_log.jsonl
           if git diff --cached --quiet; then
