@@ -1110,8 +1110,26 @@ class EconClaimsAdapter(FredBase):
             history.append(imp if party == "D" else -imp)
         if len(history) < config.TRACK_B["baseline_min_obs"]:
             return None
+        # `direct`, like the two monthly series (2026-08-10). Without it this
+        # override fell through to the z-score path while FredBase._oriented
+        # did not, so the economy model tallied one variable in sigma and two
+        # in their own units. Two consequences, both removed by this flag:
+        #
+        #   * TOO_SMALL (0.1) meant "0.1 sigma" here and "0.1%p" there. On the
+        #     board's 21 states 0.1 sigma worked out to a 1.3% YoY move at the
+        #     median but ranged 0.35%-3.1%, so the vote threshold moved with a
+        #     state's claims volatility while the other two stayed fixed.
+        #   * The z-score asks "unusual FOR THIS STATE", not "better than a
+        #     year ago". Alaska's claims fell 9.4% YoY — an improvement — yet
+        #     z came out POSITIVE because Alaska's claims usually fall further
+        #     than that. One variable answering a different question from the
+        #     two beside it, then having its sign counted alongside them.
+        #
+        # The baseline stays: backfill_series() reuses this method, and a
+        # payload that carries its history costs nothing.
         return {"oriented": {
             "value": value,
+            "direct": True,
             "baseline": history[-config.TRACK_B["econ_claims_baseline_weeks"]:],
             "detail": "%s %+.1f%% YoY (4-week mean, credited to %s)"
                       % (self.series_id(meta), change, party),
