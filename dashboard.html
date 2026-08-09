@@ -140,11 +140,21 @@ h2 { font-size: 15px; font-weight: 650; margin: 0 0 4px; }
    one. The right edge fades into the page background to say "there is more",
    and the fade disappears once you reach the end so it never lies. */
 .table-scroll { position: relative; }
+/* One fade per direction. Only showing the right edge said "there is more
+   that way" while silently hiding that the first columns had scrolled off,
+   so a reader who had swiped once had no way to tell they could go back. */
+.table-scroll::before,
 .table-scroll::after {
-  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 46px;
+  content: ""; position: absolute; top: 0; bottom: 0; width: 46px;
   pointer-events: none; opacity: 0; transition: opacity .18s;
-  background: linear-gradient(to right, transparent, var(--plane) 78%);
 }
+.table-scroll::before {
+  left: 0; background: linear-gradient(to left, transparent, var(--plane) 78%);
+}
+.table-scroll::after {
+  right: 0; background: linear-gradient(to right, transparent, var(--plane) 78%);
+}
+.table-scroll.more-left::before { opacity: 1; }
 .table-scroll.more::after { opacity: 1; }
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; min-width: 560px; }
@@ -781,8 +791,9 @@ function _sourceNames(keys) {
 /* Shows the right-edge fade only while there is something still cropped. */
 function _scrollHint(box, pane) {
   const sync = () => {
-    const more = pane.scrollWidth - pane.clientWidth - pane.scrollLeft > 2;
-    box.classList.toggle("more", more);
+    box.classList.toggle(
+      "more", pane.scrollWidth - pane.clientWidth - pane.scrollLeft > 2);
+    box.classList.toggle("more-left", pane.scrollLeft > 2);
   };
   /* Both events: `scroll` covers the finger, `scrollend` covers the moment
      momentum stops, and some programmatic jumps only surface on the latter. */
