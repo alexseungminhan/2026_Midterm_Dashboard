@@ -204,6 +204,9 @@ _VARIABLE_SCHEMA = {
         "weight": {"type": "number", "minimum": 0},
         "dem_value": _nullable("number"),
         "rep_value": _nullable("number"),
+        # Present only where the oriented z is not the number a reader can
+        # check against the source (the economic series).
+        "raw_value": _nullable("number"),
         "availability": {"enum": list(AVAILABILITY)},
         "reason": _nullable("string"),
     },

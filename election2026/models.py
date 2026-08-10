@@ -118,6 +118,8 @@ class VariableDetail:
     reason: Optional[str] = None
     dem_value: Optional[float] = None
     rep_value: Optional[float] = None
+    # The reading in the source's own units, when it differs from z (economy).
+    raw_value: Optional[float] = None
 
 
 @dataclass
@@ -195,6 +197,9 @@ def build(readings: list, weights: Optional[dict] = None) -> list:
                 reason=(r.reason if r is not None else "변수가 이번 run에 없었다"),
                 dem_value=(r.dem_value if r is not None else None),
                 rep_value=(r.rep_value if r is not None else None),
+                raw_value=(round(r.raw_value, 3)
+                           if (r is not None and r.raw_value is not None)
+                           else None),
             ))
 
         model = ModelReading(

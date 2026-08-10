@@ -271,9 +271,11 @@ def compute_readings(race_id: str, raw: dict,
         sides = payload if isinstance(payload, dict) else {}
         dv = (sides.get("dem") or {}).get("value") if not is_unavailable(payload) else None
         rv = (sides.get("rep") or {}).get("value") if not is_unavailable(payload) else None
+        raw_v = (sides.get("oriented") or {}).get("raw_change") \
+            if isinstance(sides.get("oriented"), dict) else None
         readings.append(VariableReading(
             variable=var, z=z, directional=not is_attention,
-            dem_value=dv, rep_value=rv,
+            dem_value=dv, rep_value=rv, raw_value=raw_v,
             provenance=provenance.get(var, "rolling"),
             availability=availability, reason=reason))
     return readings

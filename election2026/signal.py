@@ -39,3 +39,8 @@ class VariableReading:
     # 민주 30.5% · 공화 4.5%" is checkable, "+0.74" is not.
     dem_value: Optional[float] = None
     rep_value: Optional[float] = None
+    # One-sided variables have no dem/rep pair, so the detail view would have
+    # nothing checkable to show but `z`. The economic series carry the reading
+    # in their own units here — "실업률이 1년 전보다 0.2%p 낮다" — which is a
+    # DIFFERENT number from z whenever orienting flipped the sign.
+    raw_value: Optional[float] = None

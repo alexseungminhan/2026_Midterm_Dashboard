@@ -978,9 +978,16 @@ class FredBase(TrackBAdapter):
         if len(history) < config.TRACK_B["baseline_min_obs"]:
             return None
         # `direct` means "already a signed, oriented reading — do not z-score
-        # it". The number is a year-over-year change in the series' own units,
-        # which is what the detail view shows. The history is still computed
-        # above because backfill uses the same code path.
+        # it". The history is still computed above because backfill uses the
+        # same code path.
+        #
+        # `value` is ORIENTED (+ = 민주 유리) and `raw_change` is the year-over-
+        # year move in the series' own units; they are NOT the same number and
+        # the detail view shows the latter. They coincide only by a double
+        # negation — a lower-is-better series under a Republican incumbent —
+        # which is why the mismatch hid: 실업률/청구 looked right on every
+        # Senate race while 경기동행지수, the one higher-is-better series,
+        # displayed its sign flipped (Maine +1.564% shown as −1.564%).
         return {"oriented": {
             "value": value,
             "direct": True,
@@ -1130,6 +1137,7 @@ class EconClaimsAdapter(FredBase):
         return {"oriented": {
             "value": value,
             "direct": True,
+            "raw_change": change,
             "baseline": history[-config.TRACK_B["econ_claims_baseline_weeks"]:],
             "detail": "%s %+.1f%% YoY (4-week mean, credited to %s)"
                       % (self.series_id(meta), change, party),

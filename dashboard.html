@@ -27,7 +27,8 @@
   --ink-3:     #8d8c83;
   --dem:       #3987e5;
   --rep:       #e66767;
-  --neutral:   #46453f;
+  --neutral:   #86857a;
+  --split:     #d9a441;
   --dem-soft:  #1c3555;
   --rep-soft:  #4a2626;
   --warn:      #fab219;
@@ -44,7 +45,8 @@
   --ink-3:     #83827c;
   --dem:       #2a78d6;
   --rep:       #e34948;
-  --neutral:   #d8d7d2;
+  --neutral:   #9b9a90;
+  --split:     #a8760f;
   --dem-soft:  #dbe8fa;
   --rep-soft:  #fadcdc;
 }
@@ -229,10 +231,18 @@ tr.detail > td { background: var(--surface-2); padding: 4px 10px 18px; }
   tr.detail > td > * { position: sticky; left: 0;
                        width: calc(100vw - 48px); box-sizing: border-box; }
 }
-.models { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
-          margin-top: 8px; }
-@media (max-width: 860px) { .models { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .models { grid-template-columns: 1fr; } }
+/* minmax(0, 1fr), NOT 1fr. A bare 1fr floors each column at its content's
+   min-content width, and the value lines below are white-space: nowrap — so a
+   card holding "민주 5,470 · 공화 799 (민주 +4,671건) 민주당 우세" pushed its
+   own column wide and starved the others. The four cards came out 144 / 280 /
+   307 / 290 px on the same row. minmax(0, …) lets a column go below its
+   content and the four stay equal; the nowrap lines scroll instead. */
+.models { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 12px; margin-top: 8px; align-items: stretch; }
+@media (max-width: 860px) {
+  .models { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) { .models { grid-template-columns: minmax(0, 1fr); } }
 .model {
   background: var(--surface); border: 1px solid var(--line);
   border-radius: 6px; padding: 12px;
@@ -255,7 +265,16 @@ tr.detail > td { background: var(--surface-2); padding: 4px 10px 18px; }
 .vars div { display: flex; justify-content: space-between; gap: 2px;
             padding: 3px 0; flex-wrap: wrap; }
 .vars div > span:first-child { white-space: nowrap; }
-.vars span.z { flex: 1 0 100%; text-align: right; white-space: nowrap; }
+/* LEFT, not right (2026-08-10). Right-aligning lines of wildly different
+   length made every short one look indented — "민주 5,470 · 공화 799" sat a
+   centimetre in from the label above it while the longer row beside it did
+   not, which reads as a stray leading space rather than as alignment. One
+   left edge for the label and its value is the only thing that lines up down
+   the card. It WRAPS rather than scrolls: nowrap plus a fixed column width
+   put a scrollbar under half the rows and hid the 민주당/공화당 verdict off
+   the right edge. The pieces that must not split carry NBSP — see _sideText. */
+.vars span.z { flex: 1 0 100%; text-align: left; }
+.vars span.z b { white-space: nowrap; }
 .vars .off { color: var(--ink-3); }
 .vars .unit-note { display: block; color: var(--ink-3); font-size: 10.5px;
                    line-height: 1.45; padding-bottom: 4px; }
@@ -298,7 +317,31 @@ const el = (tag, cls, html) => {
 const LEAN_WORD = { D: "민주", R: "공화", N: "중립" };
 const LEAN_ARROW = { D: "▲", R: "▼", N: "–" };
 const LEVEL_WORD = { high: "높음", normal: "보통", low: "낮음" };
-const STRENGTH = ["경합", "다소 우세", "우세", "매우 우세"];
+
+/* A model's verdict is a HEAD COUNT of its own indicators (2026-08-10 요청),
+   not the weighted average the pipeline ships in m.lean/m.strength. Three of
+   three pointing the same way is 우세; a bare majority is 다소 우세; an even
+   split is 경합. Counting invents no scale — the same argument that made
+   modelSummary a tally of models rather than a mean of their z-scores.
+
+   우세 additionally needs at least two indicators: a model running on ONE
+   available variable is trivially "unanimous", and calling a lone +0.19 an
+   outright 우세 would read as more agreement than exists. */
+function varTally(m) {
+  const used = (m.variables || []).filter(v => v.weight > 0 && v.z != null);
+  const d = used.filter(v => v.z > 0).length;
+  const r = used.filter(v => v.z < 0).length;
+  const lean = d > r ? "D" : r > d ? "R" : "N";
+  const top = Math.max(d, r);
+  const word = lean === "N" ? "경합"
+    : LEAN_WORD[lean] + "당 " + (top === used.length && used.length > 1
+                                 ? "우세" : "다소 우세");
+  return { d, r, n: used.length, lean, word };
+}
+const SIDE_TAG = v => v.z > 0
+  ? "<b style='color:var(--dem)'>민주당 우세</b>"
+  : v.z < 0 ? "<b style='color:var(--rep)'>공화당 우세</b>"
+  : "<b style='color:var(--ink-3)'>중립</b>";
 const WHY_NONE = {
   structural: "데이터 없음 (제도상 존재하지 않음)",
   pending: "데이터 없음 (아직 시점 전)",
@@ -309,9 +352,15 @@ const WHY_NONE = {
    are measured differently — see README "런 사이에 상태를 이어받지 않는다". */
 const BASIS = {
   economy: {
+    /* No "+면 민주당에 유리" any more: the number shown is the series' own
+       year-over-year change, and which party that favours depends on the
+       series (실업률은 낮을수록 좋고 경기동행지수는 높을수록 좋다) and on
+       who holds the office. Each line now says the side outright, so the
+       caption no longer has to encode a rule that was wrong for one of the
+       three series. */
     unit: "각 지표의 <b>1년 전 대비 변화</b>입니다. 경기가 좋아지면 " +
-          "상·하원은 대통령 정당, 주지사는 현직 정당에 유리하도록 " +
-          "처리하였습니다. <b>+면 민주당에 유리</b>합니다."
+          "상·하원은 <b>대통령 정당</b>(현재 공화당), 주지사는 <b>현직 " +
+          "정당</b>에 유리하게 읽습니다."
   },
   money: {
     unit: ""
@@ -352,7 +401,16 @@ const _UNIT = {
 function _sideText(v) {
   const u0 = _UNIT[v.variable] || {};
   if (v.dem_value == null || v.rep_value == null)
-    return SIGNED(v.z) + (u0.oriented || "");
+    /* raw_value over z whenever the pipeline supplies it. For the economic
+       series z is the ORIENTED reading — the year-over-year change already
+       negated for a higher-is-better series and again for the incumbent's
+       party — so printing z under a caption that says "1년 전 대비 변화"
+       showed 경기동행지수 upside down: Maine's index rose 1.564% and the card
+       said -1.56%. The two agree for 실업률/청구 under a Republican
+       incumbent by double negation, which is why only one line looked wrong.
+       The party word now comes from z and the number from raw_value. */
+    return SIGNED(v.raw_value != null ? v.raw_value : v.z) +
+           (u0.oriented || "");
   const u = _UNIT[v.variable] || { pct: false, suffix: "" };
   const scale = u.pct ? 100 : 1;                 // shares arrive as 0..1
   const d = v.dem_value * scale, r = v.rep_value * scale;
@@ -363,9 +421,14 @@ function _sideText(v) {
   const gap = d - r;
   const lead = gap >= 0 ? "민주" : "공화";
   const col = gap >= 0 ? "var(--dem)" : "var(--rep)";
-  return "민주 " + f(d) + tail + " · 공화 " + f(r) + tail +
-         "  (<b style='color:" + col + "'>" + lead + " +" +
-         f(Math.abs(gap)) + u.suffix + "</b>)";
+  /* NBSP inside each piece, ordinary spaces between them: the line may now
+     wrap (four equal-width cards leave less room than the old elastic ones),
+     and it must break BETWEEN "민주 2,122" and "공화 399", never inside
+     either. */
+  const nb = s => s.replace(/ /g, " ");
+  return nb("민주 " + f(d) + tail) + " · " + nb("공화 " + f(r) + tail) +
+         " (<b style='color:" + col + "'>" +
+         nb(lead + " +" + f(Math.abs(gap)) + u.suffix) + "</b>)";
 }
 
 /* ---------- balance of power ---------- */
@@ -374,8 +437,16 @@ function balanceSection(rows) {
   s.appendChild(el("h2", null, "전체 판세"));
   const card = el("div", "card");
   rows.slice().sort((a, b) => b.prob - a.prob).forEach(r => {
+    /* A split chamber is not a "neutral" outcome, and the flat gray it used to
+       get was invisible against the track (2026-08-10). Both split rows now
+       take one amber — a third colour rather than a blend, since a bar made of
+       blue and red reads as a mixture of the two sweeps rather than as its own
+       outcome. Amber is also the classic third leg with blue and red: it stays
+       separable from both under red-green colour blindness, where a purple or
+       a teal would collapse into one of them. */
     const color = /Democrats Sweep/.test(r.outcome) ? "var(--dem)"
                 : /Republicans Sweep/.test(r.outcome) ? "var(--rep)"
+                : /Senate/.test(r.outcome) ? "var(--split)"
                 : "var(--neutral)";
     const row = el("div", "bop-row");
     /* Party words carry the colour so the row reads without the bar. */
@@ -573,15 +644,19 @@ function probCell(p, missingText, unmapped) {
    Counting how many models point which way invents nothing, and it keeps
    disagreement visible: 2-vs-1 reads "엇갈림", not a confident middle. */
 function modelSummary(models) {
-  const dir = models.filter(m => m.directional && m.n_available > 0 &&
-                                 (m.lean === "D" || m.lean === "R"));
+  /* The per-model lean is the head count of its indicators (varTally), not
+     m.lean — otherwise this chip and the four cards it summarises could
+     disagree about which way a model points. */
+  const dir = models.map(m => m.directional && m.n_available > 0
+                              ? varTally(m) : null)
+                    .filter(t => t && t.lean !== "N");
   const box = el("div", "chips");
   if (!dir.length) {
     box.appendChild(el("span", "chip", "지표 없음"));
     return box;
   }
-  const d = dir.filter(m => m.lean === "D").length;
-  const r = dir.filter(m => m.lean === "R").length;
+  const d = dir.filter(t => t.lean === "D").length;
+  const r = dir.filter(t => t.lean === "R").length;
 
   let cls = "chip sum", text;
   if (d === r) {
@@ -607,8 +682,9 @@ function modelChips(models) {
     if (m.n_available === 0) {
       text = m.label.replace(" 모델", "") + " –";
     } else if (m.directional) {
-      cls += " " + (m.lean === "D" ? "d" : m.lean === "R" ? "r" : "");
-      text = m.label.replace(" 모델", "") + " " + LEAN_ARROW[m.lean];
+      const lean = varTally(m).lean;
+      cls += " " + (lean === "D" ? "d" : lean === "R" ? "r" : "");
+      text = m.label.replace(" 모델", "") + " " + LEAN_ARROW[lean];
     } else {
       cls += " a";
       text = "관심 " + LEVEL_WORD[m.level];
@@ -635,12 +711,13 @@ function modelCard(m) {
     return card;
   }
 
+  const t = m.directional ? varTally(m) : null;
   const verdict = el("div", "verdict");
-  if (m.directional) {
-    verdict.style.color = m.lean === "D" ? "var(--dem)"
-                        : m.lean === "R" ? "var(--rep)" : "var(--ink-2)";
-    verdict.textContent = m.lean === "N" ? "경합"
-      : LEAN_WORD[m.lean] + "당 " + STRENGTH[m.strength];
+  if (t) {
+    verdict.style.color = t.lean === "D" ? "var(--dem)"
+                        : t.lean === "R" ? "var(--rep)" : "var(--ink-2)";
+    verdict.textContent = t.word;
+    verdict.title = "지표 " + t.n + "개 중 민주 " + t.d + " / 공화 " + t.r;
   } else {
     verdict.style.color = "var(--ink)";
     verdict.textContent = "평소보다 " + LEVEL_WORD[m.level];
@@ -653,7 +730,8 @@ function modelCard(m) {
      which is not a standard deviation and has no %p reading. */
   const b = BASIS[m.key] || BASIS._default;
   const meta = el("div", "meta");
-  meta.innerHTML = "<div>지표 " + m.n_available + "/" + m.n_total + "개 사용</div>";
+  meta.innerHTML = "<div>지표 " + m.n_available + "/" + m.n_total + "개 사용" +
+    (t ? " · 민주 " + t.d + " / 공화 " + t.r : "") + "</div>";
   card.appendChild(meta);
 
   const vars = el("div", "vars");
@@ -669,11 +747,13 @@ function modelCard(m) {
   m.variables.filter(v => v.weight > 0).forEach(v => {
     const row = el("div", v.z == null ? "off" : null);
     row.appendChild(el("span", null, v.label));
+    /* Which side the indicator favours, spelled out next to its number
+       (2026-08-10). The sign already said it — every variable is oriented so
+       that + is 민주 — but only to a reader who knows that, and it is the
+       count of these words that the model's verdict above is now made of. */
     row.appendChild(el("span", "z", v.z == null
       ? (WHY_NONE[v.availability] || "없음")
-      : _sideText(v)));
-    row.lastChild.innerHTML = v.z == null
-      ? (WHY_NONE[v.availability] || "없음") : _sideText(v);
+      : _sideText(v) + (t ? " " + SIDE_TAG(v) : "")));
     if (v.z == null && v.reason) row.title = v.reason;
     vars.appendChild(row);
   });
