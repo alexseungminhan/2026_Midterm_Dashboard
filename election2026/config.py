@@ -127,7 +127,7 @@ BOARD = {
     # matches the order polymarket.com shows when you sort its own Senate list
     # by volume. The caveat above still holds and is not fixed by this choice —
     # on the House, cumulative volume ranks SAFE seats highest, so the House
-    # tab leads with CA-28 and CA-15 rather than with battlegrounds.
+    # tab leads with FL-01 and VA-06 rather than with battlegrounds.
     #
     # The dashboard NO LONGER says so: the warning was removed from the House
     # table on request (2026-08-08). The limitation is unchanged, it is just
@@ -142,6 +142,30 @@ BOARD = {
     # Per chamber. None = no limit. Matches dashboard.html's SHOW_N — fetching
     # Track B for races the board never shows is pure run time.
     "top_n": {"senate": 10, "house": 10, "governor": 10},
+    # Races Polymarket prices but does NOT put on its own midterms race table
+    # (polymarket.com/predictions/midterms). All 36 are California House
+    # districts: the site lists 16 of California's 52, and the 36 it leaves out
+    # include the two biggest House markets of the cycle, CA-28 ($137K) and
+    # CA-15 ($122K). Those two plus CA-16 were what stood above FL-01 at the
+    # top of our House tab while the site's House tab starts at FL-01.
+    #
+    # The markets are real and still trade; the exclusion is Polymarket's
+    # editorial choice about its board, and gamma exposes NOTHING that
+    # separates a listed California district from an unlisted one — CA-12
+    # (listed) and CA-15 (not) differ in no field except their values, and
+    # neither age, rewards, liquidity, nor any recency field splits the two
+    # groups. So this list is transcribed from the site by hand (2026-08-11)
+    # and has to be re-checked if California's markets are re-cut.
+    #
+    # Verified the same day: with these dropped, our House top 25 is identical
+    # row for row to the site's, and nothing outside California moves.
+    #
+    # Applied in board.rank() only. chambers.py counts seats from every race
+    # the market prices, so dropping 36 safe-D California seats from the
+    # favourite count is exactly what we do NOT want.
+    "off_board": ["ho-ca%d" % d for d in (
+        1, 2, 3, 6, 8, 9, 10, 13, 15, 16, 17, 18, 20, 22, 24, 25, 26, 27, 28,
+        30, 31, 32, 33, 35, 36, 38, 39, 41, 42, 44, 46, 47, 49, 50, 51, 52)],
 }
 
 # Percentage points per standard deviation, for the detail view's `shift_pp`.

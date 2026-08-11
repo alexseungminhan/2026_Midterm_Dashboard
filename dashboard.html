@@ -342,8 +342,11 @@ const SIDE_TAG = v => v.z > 0
   ? "<b style='color:var(--dem)'>민주당 우세</b>"
   : v.z < 0 ? "<b style='color:var(--rep)'>공화당 우세</b>"
   : "<b style='color:var(--ink-3)'>중립</b>";
+/* `structural` used to read "데이터 없음 (제도상 존재하지 않음)"; the
+   parenthetical was dropped on request (2026-08-11). The key stays separate
+   from `missing` because forecast.json still distinguishes the two. */
 const WHY_NONE = {
-  structural: "데이터 없음 (제도상 존재하지 않음)",
+  structural: "데이터 없음",
   pending: "데이터 없음 (아직 시점 전)",
   missing: "데이터 없음"
 };

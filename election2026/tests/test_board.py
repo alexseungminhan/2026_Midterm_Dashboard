@@ -182,13 +182,13 @@ def test_ranking_uses_the_requested_metric_and_breaks_ties_on_volume():
 def test_ranking_is_per_chamber_and_capped():
     legs = [("Democratic Party", 0.5), ("Republican Party", 0.5)]
     rows = board.build([
-        _event("CA-%02d House Election Winner" % i, legs, slug=str(i),
+        _event("TX-%02d House Election Winner" % i, legs, slug=str(i),
                volume=1000.0 * i)
         for i in range(1, 12)])
 
     ranked = board.rank(rows, "volume", top_n={"house": 3})
     assert [r.race_id for r in ranked["house"]] == \
-        ["ho-ca11", "ho-ca10", "ho-ca9"]
+        ["ho-tx11", "ho-tx10", "ho-tx9"]
     assert ranked["senate"] == [] and ranked["governor"] == []
 
 
@@ -213,10 +213,36 @@ def test_absent_weekly_volume_is_none_not_zero():
 def test_ranking_without_a_cap_keeps_everything():
     legs = [("Democratic Party", 0.5), ("Republican Party", 0.5)]
     rows = board.build([
-        _event("CA-%02d House Election Winner" % i, legs, slug=str(i),
+        _event("TX-%02d House Election Winner" % i, legs, slug=str(i),
                volume=1000.0 * i)
         for i in range(1, 6)])
     assert len(board.rank(rows, "volume", top_n={"house": None})["house"]) == 5
+
+
+def test_off_board_races_are_ranked_out_but_not_parsed_out():
+    """CA-28 outsells every House market and is on nobody's board.
+
+    Polymarket lists 16 of California's 52 districts on its own midterms race
+    table; CA-28 ($137K) and CA-15 ($122K), the two biggest House markets of
+    the cycle, are not among them. They are dropped from the board so the
+    order matches the site — but NOT from build(), because chambers.py counts
+    seats from every race the market prices.
+    """
+    legs = [("Democratic Party", 0.97), ("Republican Party", 0.01)]
+    rows = board.build([
+        _event("CA-28 House Election Winner", legs, slug="ca28",
+               volume=136618.0),
+        _event("FL-01 House Election Winner", legs, slug="fl01",
+               volume=116972.0)])
+    assert {r.race_id for r in rows} == {"ho-ca28", "ho-fl1"}
+
+    ranked = board.rank(rows, "volume", top_n={"house": None})
+    assert [r.race_id for r in ranked["house"]] == ["ho-fl1"]
+
+    # The exclusion is data, not a rule about California: hand it an empty set
+    # and the market's own ordering comes straight back.
+    ranked = board.rank(rows, "volume", top_n={"house": None}, off_board=set())
+    assert [r.race_id for r in ranked["house"]] == ["ho-ca28", "ho-fl1"]
 
 
 def test_labels_are_korean_and_name_the_office():

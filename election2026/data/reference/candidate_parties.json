@@ -13,7 +13,13 @@
     "",
     "2026-08-08 검증: 위키피디아 2026 알래스카 주지사/상원 후보 등록 명단과",
     "폴리마켓 실제 상장 레그를 대조함. 기존 15명 정당 라벨은 전부 일치.",
-    "이름은 폴리마켓 표기와 정확히 일치해야 한다(대소문자는 무시)."
+    "이름은 폴리마켓 표기와 정확히 일치해야 한다(대소문자는 무시).",
+    "",
+    "2026-08-11 추가: 캘리포니아 주지사. 폴리마켓 최대 시장($40.7M)인데 레그가",
+    "정당 표기 없는 후보 이름뿐이라 매핑이 없으면 미매핑 100%가 되어 확률이",
+    "표시되지 않는다. 6월 예비선거 이후 본선은 Becerra(D) 대 Hilton(R)이고,",
+    "나머지 예비선거 낙선자들은 0.05%씩 잔량으로 남아 있다.",
+    "매핑 후 D/(D+R)=93.0%로 폴리마켓 표시값(93% DEM)과 일치함."
   ],
   "candidates": {
     "Dan Sullivan": "R",
@@ -41,7 +47,25 @@
     "Dustin Darden": "R",
     "Ann Diener": "D",
     "David Leslie": "D",
-    "Carol Hafner": "D"
+    "Carol Hafner": "D",
+    "Xavier Becerra": "D",
+    "Katie Porter": "D",
+    "Antonio Villaraigosa": "D",
+    "Alex Padilla": "D",
+    "Rick Caruso": "D",
+    "Stephen Cloobeck": "D",
+    "Betty Yee": "D",
+    "Toni Atkins": "D",
+    "Eleni Kounalakis": "D",
+    "Tony Thurmond": "D",
+    "Eric Swalwell": "D",
+    "Tom Steyer": "D",
+    "Kamala Harris": "D",
+    "Matt Mahan": "D",
+    "Steve Hilton": "R",
+    "Chad Bianco": "R",
+    "Leo Zacky": "R",
+    "Daniel Mercuri": "R"
   },
   "_deliberately_unmapped": [
     "Bill Walker — 무소속(전 주지사). 주지사 시장 4.5%. 이 돈이 미매핑으로",
@@ -53,6 +77,10 @@
     "Earl D. \"Skip\" Southworth — 알래스카당",
     "Sid Hill, Reece Roberts, Shirley Saucerman — 무소속",
     "Dan J. Sullivan — 현직 Dan S. Sullivan과 이름이 거의 같은 별개 인물.",
-    "  투표용지에 정당 표기가 없다. 절대 R로 매핑하지 말 것."
+    "  투표용지에 정당 표기가 없다. 절대 R로 매핑하지 말 것.",
+    "Butch Ware — 녹색당(캘리포니아 주지사). 0.05%.",
+    "Nicole Shanahan — 무소속(캘리포니아 주지사). 0.05%.",
+    "Kyle Langford, Michael Younger, Elaine Culotti — 캘리포니아 주지사,",
+    "  정당 확인 못 함. 각 0.05%라 미매핑으로 두어도 합계 0.25%."
   ]
 }

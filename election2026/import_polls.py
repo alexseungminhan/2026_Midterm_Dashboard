@@ -1,11 +1,16 @@
 """import_polls.py — convert transcribed NYT poll workbooks into data/manual/polls.
 
-    python -m election2026 import-polls 2026_senate_poll.xlsx \
-        2026_House_poll.xlsx Gubernatorial_Polls_2026.xlsx
+    python -m election2026 import-polls "Election Polls/Senate_Polls_2026.xlsx" \
+        "Election Polls/Gubernatorial_Polls_2026.xlsx" 2026_House_poll.xlsx
 
-Three workbook shapes are understood and may be imported together; the output
+Four workbook shapes are understood and may be imported together; the output
 sheet is the union, so every monitored race's polls live in one file.
 
+  TRACKER   `전체 여론조사` — the 2026-08-11 re-transcription in
+            `Election Polls/`, one workbook per chamber, one row per trial
+            heat, and — this is what the older sheets lack — a SAMPLE SIZE on
+            every row. Covers the ten Senate and ten governor races the board
+            actually shows. See "TRACKER WORKBOOKS" below.
   SENATE    `여론조사_전체` — one row per matchup, with the sheet's own
             `매치업 상태` (확정 / 가상 / 무효) and `라운드` columns.
   HOUSE     `전체 여론조사(통합)` — one row per matchup across the 18 tossup
@@ -14,6 +19,10 @@ sheet is the union, so every monitored race's polls live in one file.
   GOVERNOR  `All polls` — one row per matchup across the five battleground
             states, with English headers and both an "as shown" NYT margin
             and the transcribed Dem %/Rep % to check it against.
+
+The TRACKER workbooks SUPERSEDE the SENATE and GOVERNOR ones for the races
+they cover. Do not pass both — `run()` writes the union, so the same poll
+transcribed in two workbooks would be counted twice.
 
 MATCHUP CONFIDENCE, not exclusion
 ---------------------------------
@@ -65,8 +74,35 @@ election polls carry more than one heat.
 RCV rounds — Alaska and Maine store "1st round" and "Final round" as separate
 rows for one poll. The final round decides the seat, so it wins.
 
-sample_size is not published on the NYT list screen, so it is left empty and
-manual.aggregate_polls falls back to a neutral n=500 weight.
+sample_size is not published on the NYT LIST screen, so the three older
+workbooks leave it empty and manual.aggregate_polls falls back to a neutral
+n=500 weight. The tracker workbooks carry it (read off each poll's own
+screen), so their rows are weighted by sqrt(n) for real.
+
+TRACKER WORKBOOKS — how a bare surname becomes a D-vs-R margin
+--------------------------------------------------------------
+The tracker sheets name candidates by surname only ("Peltola", "Sullivan"),
+so three things have to be recovered before a row is a poll of the event
+p_consensus is defined on:
+
+1. WHICH PARTY. Each race gets one or two seed surnames (TRACKER_PARTY_SEEDS,
+   taken from Polymarket's own party-labelled legs where it has them), and the
+   rest are coloured by the same opposition-graph walk the House sheet uses:
+   the two names in a head-to-head are on opposite sides. A race with no seed
+   is REPORTED and dropped, never guessed — Montana, whose four surnames the
+   market does not label, is the live example.
+2. IS IT THE REAL MATCHUP. TRACKER_NOMINEES holds the pairs the market names
+   as both nominees; a heat between those two is `confirmed`, a heat naming
+   someone else is `withdrawn` (they lost the primary, which puts them off the
+   ballot exactly as withdrawing would). Races the market prices with generic
+   party legs get no entry and stay `hypothetical`.
+3. IS IT EVEN A D-VS-R HEAT. California's May poll tested Becerra vs Porter
+   and Hilton vs Bianco — intra-party heats, dropped for the same reason the
+   House sheet drops primary polls. Same-party pairs are refused, not signed.
+
+The margin is computed from the two transcribed shares and CHECKED against
+the sheet's own margin text; a disagreement beyond GOVERNOR_MARGIN_TOLERANCE
+refuses the row as a transcription error rather than averaging it in.
 """
 
 from __future__ import annotations
@@ -117,6 +153,104 @@ HOUSE_NON_GENERAL = {
 }
 HOUSE_GENERAL = "본선거"
 
+# -- Tracker workbooks (Election Polls/, transcribed 2026-08-11) --------------
+TRACKER_SHEET = "전체 여론조사"
+
+# Both chambers' sheets carry the same information under different headers.
+# The reader picks whichever map the header row satisfies.
+TRACKER_SENATE_COLUMNS = {
+    "state": "주", "pollster": "조사기관", "sponsor": "의뢰/후원",
+    "field": "조사기간(원문)", "end_date": "조사 종료일",
+    "sample_size": "표본수", "round": "라운드", "margin": "격차",
+    "note": "비고",
+    "c1": "후보1", "c1_pct": "후보1 %", "c2": "후보2", "c2_pct": "후보2 %",
+}
+TRACKER_GOVERNOR_COLUMNS = {
+    "state": "주(State)", "pollster": "여론조사기관(Pollster)",
+    "sponsor": "후원/의뢰(Sponsor)", "field": "조사기간(원문)",
+    "end_date": "조사 종료일", "sample_size": "조사인원(표본수)",
+    "round": "라운드", "margin": "격차(Margin)", "note": "비고",
+    "c1": "1위 후보", "c1_pct": "1위 지지율(%)",
+    "c2": "2위 후보", "c2_pct": "2위 지지율(%)",
+}
+TRACKER_SHAPES = (("senate", TRACKER_SENATE_COLUMNS),
+                  ("governor", TRACKER_GOVERNOR_COLUMNS))
+
+# One or two surnames per race, enough to colour that race's opposition graph.
+# EVERY entry marked (market) is read off Polymarket's own party-labelled legs
+# — "Jon Ossoff (D)", "Ashley Hinson (R)" — so the seed is data, not memory.
+# The rest are sitting officeholders whose party is not in dispute, and each
+# says which office is doing the vouching.
+#
+# A race that is not here is not guessed at: its rows are dropped with the
+# surnames named, so the fix is to add a seed rather than to debug a silent
+# sign error. sen-mt is exactly that case today — Polymarket prices Montana
+# with bare "Republican"/"Independent"/"Democrat" legs, so nothing in the data
+# says which of Alme/Bodnar/Bankhead/Austin is which.
+TRACKER_PARTY_SEEDS = {
+    "sen-ak": {"Peltola": "D", "Sullivan": "R"},        # (market)
+    "sen-ga": {"Ossoff": "D"},                          # (market)
+    "sen-ia": {"Hinson": "R", "Turek": "D"},            # (market)
+    "sen-me": {"Jackson": "D", "Collins": "R"},         # (market)
+    "sen-mi": {"El-Sayed": "D", "Rogers": "R"},         # (market)
+    "sen-oh": {"Brown": "D", "Husted": "R"},            # (market)
+    "sen-tx": {"Talarico": "D", "Paxton": "R"},         # (market)
+    # Annie Andrews is the Democrat; every South Carolina row tests her
+    # against a different Republican, which is what the graph needs.
+    "sen-sc": {"Andrews": "D"},
+    "gov-ak": {"Begich": "D", "Wilson": "R"},           # (market)
+    # California is seeded EXHAUSTIVELY, and has to be. It is a top-two
+    # primary state, so its pollsters test same-party heats (Becerra vs
+    # Porter, Hilton vs Bianco) in the same poll as the D-vs-R ones — and the
+    # opposition-graph walk assumes every heat crosses party lines. Colouring
+    # California by propagation makes Porter a Republican and then reads
+    # "Becerra +20 over Porter" as a 20-point Democratic lead. With all five
+    # polled Californians seeded (market), those heats are recognized as
+    # intra-party and dropped instead.
+    "gov-ca": {"Becerra": "D", "Porter": "D", "Steyer": "D",
+               "Hilton": "R", "Bianco": "R"},           # (market)
+    "gov-ga": {"Bottoms": "D", "Jackson": "R"},         # (market)
+    "gov-oh": {"Acton": "D", "Ramaswamy": "R"},         # (market)
+    "gov-az": {"Hobbs": "D"},                           # sitting governor
+    "gov-mi": {"Benson": "D"},                          # secretary of state
+    "gov-mn": {"Klobuchar": "D"},                       # US senator
+    "gov-ny": {"Hochul": "D"},                          # sitting governor
+    "gov-ri": {"McKee": "D"},                           # sitting governor
+    "gov-wi": {"Tiffany": "R"},                         # US representative
+}
+
+# Both nominees settled, as named by Polymarket's legs. A heat between these
+# two is `confirmed`; a heat naming anyone else is `withdrawn`, because the
+# primary is over and they are not on the November ballot.
+#
+# A race whose market still trades on generic party legs is deliberately
+# absent — gov-wi, gov-ri, gov-mn, gov-ny, gov-az, gov-mi and sen-sc are not
+# settled as far as the priced data goes, so their heats stay `hypothetical`.
+TRACKER_NOMINEES = {
+    "sen-ga": {"D": "Ossoff", "R": "Collins"},
+    "sen-ia": {"D": "Turek", "R": "Hinson"},
+    "sen-me": {"D": "Jackson", "R": "Collins"},
+    "sen-mi": {"D": "El-Sayed", "R": "Rogers"},
+    "sen-oh": {"D": "Brown", "R": "Husted"},
+    "sen-tx": {"D": "Talarico", "R": "Paxton"},
+    "gov-ca": {"D": "Becerra", "R": "Hilton"},
+    "gov-ga": {"D": "Bottoms", "R": "Jackson"},
+    "gov-oh": {"D": "Acton", "R": "Ramaswamy"},
+    # Alaska has no nominees to settle: the top-four primary sends four
+    # candidates to a ranked-choice general, so Peltola and Sullivan are both
+    # certain to be on the November ballot no matter what August does. The
+    # market agrees — it prices the two of them at 53/48 and every other
+    # Alaskan at 0.1%.
+    "sen-ak": {"D": "Peltola", "R": "Sullivan"},
+}
+
+# Rows whose leader is neither D nor R. gov-ak polls Bill Walker, an
+# independent former governor, alongside the party candidates; a Walker heat
+# is not the D-vs-R event, exactly as Nebraska's Osborn heats are not.
+TRACKER_NON_MAJOR = {"Walker": "Bill Walker runs as an independent"}
+
+FINAL_ROUND_LABELS = {"final round", "최종", "최종 라운드"}
+
 # -- Governor workbook -------------------------------------------------------
 GOVERNOR_COLUMNS = {
     "state": "State",
@@ -157,9 +291,13 @@ GOVERNOR_PRIMARY_DATES = {
 # and the row is refused rather than silently averaged in.
 GOVERNOR_MARGIN_TOLERANCE = 1.5
 
-# Generic party labels used in place of a candidate name.
-_GENERIC_D = {"dem.", "dem", "democrat", "democratic", "generic dem."}
-_GENERIC_R = {"rep.", "rep", "republican", "gop", "generic rep."}
+# Generic party labels used in place of a candidate name. The Korean forms are
+# how the tracker sheets spell the same thing ("일반 민주당 후보"); Rhode
+# Island's sheet uses the bare English "Republican" for an unsettled nominee.
+_GENERIC_D = {"dem.", "dem", "democrat", "democratic", "generic dem.",
+              "democrat(일반)", "일반 민주당 후보", "민주당(일반)"}
+_GENERIC_R = {"rep.", "rep", "republican", "gop", "generic rep.",
+              "republican(일반)", "일반 공화당 후보", "공화당(일반)"}
 
 _MONTHS = {"jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
            "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12}
@@ -865,6 +1003,254 @@ def convert_governor(rows: list, as_of: Optional[date] = None) -> tuple:
 
 
 # ---------------------------------------------------------------------------
+# Tracker workbooks (Election Polls/)
+# ---------------------------------------------------------------------------
+
+def read_tracker_rows(path: str) -> tuple:
+    """(chamber, [row dicts]) for a tracker workbook, or (None, []).
+
+    (None, []) means the sheet is there but its headers are neither shape —
+    the caller then reports the workbook rather than importing half of it.
+    """
+    from openpyxl import load_workbook
+
+    wb = load_workbook(path, read_only=True, data_only=True)
+    if TRACKER_SHEET not in wb.sheetnames:
+        return None, []
+    ws = wb[TRACKER_SHEET]
+    rows = ws.iter_rows(values_only=True)
+    try:
+        headers = [str(h).strip() if h is not None else "" for h in next(rows)]
+    except StopIteration:
+        return None, []
+
+    for chamber, columns in TRACKER_SHAPES:
+        if all(col in headers for col in columns.values()):
+            index = {key: headers.index(col) for key, col in columns.items()}
+            out = []
+            for values in rows:
+                if values is None or all(v is None for v in values):
+                    continue
+                row = {key: values[i] if i < len(values) else None
+                       for key, i in index.items()}
+                if _norm(row["state"]):
+                    out.append(row)
+            return chamber, out
+    return None, []
+
+
+def _tracker_state_code(raw: str) -> Optional[str]:
+    """'Alaska (알래스카)' -> 'AK'. The Senate sheet annotates, the governor
+    sheet does not; both are handled by cutting at the parenthesis."""
+    name = re.sub(r"\s*\(.*$", "", _norm(raw)).strip()
+    return _STATE_CODES.get(name.lower())
+
+
+def _tracker_end_date(row: dict) -> Optional[date]:
+    value = row.get("end_date")
+    if isinstance(value, datetime):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    text = _norm(value)
+    if text:
+        try:
+            return date.fromisoformat(text[:10])
+        except ValueError:
+            pass
+    return parse_field_dates(row.get("field"))
+
+
+def _tracker_parties(rows: list, seeds: dict) -> dict:
+    """{surname: 'D'|'R'} for one race, seeded then propagated.
+
+    Same walk as _resolve_parties, but seeded from TRACKER_PARTY_SEEDS rather
+    than from races.json — the tracker sheets cover races that reference file
+    has never heard of (California governor among them).
+    """
+    parties = dict(seeds)
+    edges = []
+    for row in rows:
+        a, b = _norm(row["c1"]), _norm(row["c2"])
+        for name in (a, b):
+            p = _party_of_label(name)
+            if p:
+                parties[name] = p
+        if a and b:
+            edges.append((a, b))
+
+    flip = {"D": "R", "R": "D"}
+    for _ in range(len(edges) + 1):
+        changed = False
+        for a, b in edges:
+            if a in parties and b not in parties:
+                parties[b] = flip[parties[a]]
+                changed = True
+            elif b in parties and a not in parties:
+                parties[a] = flip[parties[b]]
+                changed = True
+        if not changed:
+            break
+    return parties
+
+
+def _tracker_margin(row: dict, dem_pct, rep_pct) -> tuple:
+    """(margin_dem, reason_if_refused) from the two transcribed shares.
+
+    The shares are the primary source and the sheet's own margin text is the
+    check on them — the reverse of the governor workbook, where the margin
+    column was NYT's own and the shares were the transcription. Here both are
+    transcribed off the same screen, and the shares carry the sign
+    unambiguously once the parties are known.
+    """
+    if dem_pct is None or rep_pct is None:
+        return None, "no share transcribed for one of the two candidates"
+    try:
+        margin = float(dem_pct) - float(rep_pct)
+    except (TypeError, ValueError):
+        return None, "unreadable shares %r / %r" % (dem_pct, rep_pct)
+
+    shown = _norm(row["margin"])
+    # "N/A" is how the sheet records a round the pollster did not publish.
+    if shown.upper() in ("N/A", "NA", "-"):
+        return None, "margin is N/A — the pollster did not publish this round"
+    parsed = parse_margin(re.sub(r"동률\(Even\)|동률", "Even", shown))
+    if parsed is not None:
+        _, points = parsed
+        if abs(abs(margin) - points) > GOVERNOR_MARGIN_TOLERANCE:
+            return None, ("margin text %r (%.1f points) disagrees with the "
+                          "transcribed shares (%+.1f) by more than %.1f — "
+                          "transcription error"
+                          % (shown, points, margin,
+                             GOVERNOR_MARGIN_TOLERANCE))
+    return round(margin, 2), None
+
+
+def convert_tracker(chamber: str, rows: list,
+                    include_independents: bool = False) -> tuple:
+    """(poll rows, {reason: count} of what was dropped)."""
+    dropped: dict = {}
+
+    def drop(reason):
+        dropped[reason] = dropped.get(reason, 0) + 1
+
+    prefix = {"senate": "sen", "governor": "gov"}[chamber]
+    by_race: dict = {}
+    for row in rows:
+        code = _tracker_state_code(row["state"])
+        if code is None:
+            drop("unrecognized state %r" % _norm(row["state"]))
+            continue
+        rid = "%s-%s" % (prefix, code.lower())
+        if rid in INDEPENDENT_RACES and not include_independents:
+            drop("%s: %s, so the margin is not a D-vs-R probability and the "
+                 "betting market prices a different event"
+                 % (rid, INDEPENDENT_RACES[rid]))
+            continue
+        by_race.setdefault(rid, []).append(row)
+
+    polls = []
+    for rid, race_rows in sorted(by_race.items()):
+        seeds = TRACKER_PARTY_SEEDS.get(rid)
+        if not seeds:
+            names = sorted(({_norm(r["c1"]) for r in race_rows}
+                            | {_norm(r["c2"]) for r in race_rows}) - {""})
+            dropped["%s: no party seed, so %s cannot be signed D-vs-R — add "
+                    "one to TRACKER_PARTY_SEEDS" % (rid, "/".join(names))] = \
+                len(race_rows)
+            continue
+        parties = _tracker_parties(race_rows, seeds)
+        nominees = TRACKER_NOMINEES.get(rid)
+
+        # RCV: one poll's final round supersedes its own first round.
+        finals = {(_norm(r["pollster"]), str(_tracker_end_date(r)))
+                  for r in race_rows
+                  if _norm(r["round"]).lower() in FINAL_ROUND_LABELS
+                  and _tracker_margin(
+                      r, r["c1_pct"], r["c2_pct"])[0] is not None}
+
+        for row in race_rows:
+            when = _tracker_end_date(row)
+            if when is None:
+                drop("%s: no usable end date (%r / %r)"
+                     % (rid, row["end_date"], _norm(row["field"])))
+                continue
+            first, second = _norm(row["c1"]), _norm(row["c2"])
+            if not first or not second:
+                drop("%s: row names fewer than two candidates" % rid)
+                continue
+            is_final = _norm(row["round"]).lower() in FINAL_ROUND_LABELS
+            if not is_final and (_norm(row["pollster"]), str(when)) in finals:
+                drop("first round superseded by the same poll's final round "
+                     "(ranked-choice)")
+                continue
+
+            blocked = [n for n in (first, second) if n in TRACKER_NON_MAJOR]
+            if blocked:
+                drop("%s: %s" % (rid, TRACKER_NON_MAJOR[blocked[0]]))
+                continue
+            p1, p2 = parties.get(first), parties.get(second)
+            if p1 is None or p2 is None:
+                unknown = first if p1 is None else second
+                drop("%s: cannot tell which party %r belongs to" % (rid, unknown))
+                continue
+            if p1 == p2:
+                drop("%s: %s vs %s is an intra-party heat, not the D-vs-R "
+                     "event" % (rid, first, second))
+                continue
+
+            dem, rep = (first, second) if p1 == "D" else (second, first)
+            dem_pct = row["c1_pct"] if p1 == "D" else row["c2_pct"]
+            rep_pct = row["c2_pct"] if p1 == "D" else row["c1_pct"]
+            margin, refused = _tracker_margin(row, dem_pct, rep_pct)
+            if refused is not None:
+                drop("%s: %s" % (rid, refused))
+                continue
+
+            if _is_generic(dem) or _is_generic(rep):
+                matchup = "generic_ballot"
+            elif nominees is None:
+                matchup = "hypothetical"
+            elif dem == nominees["D"] and rep == nominees["R"]:
+                matchup = "confirmed"
+            else:
+                matchup = "withdrawn"
+
+            n = row["sample_size"]
+            try:
+                n = int(n) if n not in (None, "") else None
+            except (TypeError, ValueError):
+                n = None
+
+            note_pre = []
+            if row["sponsor"]:
+                note_pre.append("sponsor: %s" % _norm(row["sponsor"]))
+            if is_final:
+                note_pre.append("ranked-choice final round")
+            if _norm(row["note"]):
+                note_pre.append(_norm(row["note"]))
+            polls.append({
+                "race_id": rid,
+                "pollster": _norm(row["pollster"]) or None,
+                "date": when.isoformat(),
+                "sample_size": n,
+                "margin_dem": margin,
+                "matchup": matchup,
+                "weight": manual.MATCHUP_WEIGHTS[matchup],
+                "_note_pre": note_pre,
+                "_heat": "%s vs %s D%+.1f" % (dem, rep, margin),
+                "_source": "NYT via Election Polls/ (2026-08-11)",
+            })
+
+    polls, absorbed = collapse_trial_heats(polls)
+    if absorbed:
+        dropped["extra trial heats folded into their poll's row — outranked "
+                "by a stronger matchup, or averaged in at the same "
+                "confidence (one poll = one row)"] = absorbed
+    return polls, dropped
+
+
+# ---------------------------------------------------------------------------
 # Dispatch + write
 # ---------------------------------------------------------------------------
 
@@ -873,6 +1259,14 @@ def convert_workbook(path: str, include_independents: bool = False) -> tuple:
     from openpyxl import load_workbook
 
     sheets = load_workbook(path, read_only=True, data_only=True).sheetnames
+    if TRACKER_SHEET in sheets:
+        chamber, rows = read_tracker_rows(path)
+        if chamber is None:
+            raise PollImportError(
+                "%s has a %r sheet but neither the Senate nor the governor "
+                "header set — see TRACKER_SENATE_COLUMNS"
+                % (os.path.basename(path), TRACKER_SHEET))
+        return convert_tracker(chamber, rows, include_independents)
     if SENATE_SHEET in sheets:
         return convert_senate(read_senate_rows(path), include_independents)
     if HOUSE_SHEET in sheets:

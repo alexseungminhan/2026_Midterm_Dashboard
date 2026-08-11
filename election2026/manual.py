@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import math
 import os
+import re
 from datetime import date, datetime
 from typing import Optional
 
@@ -163,14 +164,31 @@ def _parse_bool(value, field: str, row_no: int, fname: str) -> Optional[bool]:
         % (fname, row_no, field, value))
 
 
+# sen-ga | gov-ca | ho-ny17 | ho-akal. The chamber prefix and a REAL state
+# code, which still catches a typo ("sen-zz"); what it no longer checks is
+# membership in races.json — see below.
+_RACE_ID = re.compile(r"^(?:sen|gov)-([a-z]{2})$|^ho-([a-z]{2})(?:\d{1,2}|al)$")
+
+
 def _check_race_id(value, row_no: int, fname: str) -> str:
+    """The race_id's shape and state, not its membership in races.json.
+
+    This used to require `rid in config.RACES` and had to stop: races.json is
+    an enrichment lookup now, not the race universe (see board.py). Polls
+    legitimately arrive for races it has never heard of — the California
+    governor race is the biggest market of the cycle and is not in it — and
+    rejecting those rows threw away real data to satisfy a file that no longer
+    decides anything. A row for a race nothing trades is simply never read.
+    """
     rid = str(value or "").strip()
-    if rid not in config.RACES:
-        known = ", ".join(sorted(config.RACES)[:6])
+    m = _RACE_ID.match(rid)
+    state = (m.group(1) or m.group(2)).upper() if m else None
+    if state not in config.STATE_NAMES:
         raise ManualDataError(
-            "%s row %d: unknown race_id %r — must be one of the monitored "
-            "races (e.g. %s, ...); see data/reference/races.json"
-            % (fname, row_no, rid, known))
+            "%s row %d: race_id %r is not a race id — expected sen-<주>, "
+            "gov-<주>, or ho-<주><지역구> with a real state code "
+            "(e.g. sen-ga, gov-ca, ho-ny17)"
+            % (fname, row_no, rid))
     return rid
 
 

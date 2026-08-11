@@ -298,3 +298,107 @@ def test_governor_ambiguous_nominee_falls_back_to_hypothetical():
     ]
     polls, _ = import_polls.convert_governor(rows)
     assert {p["matchup"] for p in polls} == {"hypothetical"}
+
+
+# ---------------------------------------------------------------------------
+# Tracker workbooks (Election Polls/, 2026-08-11)
+# ---------------------------------------------------------------------------
+
+def _trow(state="Georgia (조지아)", pollster="Some Pollster",
+          end_date="2026-07-01", c1="Ossoff", c1_pct=52, c2="Collins",
+          c2_pct=45, margin="Ossoff +7", sample_size=800, round_=None,
+          sponsor=None, note=None):
+    return {"state": state, "pollster": pollster, "sponsor": sponsor,
+            "field": None, "end_date": end_date, "sample_size": sample_size,
+            "round": round_, "margin": margin, "note": note,
+            "c1": c1, "c1_pct": c1_pct, "c2": c2, "c2_pct": c2_pct}
+
+
+def test_tracker_state_names_survive_the_korean_annotation():
+    assert import_polls._tracker_state_code("Alaska (알래스카)") == "AK"
+    assert import_polls._tracker_state_code("Rhode Island") == "RI"
+    assert import_polls._tracker_state_code("Nowhere") is None
+
+
+def test_tracker_margin_comes_from_the_shares_and_carries_the_sign():
+    polls, dropped = import_polls.convert_tracker("senate", [_trow()])
+    assert dropped == {}
+    assert polls[0]["margin_dem"] == 7.0
+    assert polls[0]["sample_size"] == 800          # the older sheets had none
+
+
+def test_tracker_margin_disagreeing_with_the_sheet_text_is_refused():
+    polls, dropped = import_polls.convert_tracker(
+        "senate", [_trow(c1_pct=52, c2_pct=45, margin="Ossoff +2")])
+    assert polls == []
+    assert any("transcription error" in reason for reason in dropped)
+
+
+def test_tracker_unseeded_race_is_reported_not_guessed():
+    """Montana: Polymarket labels its legs "Republican"/"Democrat" and never
+    names a candidate, so nothing in the data says which surname is which."""
+    polls, dropped = import_polls.convert_tracker(
+        "senate", [_trow(state="Montana (몬태나)", c1="Alme", c2="Bodnar",
+                         margin="Alme +7")])
+    assert polls == []
+    assert any("no party seed" in reason and "Alme" in reason
+               for reason in dropped)
+
+
+def test_tracker_intra_party_heat_is_refused_not_signed():
+    """California's top-two primary makes pollsters test D-vs-D and R-vs-R in
+    the same poll as the real matchup. Signing those as D-vs-R would read
+    "Becerra +20 over Porter" as a 20-point Democratic lead."""
+    polls, dropped = import_polls.convert_tracker(
+        "governor", [_trow(state="California", c1="Becerra", c1_pct=42,
+                           c2="Porter", c2_pct=22, margin="Becerra +20")])
+    assert polls == []
+    assert any("intra-party" in reason for reason in dropped)
+
+
+def test_tracker_nominee_pair_is_confirmed_and_an_also_ran_is_withdrawn():
+    polls, _ = import_polls.convert_tracker("senate", [
+        _trow(pollster="A", c1="Ossoff", c2="Collins", c1_pct=52, c2_pct=45,
+              margin="Ossoff +7"),
+        _trow(pollster="B", c1="Ossoff", c2="Loeffler", c1_pct=50, c2_pct=46,
+              margin="Ossoff +4"),
+    ])
+    assert {p["pollster"]: p["matchup"] for p in polls} == \
+        {"A": "confirmed", "B": "withdrawn"}
+
+
+def test_tracker_race_with_generic_legs_stays_hypothetical():
+    """gov-wi has no TRACKER_NOMINEES entry because the market still trades
+    it on bare "Republican"/"Democrat" legs."""
+    polls, _ = import_polls.convert_tracker(
+        "governor", [_trow(state="Wisconsin", c1="Rodriguez", c1_pct=47,
+                           c2="Tiffany", c2_pct=43, margin="Rodriguez +4")])
+    assert polls[0]["matchup"] == "hypothetical"
+    assert polls[0]["margin_dem"] == 4.0        # Tiffany seeds R, so D leads
+
+
+def test_tracker_generic_ballot_label_gets_the_generic_weight():
+    polls, _ = import_polls.convert_tracker(
+        "governor", [_trow(state="Rhode Island", c1="McKee", c1_pct=33,
+                           c2="Republican", c2_pct=23, margin="McKee +10")])
+    assert polls[0]["matchup"] == "generic_ballot"
+    assert polls[0]["weight"] == manual.MATCHUP_WEIGHTS["generic_ballot"]
+
+
+def test_tracker_final_round_supersedes_its_own_first_round():
+    polls, dropped = import_polls.convert_tracker("senate", [
+        _trow(state="Alaska (알래스카)", c1="Peltola", c1_pct=49, c2="Sullivan",
+              c2_pct=44, margin="Peltola +5", round_="1차"),
+        _trow(state="Alaska (알래스카)", c1="Peltola", c1_pct=51, c2="Sullivan",
+              c2_pct=49, margin="Peltola +2", round_="최종"),
+    ])
+    assert len(polls) == 1 and polls[0]["margin_dem"] == 2.0
+    assert any("ranked-choice" in reason for reason in dropped)
+
+
+def test_tracker_independent_led_race_is_still_excluded():
+    polls, dropped = import_polls.convert_tracker(
+        "senate", [_trow(state="Nebraska (네브래스카)", c1="Osborn", c2="Ricketts",
+                         c1_pct=48, c2_pct=43, margin="Osborn +5")])
+    assert polls == []
+    assert any("independent" in reason for reason in dropped)

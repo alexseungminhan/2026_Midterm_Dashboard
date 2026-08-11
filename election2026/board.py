@@ -5,19 +5,31 @@ TRUTH for which races appear. races.json is demoted to an enrichment lookup
 (incumbent, rating, our poll coverage); a race no longer has to be in it to be
 shown, and being in it is no longer enough to be shown.
 
-One paged pull of Polymarket's `midterms` tag returns ~640 events. Of those,
-~510 are individual races ("Texas Senate Election Winner", "CA-28 House
-Election Winner"); the rest are chamber-level and novelty markets, handled in
-chambers.py or dropped here.
+The universe is the UNION of four Polymarket tags, not the `midterms` tag
+alone. The `midterms` tag is incomplete and silently so: the California
+governor race — $40.7M, thirty-seven times the next-biggest governor market
+and the largest single race market of the cycle — carries `governor-midterms`
+but NOT `midterms`, so pulling one tag left the board's governor tab headed by
+Alaska and missing California entirely (found 2026-08-11). Pulling all four
+costs three extra events and closes that hole: 35 Senate, 36 governor (the
+full 2026 slate), 434 House.
+
+Of the ~790 events, ~505 are individual races ("Texas Senate Election Winner",
+"CA-28 House Election Winner"); the rest are chamber-level, primary, and
+novelty markets, handled in chambers.py or dropped here.
 
 RANKING CAVEAT — read before changing `rank_by`. Cumulative `volume` measures
 how long a market has been listed and how much has churned through it, NOT how
 contested the seat is. Polymarket lists 443 House districts, and the top of the
-cumulative list is safe seats (CA-28, FL-01, MS-01) where volume accreted from
+cumulative list is safe seats (FL-01, VA-06, MS-01) where volume accreted from
 cheap speculation. Measured 2026-08-08: every one of the 18 hand-picked
 battleground districts sits BELOW the House median of $23.7K. The board is
 ranked on it anyway, so the order matches what polymarket.com shows — the
 user's explicit decision (2026-08-08) after being shown these numbers.
+
+Matching polymarket.com also needs config.BOARD["off_board"]; see the note
+there. It is applied in rank(), not in build(), because chambers.py counts
+seats from every race the market prices, on and off the board.
 
 The recency fields are NOT rankable. Polymarket omits `volume1wk` and
 `volume24hr` from any event that has not traded in the window (435 of 697 on
@@ -37,7 +49,13 @@ from . import cache, config
 
 EVENTS_URL = "https://gamma-api.polymarket.com/events"
 PAGE = 100
-MAX_PAGES = 12          # 640 events today; 1,200 is generous headroom
+MAX_PAGES = 12          # 640 events per tag today; 1,200 is generous headroom
+
+# Pulled in order and merged on event id. `midterms` carries almost everything;
+# the chamber tags are the safety net for races Polymarket forgot to tag, which
+# is not hypothetical — see the module docstring on California governor.
+TAG_SLUGS = ("midterms", "senate-midterms", "governor-midterms",
+             "house-elections")
 
 _CODE_BY_NAME = {name.lower(): code for code, name in config.STATE_NAMES.items()}
 
@@ -92,20 +110,12 @@ class RaceMarket:
 # Fetch
 # ---------------------------------------------------------------------------
 
-def fetch_events(ttl_hours: float = 6.0) -> list:
-    """All open events on the midterms tag, newest prices, disk-cached.
-
-    Returns [] rather than raising when Polymarket is unreachable — the daily
-    run then falls back to the previous snapshot instead of dying.
-    """
-    cached = cache.read("track_a", "polymarket", "midterms_universe", ttl_hours)
-    if cached is not None:
-        return cached.get("events", [])
-
+def _fetch_tag(tag: str) -> list:
+    """Every open event on one tag, paged out."""
     events, offset = [], 0
     for _ in range(MAX_PAGES):
         resp = cache.http_get(EVENTS_URL, params={
-            "tag_slug": "midterms", "closed": "false", "limit": PAGE,
+            "tag_slug": tag, "closed": "false", "limit": PAGE,
             "offset": offset, "order": "volume", "ascending": "false"})
         if resp is None:
             break
@@ -118,6 +128,30 @@ def fetch_events(ttl_hours: float = 6.0) -> list:
         if len(batch) < PAGE:
             break
         offset += PAGE
+    return events
+
+
+def fetch_events(ttl_hours: float = 6.0) -> list:
+    """All open events across TAG_SLUGS, newest prices, disk-cached.
+
+    De-duplicated on event id, first tag wins — the tags overlap heavily and
+    the payloads are identical where they do.
+
+    Returns [] rather than raising when Polymarket is unreachable — the daily
+    run then falls back to the previous snapshot instead of dying.
+    """
+    cached = cache.read("track_a", "polymarket", "midterms_universe", ttl_hours)
+    if cached is not None:
+        return cached.get("events", [])
+
+    seen, events = set(), []
+    for tag in TAG_SLUGS:
+        for event in _fetch_tag(tag):
+            key = event.get("id")
+            if key in seen:
+                continue
+            seen.add(key)
+            events.append(event)
 
     if events:
         cache.write("track_a", "polymarket", "midterms_universe",
@@ -322,7 +356,8 @@ def build(events: list) -> list:
 # ---------------------------------------------------------------------------
 
 def rank(races: list, metric: Optional[str] = None,
-         top_n: Optional[dict] = None) -> dict:
+         top_n: Optional[dict] = None,
+         off_board: Optional[set] = None) -> dict:
     """{chamber: [RaceMarket, ...]} sorted by `metric`, truncated per chamber.
 
     Cumulative volume is the only ranking the board offers (2026-08-08). The
@@ -330,13 +365,20 @@ def rank(races: list, metric: Optional[str] = None,
     `volume24hr` from an event that has not traded recently — 435 of 697
     events on 2026-08-08 — so an absent key is "unknown", not "zero", and
     ranking on it would sort two thirds of the board on a fabricated 0.
+
+    `off_board` races are dropped before sorting. They are still parsed, still
+    priced, and still counted by chambers.py — they are only kept off the
+    displayed board. See config.BOARD["off_board"].
     """
     metric = metric or config.BOARD["rank_by"]
     top_n = top_n or config.BOARD["top_n"]
+    if off_board is None:
+        off_board = set(config.BOARD["off_board"])
 
     out = {}
     for chamber in ("senate", "house", "governor"):
-        rows = [r for r in races if r.chamber == chamber]
+        rows = [r for r in races
+                if r.chamber == chamber and r.race_id not in off_board]
         rows.sort(key=lambda r: (getattr(r, metric), r.volume), reverse=True)
         limit = top_n.get(chamber)
         out[chamber] = rows[:limit] if limit else rows
