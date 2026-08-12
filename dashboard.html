@@ -869,13 +869,13 @@ const SOURCE_NAME = {
   polls: "NYT",
   econ_claims: "FRED (세인트루이스 연준)",
   econ_unemployment: "FRED (세인트루이스 연준)",
-  econ_coincident: "필라델피아 연준 작성",
+  econ_coincident: "필라델피아 연준",
   fec_in_state_share: "FEC (연방선거관리위원회)",
   fec_small_dollar_count: "FEC (연방선거관리위원회)",
   fec_unique_donors: "FEC (연방선거관리위원회)",
   fec_repeat_donor_rate: "FEC (연방선거관리위원회)",
   fec_burn_rate: "FEC (연방선거관리위원회)",
-  primary_turnout_ratio: "주정부 국무장관 인증 결과",
+  primary_turnout_ratio: null,   /* 각주에 별도 표기하지 않음 */
   party_reg_net_change: "주정부 유권자 등록 통계",
   wiki_pageviews_share: "Wikimedia",
   wiki_edit_count: "Wikimedia",
@@ -884,8 +884,9 @@ const SOURCE_NAME = {
 function _sourceNames(keys) {
   const seen = [];
   (keys || []).forEach(k => {
-    const n = SOURCE_NAME[k] || k;
-    if (!seen.includes(n)) seen.push(n);
+    /* a null mapping means the key is deliberately left off the footnote */
+    const n = k in SOURCE_NAME ? SOURCE_NAME[k] : k;
+    if (n && !seen.includes(n)) seen.push(n);
   });
   return seen.join(", ");
 }
