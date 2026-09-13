@@ -119,6 +119,69 @@ jobs:
             git push
           fi
 
+      # 2026-09-13: Render 가 2026-08-12 이후 재배포를 멈춘 채였다. Actions 는
+      # 11번 정상 커밋했는데 사이트는 한 달 내내 옛 숫자를 서빙했고, 그 사이
+      # 상원 다수당 확률이 50% 선을 넘어가 사이트만 "공화당 54%" 로 뒤집혀
+      # 있었다. 배포본의 last-modified 가 마지막 *사람* 커밋 시각과 정확히
+      # 일치했으므로, Render 의 웹훅이 봇 푸시에 반응하지 않았던 것으로 보인다.
+      #
+      # 원인이 무엇이든 Render 의 자동 감지에 기대지 않고 우리가 직접 찌른다.
+      # 시크릿이 없으면 조용히 건너뛰므로, 설정 전에도 워크플로는 깨지지 않는다.
+      #
+      # 설정법: Render 대시보드 > 해당 Static Site > Settings > Deploy Hook 의
+      # URL 을 복사해서, GitHub 저장소 Settings > Secrets and variables >
+      # Actions 에 RENDER_DEPLOY_HOOK 이라는 이름으로 넣을 것.
+      - name: Trigger Render deploy
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -z "${HOOK:-}" ]; then
+            echo "RENDER_DEPLOY_HOOK 시크릿이 없다 — Render 자체 Auto-Deploy 에"
+            echo "의존한다. 아래 Verify 스텝이 실패하면 이 시크릿부터 넣을 것."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK" -o /dev/null
+          echo "Render 배포를 트리거했다."
+
+      # 커밋했다고 배포된 것이 아니다 — 위 사고가 정확히 그 틈에서 났다.
+      # 실제로 사이트가 새 forecast.json 을 서빙하는지 확인될 때까지 기다리고,
+      # 안 되면 실패시켜 메일이 가게 한다. 이 스텝이 있었다면 2026-08-13 에
+      # 잡혔을 문제다.
+      - name: Verify deployed site
+        env:
+          SITE: https://two026-midterm-dashboard.onrender.com
+        run: |
+          python - <<'EOF'
+          import json, os, sys, time, urllib.request
+
+          want = json.load(open("election2026/data/forecast.json"))["meta"]["generated_at"]
+          url = os.environ["SITE"].rstrip("/") + "/forecast.json"
+          print("기대하는 generated_at:", want)
+          print("확인할 주소:", url)
+
+          deadline = time.time() + 600      # Render 정적 빌드는 보통 1~2분이다
+          got = None
+          while time.time() < deadline:
+              try:
+                  req = urllib.request.Request(
+                      url, headers={"Cache-Control": "no-cache"})
+                  got = json.load(urllib.request.urlopen(req, timeout=30))["meta"]["generated_at"]
+              except Exception as exc:
+                  print("조회 실패:", exc)
+              else:
+                  if got == want:
+                      print("배포 확인됨:", got)
+                      sys.exit(0)
+                  print("아직 옛 버전을 서빙 중:", got)
+              time.sleep(30)
+
+          print("::error::Render 가 10분 안에 새 forecast.json 을 서빙하지 "
+                "않았다. 커밋은 성공했지만 사이트는 %s 에 멈춰 있다. Render 의 "
+                "Auto-Deploy 설정과 배포 로그를 확인하고, RENDER_DEPLOY_HOOK "
+                "시크릿을 넣을 것." % got)
+          sys.exit(1)
+          EOF
+
       # 공개 저장소의 스케줄 워크플로는 저장소에 60일간 활동이 없으면 GitHub 가
       # 자동으로 비활성화한다. 문제는 위에서 미는 커밋이 github-actions[bot]
       # 명의라는 것이다 — 봇 푸시로는 이 타이머가 리셋되지 않는다고 널리
