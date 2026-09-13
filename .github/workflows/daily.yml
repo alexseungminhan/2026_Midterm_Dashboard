@@ -70,7 +70,7 @@ jobs:
       # success, which is exactly the case that kept the cold cache cold.
       - name: Restore FEC cache
         id: fec-cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: election2026/data/raw/track_b/fec
           key: fec-${{ steps.week.outputs.id }}
@@ -89,7 +89,7 @@ jobs:
       # 배포되면 대시보드가 빈 화면이 된다.
       - name: Save FEC cache
         if: always()          # especially on timeout — see above
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v6
         with:
           path: election2026/data/raw/track_b/fec
           key: fec-${{ steps.week.outputs.id }}-${{ github.run_id }}
