@@ -6,12 +6,22 @@ name: daily forecast
 
 on:
   schedule:
-    # GitHub cron 은 UTC 다. 20:00 UTC = 한국 시간 다음날 05:00.
+    # GitHub cron 은 UTC 다. 20:00 UTC 는 명목상 한국 시간 다음날 05:00 이지만,
+    # 공유 스케줄러 지연 때문에 실제 시작은 그보다 한참 늦다. 2026-08 중순에는
+    # 20~40분이었고 2026-09 에는 2~3시간대로 밀려서, 실제 갱신 시각은 한국
+    # 시간 오전 7~8시다. 지연은 우리가 통제할 수 없고 늘어나는 추세다.
     #
-    # 3일 간격(매월 1·4·7…28·31일). 매일 돌릴 이유가 없고, FEC 신고 시점
-    # 캐시가 7일 유효라 3일이면 항상 살아 있어 실행이 20분대로 유지된다.
-    # 주 1회로 늘리면 캐시가 매번 막 만료된 상태라 실행마다 1~2시간이 든다.
-    - cron: "0 20 */3 * *"
+    # 2026-09-13: 3일 간격("0 20 */3 * *")에서 매일로 바꿨다. 이유 두 가지.
+    #   1) 선거가 가까워 시장이 빠르게 움직인다. 실제로 상원 다수당 확률이
+    #      3일 간격 사이에 50% 선을 넘어가, 화면이 "공화 우세"에서 "민주
+    #      우세"로 통째로 뒤집힌 채 며칠을 서 있었다.
+    #   2) */3 은 날짜 기준이라 매달 1일에 리셋된다. 8/31 다음이 9/1 이라
+    #      실제 간격이 3일이 아니라 1~3일로 불규칙했다.
+    #
+    # 비용은 문제가 아니다. 공개 저장소라 Actions 사용량이 무료이고, FEC
+    # 캐시 키가 ISO 주 단위여서 매일 돌려도 캐시는 주중 내내 살아 있다.
+    # 2026-09 기준 런은 대부분 3~6분이었다.
+    - cron: "0 20 * * *"
   workflow_dispatch:        # Actions 탭에서 손으로도 돌릴 수 있게
 
 # 커밋을 되밀어야 하므로 쓰기 권한이 필요하다.
@@ -108,3 +118,62 @@ jobs:
             git pull --rebase --autostash
             git push
           fi
+
+      # 공개 저장소의 스케줄 워크플로는 저장소에 60일간 활동이 없으면 GitHub 가
+      # 자동으로 비활성화한다. 문제는 위에서 미는 커밋이 github-actions[bot]
+      # 명의라는 것이다 — 봇 푸시로는 이 타이머가 리셋되지 않는다고 널리
+      # 보고돼 있다. GitHub 문서가 "repository activity" 의 정의를 명시하지
+      # 않아 확정은 아니지만, 틀렸을 때의 대가가 크다: 꺼져도 알림이 없어서
+      # 대시보드가 조용히 옛 숫자에 멈춰 선다. 실제로 2026-08 에 로컬
+      # 체크아웃이 한 달 뒤처진 걸 아무도 몰랐던 전례가 있다.
+      #
+      # 그래서 사람 커밋이 45일을 넘기면 이 잡을 일부러 실패시킨다. 실패하면
+      # GitHub 가 저장소 소유자에게 메일을 보내므로 조용한 고장이 시끄러운
+      # 고장이 된다. 60일이 아니라 45일로 잡은 건 대응할 시간을 벌기 위해서다.
+      #
+      # 데이터 커밋 *뒤에* 두었으므로 이 스텝이 실패해도 갱신 자체는 이미
+      # 끝나 있다. 경고 메일을 받으면 사람 계정으로 아무 커밋이나 푸시하면
+      # 타이머가 리셋된다.
+      #
+      # git log 대신 API 를 쓰는 이유: checkout 이 fetch-depth 1 이라 로컬에는
+      # 커밋이 하나뿐이고, 전체 이력을 받게 바꾸면 history/ 스냅샷 때문에
+      # 클론이 무거워진다.
+      - name: Keepalive canary
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<'EOF'
+          import datetime, json, os, sys, urllib.request
+
+          BOT = "github-actions[bot]"
+          LIMIT_DAYS = 45
+
+          url = ("https://api.github.com/repos/%s/commits?per_page=100"
+                 % os.environ["GITHUB_REPOSITORY"])
+          req = urllib.request.Request(url, headers={
+              "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+              "Accept": "application/vnd.github+json"})
+          commits = json.load(urllib.request.urlopen(req))
+
+          now = datetime.datetime.now(datetime.timezone.utc)
+          for c in commits:
+              login = ((c.get("author") or {}).get("login")) or ""
+              if login == BOT:
+                  continue
+              when = c["commit"]["committer"]["date"]
+              t = datetime.datetime.fromisoformat(when.replace("Z", "+00:00"))
+              days = (now - t).days
+              print("마지막 사람 커밋: %s (%s) — %d일 경과" % (when, login, days))
+              if days >= LIMIT_DAYS:
+                  print("::error::저장소 무활동 %d일. 60일이 되면 이 스케줄 "
+                        "워크플로가 자동 비활성화되고 대시보드 갱신이 알림 "
+                        "없이 멈춘다. 사람 계정으로 아무 커밋이나 푸시할 것."
+                        % days)
+                  sys.exit(1)
+              print("여유 %d일" % (LIMIT_DAYS - days))
+              break
+          else:
+              print("::error::최근 100커밋이 전부 봇이다. 이미 위험 구간일 수 "
+                    "있으니 사람 계정으로 커밋을 푸시할 것.")
+              sys.exit(1)
+          EOF
