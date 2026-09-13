@@ -115,8 +115,30 @@ jobs:
             git commit -m "data: 자동 갱신 $(date -u +%Y-%m-%d)"
             # 사람이 그 사이 여론조사를 커밋했을 수 있다. 우리 커밋은 데이터
             # 파일만 건드리므로 rebase 로 얹으면 충돌 없이 올라간다.
-            git pull --rebase --autostash
-            git push
+            #
+            # 재시도하는 이유: 2026-09-13 09:22 UTC 에 push 가
+            # "remote: Internal Server Error" 로 거부됐다. 권한 문제가 아니라
+            # GitHub 쪽 장애였고(같은 시각 상태 페이지가 Partial System
+            # Outage), 2분 뒤 같은 저장소로의 다른 push 는 성공했다. 무인으로
+            # 도는 잡이 이런 일시적 오류 한 번에 하루치 갱신을 잃을 이유가
+            # 없다. if 로 감싼 건 `bash -e` 아래에서 실패가 즉시 잡을 죽이지
+            # 않게 하기 위해서다.
+            pushed=0
+            for attempt in 1 2 3 4 5; do
+              if git pull --rebase --autostash && git push; then
+                pushed=1
+                break
+              fi
+              wait=$(( attempt * 30 ))
+              echo "push 실패 (${attempt}/5) — ${wait}초 후 재시도"
+              sleep "$wait"
+            done
+            if [ "$pushed" != 1 ]; then
+              echo "::error::5회 재시도 후에도 push 에 실패했다. GitHub 상태 "
+              echo "::error::페이지(githubstatus.com)를 확인하고 Actions 탭에서 "
+              echo "::error::이 워크플로를 손으로 다시 돌릴 것."
+              exit 1
+            fi
           fi
 
       # 2026-09-13: Render 가 2026-08-12 이후 재배포를 멈춘 채였다. Actions 는
