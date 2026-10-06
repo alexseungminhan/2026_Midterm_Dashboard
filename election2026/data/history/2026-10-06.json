@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-06T01:09:22.009523+00:00",
+    "generated_at": "2026-10-06T23:35:19.124554+00:00",
     "schema_version": "3.4.0",
     "sources_used": [
       "econ_claims",
@@ -30,27 +30,27 @@
     {
       "outcome": "Democrats Sweep",
       "label": "민주당 상·하원 석권",
-      "prob": 0.6501
+      "prob": 0.6408
     },
     {
       "outcome": "D Senate, R House",
       "label": "상원 민주 / 하원 공화",
-      "prob": 0.0109
+      "prob": 0.0089
     },
     {
       "outcome": "R Senate, D House",
       "label": "상원 공화 / 하원 민주",
-      "prob": 0.263
+      "prob": 0.2732
     },
     {
       "outcome": "Republicans Sweep",
       "label": "공화당 상·하원 석권",
-      "prob": 0.0744
+      "prob": 0.0745
     },
     {
       "outcome": "Other",
       "label": "기타",
-      "prob": 0.0015
+      "prob": 0.0025
     }
   ],
   "chambers": {
@@ -58,88 +58,88 @@
       "label": "상원",
       "total_seats": 100,
       "n_races_shown": 10,
-      "prob_dem_control": 0.655,
-      "control_volume": 5849663.752068001,
-      "expected_dem_seats": 51.3,
-      "expected_rep_seats": 48.7,
+      "prob_dem_control": 0.645,
+      "control_volume": 5925338.018496003,
+      "expected_dem_seats": 51.2,
+      "expected_rep_seats": 48.8,
       "favourite_dem_seats": 52,
       "favourite_rep_seats": 48,
-      "seats_volume": 3059311.304758,
+      "seats_volume": 3060171.238861,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "≤47",
-          "prob": 0.3752,
+          "prob": 0.3691,
           "rep_low": null,
           "rep_high": 47.0,
           "midpoint": 46.5
         },
         {
           "label": "48",
-          "prob": 0.1657,
+          "prob": 0.1678,
           "rep_low": 48.0,
           "rep_high": 48.0,
           "midpoint": 48.0
         },
         {
           "label": "49",
-          "prob": 0.1316,
+          "prob": 0.1294,
           "rep_low": 49.0,
           "rep_high": 49.0,
           "midpoint": 49.0
         },
         {
           "label": "50",
-          "prob": 0.1218,
+          "prob": 0.1151,
           "rep_low": 50.0,
           "rep_high": 50.0,
           "midpoint": 50.0
         },
         {
           "label": "51",
-          "prob": 0.078,
+          "prob": 0.0767,
           "rep_low": 51.0,
           "rep_high": 51.0,
           "midpoint": 51.0
         },
         {
           "label": "52",
-          "prob": 0.0443,
+          "prob": 0.0503,
           "rep_low": 52.0,
           "rep_high": 52.0,
           "midpoint": 52.0
         },
         {
           "label": "53",
-          "prob": 0.0327,
+          "prob": 0.036,
           "rep_low": 53.0,
           "rep_high": 53.0,
           "midpoint": 53.0
         },
         {
           "label": "54",
-          "prob": 0.019,
+          "prob": 0.0235,
           "rep_low": 54.0,
           "rep_high": 54.0,
           "midpoint": 54.0
         },
         {
           "label": "55",
-          "prob": 0.0141,
+          "prob": 0.0149,
           "rep_low": 55.0,
           "rep_high": 55.0,
           "midpoint": 55.0
         },
         {
           "label": "56",
-          "prob": 0.0112,
+          "prob": 0.0105,
           "rep_low": 56.0,
           "rep_high": 56.0,
           "midpoint": 56.0
         },
         {
           "label": "57+",
-          "prob": 0.0063,
+          "prob": 0.0067,
           "rep_low": 57.0,
           "rep_high": null,
           "midpoint": 57.5
@@ -150,81 +150,81 @@
       "label": "하원",
       "total_seats": 435,
       "n_races_shown": 10,
-      "prob_dem_control": 0.925,
-      "control_volume": 13835514.093971005,
-      "expected_dem_seats": 235.3,
-      "expected_rep_seats": 199.7,
+      "prob_dem_control": 0.9158,
+      "control_volume": 14340142.326251,
+      "expected_dem_seats": 235.6,
+      "expected_rep_seats": 199.4,
       "favourite_dem_seats": 234,
       "favourite_rep_seats": 200,
-      "seats_volume": 317617.34164500004,
+      "seats_volume": 317703.91164500004,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "Below 190",
-          "prob": 0.2853,
+          "prob": 0.2735,
           "rep_low": null,
           "rep_high": 190.0,
           "midpoint": 187.5
         },
         {
           "label": "190-194",
-          "prob": 0.1427,
+          "prob": 0.1556,
           "rep_low": 190.0,
           "rep_high": 194.0,
           "midpoint": 192.0
         },
         {
           "label": "195-199",
-          "prob": 0.1379,
+          "prob": 0.1509,
           "rep_low": 195.0,
           "rep_high": 199.0,
           "midpoint": 197.0
         },
         {
           "label": "200-204",
-          "prob": 0.0994,
+          "prob": 0.0962,
           "rep_low": 200.0,
           "rep_high": 204.0,
           "midpoint": 202.0
         },
         {
           "label": "205-209",
-          "prob": 0.1189,
+          "prob": 0.1179,
           "rep_low": 205.0,
           "rep_high": 209.0,
           "midpoint": 207.0
         },
         {
           "label": "210-214",
-          "prob": 0.0984,
+          "prob": 0.0976,
           "rep_low": 210.0,
           "rep_high": 214.0,
           "midpoint": 212.0
         },
         {
           "label": "215-219",
-          "prob": 0.0571,
+          "prob": 0.0561,
           "rep_low": 215.0,
           "rep_high": 219.0,
           "midpoint": 217.0
         },
         {
           "label": "220-224",
-          "prob": 0.0281,
+          "prob": 0.025,
           "rep_low": 220.0,
           "rep_high": 224.0,
           "midpoint": 222.0
         },
         {
           "label": "225-229",
-          "prob": 0.01,
+          "prob": 0.0104,
           "rep_low": 225.0,
           "rep_high": 229.0,
           "midpoint": 227.0
         },
         {
           "label": "230+",
-          "prob": 0.0223,
+          "prob": 0.017,
           "rep_low": 230.0,
           "rep_high": null,
           "midpoint": 232.5
@@ -237,58 +237,58 @@
       "n_races_shown": 10,
       "prob_dem_control": null,
       "control_volume": 0.0,
-      "expected_dem_seats": 26.3,
-      "expected_rep_seats": 23.7,
+      "expected_dem_seats": 26.4,
+      "expected_rep_seats": 23.6,
       "favourite_dem_seats": null,
       "favourite_rep_seats": null,
-      "seats_volume": 701375.5463600002,
+      "seats_volume": 702593.1635030002,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "<22",
-          "prob": 0.2167,
+          "prob": 0.2149,
           "rep_low": null,
           "rep_high": 22.0,
           "midpoint": 21.0
         },
         {
           "label": "22–23",
-          "prob": 0.3276,
+          "prob": 0.3439,
           "rep_low": 22.0,
           "rep_high": 23.0,
           "midpoint": 22.5
         },
         {
           "label": "24–25",
-          "prob": 0.2369,
+          "prob": 0.2633,
           "rep_low": 24.0,
           "rep_high": 25.0,
           "midpoint": 24.5
         },
         {
           "label": "26–27",
-          "prob": 0.1663,
+          "prob": 0.1236,
           "rep_low": 26.0,
           "rep_high": 27.0,
           "midpoint": 26.5
         },
         {
           "label": "28–29",
-          "prob": 0.0353,
+          "prob": 0.0376,
           "rep_low": 28.0,
           "rep_high": 29.0,
           "midpoint": 28.5
         },
         {
           "label": "30–31",
-          "prob": 0.0116,
+          "prob": 0.0107,
           "rep_low": 30.0,
           "rep_high": 31.0,
           "midpoint": 30.5
         },
         {
           "label": "32+",
-          "prob": 0.0055,
+          "prob": 0.0059,
           "rep_low": 32.0,
           "rep_high": null,
           "midpoint": 33.0
@@ -306,15 +306,15 @@
       "title": "Texas Senate Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.645,
-        "volume": 2188995.3929060004,
-        "volume1wk": 624474.545178,
-        "liquidity": 761829.3852,
+        "prob_dem": 0.6485,
+        "volume": 2319488.734596,
+        "volume1wk": 722602.7075090001,
+        "liquidity": 754272.3904,
         "slug": "texas-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0036,
-        "change_7d": 0.04
+        "change_1d": 0.0071,
+        "change_7d": 0.0435
       },
       "candidates": {
         "D": "James Talarico (D)",
@@ -549,15 +549,15 @@
       "title": "Maine Senate Election Winner",
       "rank": 2,
       "betting": {
-        "prob_dem": 0.585,
-        "volume": 2123337.494339001,
-        "volume1wk": 107913.80569000001,
-        "liquidity": 450670.9211,
+        "prob_dem": 0.5792,
+        "volume": 2148200.7456000005,
+        "volume1wk": 125636.052276,
+        "liquidity": 376258.4892,
         "slug": "maine-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": -0.05
+        "change_1d": -0.0058,
+        "change_7d": -0.0558
       },
       "candidates": {
         "D": "Troy Jackson (D)",
@@ -792,15 +792,15 @@
       "title": "Michigan Senate Election Winner",
       "rank": 3,
       "betting": {
-        "prob_dem": 0.735,
-        "volume": 1306503.0421990003,
-        "volume1wk": 158846.565629,
-        "liquidity": 417982.8694,
+        "prob_dem": 0.725,
+        "volume": 1316944.8450059998,
+        "volume1wk": 136163.70154699998,
+        "liquidity": 365749.0562,
         "slug": "michigan-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0064,
-        "change_7d": 0.03
+        "change_1d": -0.0036,
+        "change_7d": 0.02
       },
       "candidates": {
         "D": "Abdul El-Sayed (D)",
@@ -1079,9 +1079,9 @@
       "rank": 4,
       "betting": {
         "prob_dem": 0.9993,
-        "volume": 1124676.6690389996,
-        "volume1wk": 55434.536471,
-        "liquidity": 842015.35859,
+        "volume": 1129054.887809,
+        "volume1wk": 56235.971326,
+        "liquidity": 875064.78756,
         "slug": "alaska-senate-election-winner",
         "unmapped_mass": 0.2726,
         "trustworthy": false,
@@ -1322,9 +1322,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.615,
-        "volume": 1050602.00076,
-        "volume1wk": 217434.46990100003,
-        "liquidity": 515588.7647,
+        "volume": 1053615.4023499996,
+        "volume1wk": 230703.998871,
+        "liquidity": 531255.2087,
         "slug": "ohio-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -1564,15 +1564,15 @@
       "title": "Kansas Senate Election Winner",
       "rank": 6,
       "betting": {
-        "prob_dem": 0.3284,
-        "volume": 762163.3142920001,
-        "volume1wk": 436614.406223,
-        "liquidity": 428221.3275,
+        "prob_dem": 0.3682,
+        "volume": 828891.4512030003,
+        "volume1wk": 501807.4878790001,
+        "liquidity": 371144.6581,
         "slug": "kansas-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": 0.0334
+        "change_1d": 0.0398,
+        "change_7d": 0.0732
       },
       "candidates": {
         "D": "Adam Hamilton (D)",
@@ -1797,9 +1797,9 @@
       "rank": 7,
       "betting": {
         "prob_dem": 0.425,
-        "volume": 729411.8263079999,
-        "volume1wk": 85598.71127799999,
-        "liquidity": 326975.5297,
+        "volume": 732508.5907419998,
+        "volume1wk": 87932.30361299998,
+        "liquidity": 321011.9933,
         "slug": "iowa-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2039,15 +2039,15 @@
       "title": "South Carolina Senate Election Winner",
       "rank": 8,
       "betting": {
-        "prob_dem": 0.145,
-        "volume": 656062.7093610001,
-        "volume1wk": 223077.66122000004,
-        "liquidity": 220019.355,
+        "prob_dem": 0.155,
+        "volume": 661051.909361,
+        "volume1wk": 224690.22407599998,
+        "liquidity": 234503.1461,
         "slug": "south-carolina-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": -0.005
+        "change_1d": 0.01,
+        "change_7d": 0.005
       },
       "candidates": {
         "D": "Annie Andrews (D)",
@@ -2277,11 +2277,11 @@
       "rank": 9,
       "betting": {
         "prob_dem": 0.0014,
-        "volume": 496519.31636500004,
-        "volume1wk": 38692.295347,
-        "liquidity": 386513.66377,
+        "volume": 551332.281097,
+        "volume1wk": 90565.61451100002,
+        "liquidity": 350403.82325,
         "slug": "nebraska-senate-election-winner",
-        "unmapped_mass": 0.2647,
+        "unmapped_mass": 0.2847,
         "trustworthy": false,
         "change_1d": 0.0,
         "change_7d": 0.0007
@@ -2514,15 +2514,15 @@
       "title": "New Hampshire Senate Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.8657,
-        "volume": 308235.46216000005,
-        "volume1wk": 46024.947360000006,
-        "liquidity": 266742.4179,
+        "prob_dem": 0.895,
+        "volume": 314760.491541,
+        "volume1wk": 30488.501159,
+        "liquidity": 233498.3915,
         "slug": "new-hampshire-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.005,
-        "change_7d": 0.0028
+        "change_1d": 0.0343,
+        "change_7d": 0.0321
       },
       "candidates": {
         "D": "Chris Pappas (D)",
@@ -2753,9 +2753,9 @@
       "rank": 1,
       "betting": {
         "prob_dem": 0.0704,
-        "volume": 119518.69651100002,
-        "volume1wk": 242.69957000000002,
-        "liquidity": 103748.4116,
+        "volume": 119518.69651099999,
+        "volume1wk": null,
+        "liquidity": 103667.4022,
         "slug": "va-06-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -2984,15 +2984,15 @@
       "title": "FL-01 House Election Winner",
       "rank": 2,
       "betting": {
-        "prob_dem": 0.0373,
+        "prob_dem": 0.0431,
         "volume": 117995.333461,
         "volume1wk": null,
-        "liquidity": 54978.14642,
+        "liquidity": 51718.40757,
         "slug": "fl-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": 0.0044
+        "change_1d": 0.0058,
+        "change_7d": 0.0102
       },
       "candidates": {
         "D": "Gay Valimont (D)",
@@ -3216,15 +3216,15 @@
       "title": "MS-01 House Election Winner",
       "rank": 3,
       "betting": {
-        "prob_dem": 0.0407,
-        "volume": 117667.50465999999,
-        "volume1wk": null,
-        "liquidity": 97160.56539,
+        "prob_dem": 0.0402,
+        "volume": 117672.55466000001,
+        "volume1wk": 5.05,
+        "liquidity": 97101.69795,
         "slug": "ms-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": 0.0015
+        "change_1d": -0.0005,
+        "change_7d": 0.001
       },
       "candidates": {
         "D": "Cliff Johnson (D)",
@@ -3448,15 +3448,15 @@
       "title": "VA-05 House Election Winner",
       "rank": 4,
       "betting": {
-        "prob_dem": 0.2161,
-        "volume": 112427.932282,
-        "volume1wk": 28976.966647999998,
-        "liquidity": 92497.4234,
+        "prob_dem": 0.2172,
+        "volume": 113343.098933,
+        "volume1wk": 19002.419965,
+        "liquidity": 89227.3796,
         "slug": "va-05-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0011,
-        "change_7d": 0.0131
+        "change_1d": 0.0,
+        "change_7d": 0.0142
       },
       "candidates": {
         "D": "Tom Perriello (D)",
@@ -3681,9 +3681,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.0057,
-        "volume": 105878.80154000001,
-        "volume1wk": 530.86,
-        "liquidity": 85420.92212,
+        "volume": 105883.85154,
+        "volume1wk": 282.89000000000004,
+        "liquidity": 77040.15415,
         "slug": "ok-03-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3913,9 +3913,9 @@
       "rank": 6,
       "betting": {
         "prob_dem": 0.9985,
-        "volume": 103167.09858800001,
-        "volume1wk": null,
-        "liquidity": 52557.82614,
+        "volume": 103172.138588,
+        "volume1wk": 7.16,
+        "liquidity": 52843.03534,
         "slug": "wi-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4144,15 +4144,15 @@
       "title": "WV-02 House Election Winner",
       "rank": 7,
       "betting": {
-        "prob_dem": 0.0345,
+        "prob_dem": 0.033,
         "volume": 100355.21859199999,
-        "volume1wk": 255.86428600000002,
-        "liquidity": 49444.81477,
+        "volume1wk": null,
+        "liquidity": 49056.59628,
         "slug": "wv-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0034,
-        "change_7d": 0.003
+        "change_1d": 0.0019,
+        "change_7d": 0.0015
       },
       "candidates": {
         "D": "Ace Parsi (D)",
@@ -4377,9 +4377,9 @@
       "rank": 8,
       "betting": {
         "prob_dem": 0.9944,
-        "volume": 92935.08370499998,
-        "volume1wk": 823.554286,
-        "liquidity": 86440.76854,
+        "volume": 93335.08370499998,
+        "volume1wk": 5650.700914,
+        "liquidity": 86724.68363,
         "slug": "al-07-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4609,9 +4609,9 @@
       "rank": 9,
       "betting": {
         "prob_dem": 0.81,
-        "volume": 87841.36094199997,
-        "volume1wk": 24718.236466999995,
-        "liquidity": 93717.6884,
+        "volume": 87875.700942,
+        "volume1wk": 9286.789325000002,
+        "liquidity": 87070.6075,
         "slug": "oh-07-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4840,14 +4840,14 @@
       "title": "TN-04 House Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.0159,
-        "volume": 83507.45148999999,
-        "volume1wk": null,
-        "liquidity": 57278.48085,
+        "prob_dem": 0.0168,
+        "volume": 83774.99892799999,
+        "volume1wk": 4042.5352770000004,
+        "liquidity": 82962.05625,
         "slug": "tn-04-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0001,
+        "change_1d": 0.001,
         "change_7d": null
       },
       "candidates": {
@@ -5072,15 +5072,15 @@
       "title": "California Governor Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.9584,
-        "volume": 41670790.30493001,
-        "volume1wk": 132493.76471200003,
-        "liquidity": 7056205.19627,
+        "prob_dem": 0.9613,
+        "volume": 41681249.49248201,
+        "volume1wk": 133216.58104100003,
+        "liquidity": 7102839.72137,
         "slug": "california-governor-election-2026",
         "unmapped_mass": 0.0025,
         "trustworthy": true,
-        "change_1d": 0.0075,
-        "change_7d": 0.0051
+        "change_1d": 0.0104,
+        "change_7d": 0.008
       },
       "candidates": {
         "D": "Xavier Becerra",
@@ -5309,15 +5309,15 @@
       "title": "Alaska Governor Election Winner",
       "rank": 2,
       "betting": {
-        "prob_dem": 0.7634,
-        "volume": 1400200.8632619998,
-        "volume1wk": 14293.651886,
-        "liquidity": 1177843.08262,
+        "prob_dem": 0.7711,
+        "volume": 1406203.5540819997,
+        "volume1wk": 20929.671504,
+        "liquidity": 1253115.65321,
         "slug": "alaska-governor-election-winner",
-        "unmapped_mass": 0.0025,
+        "unmapped_mass": 0.0024,
         "trustworthy": true,
-        "change_1d": -0.0187,
-        "change_7d": -0.0137
+        "change_1d": -0.011,
+        "change_7d": -0.006
       },
       "candidates": {
         "D": "Jonathan Kreiss-Tomkins",
@@ -5547,9 +5547,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.8131,
-        "volume": 703072.2922849999,
-        "volume1wk": 85648.007593,
-        "liquidity": 232799.4044,
+        "volume": 704611.034138,
+        "volume1wk": 87176.749446,
+        "liquidity": 241061.4051,
         "slug": "wisconsin-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -5748,12 +5748,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.362,
+              "z": 0.361,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.6808865420690613,
-              "rep_value": 0.31911345793093865,
+              "dem_value": 0.6804117468967605,
+              "rep_value": 0.31958825310323946,
               "raw_value": null
             },
             {
@@ -5789,15 +5789,15 @@
       "title": "Texas Governor Election Winner",
       "rank": 4,
       "betting": {
-        "prob_dem": 0.2738,
-        "volume": 446949.6268580001,
-        "volume1wk": 131943.725911,
-        "liquidity": 281868.61396,
+        "prob_dem": 0.2754,
+        "volume": 470579.6058750001,
+        "volume1wk": 152110.903531,
+        "liquidity": 203253.90183,
         "slug": "texas-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0204,
-        "change_7d": 0.1149
+        "change_1d": 0.022,
+        "change_7d": 0.1165
       },
       "candidates": {
         "D": "Gina Hinojosa (D)",
@@ -6022,9 +6022,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.555,
-        "volume": 338794.14870200003,
-        "volume1wk": 162599.207236,
-        "liquidity": 284917.3648,
+        "volume": 344070.4618010001,
+        "volume1wk": 167533.15819200003,
+        "liquidity": 244154.6794,
         "slug": "nevada-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6218,12 +6218,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.162,
+              "z": -0.167,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.4192419825072886,
-              "rep_value": 0.5807580174927114,
+              "dem_value": 0.416260162601626,
+              "rep_value": 0.583739837398374,
               "raw_value": null
             },
             {
@@ -6288,15 +6288,15 @@
       "title": "Ohio Governor Election Winner",
       "rank": 6,
       "betting": {
-        "prob_dem": 0.675,
-        "volume": 282456.58983799996,
-        "volume1wk": 41742.995444,
-        "liquidity": 176000.335,
+        "prob_dem": 0.6818,
+        "volume": 285612.09411500004,
+        "volume1wk": 35313.318873000004,
+        "liquidity": 183825.4765,
         "slug": "ohio-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0083,
-        "change_7d": 0.0364
+        "change_1d": 0.0151,
+        "change_7d": 0.0432
       },
       "candidates": {
         "D": "Amy Acton (D)",
@@ -6490,12 +6490,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.235,
+              "z": -0.255,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.3824211204121056,
-              "rep_value": 0.6175788795878944,
+              "dem_value": 0.3726391737992502,
+              "rep_value": 0.6273608262007498,
               "raw_value": null
             },
             {
@@ -6561,9 +6561,9 @@
       "rank": 7,
       "betting": {
         "prob_dem": 0.235,
-        "volume": 261779.565245,
-        "volume1wk": 25329.779803,
-        "liquidity": 228564.9278,
+        "volume": 266560.83505299996,
+        "volume1wk": 29942.595065,
+        "liquidity": 275139.1645,
         "slug": "florida-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6798,15 +6798,15 @@
       "title": "Michigan Governor Election Winner",
       "rank": 8,
       "betting": {
-        "prob_dem": 0.9476,
-        "volume": 245301.393858,
-        "volume1wk": 36260.400804,
-        "liquidity": 174917.51882,
+        "prob_dem": 0.9455,
+        "volume": 245301.39385799997,
+        "volume1wk": null,
+        "liquidity": 147765.5112,
         "slug": "michigan-governor-winner-2026",
         "unmapped_mass": 0.0005,
         "trustworthy": true,
-        "change_1d": 0.0018,
-        "change_7d": 0.0133
+        "change_1d": -0.0003,
+        "change_7d": 0.0112
       },
       "candidates": {
         "D": "Jocelyn Benson (D)",
@@ -7041,14 +7041,14 @@
       "title": "Vermont Governor Election Winner",
       "rank": 9,
       "betting": {
-        "prob_dem": 0.23,
-        "volume": 170993.751449,
-        "volume1wk": 69749.577539,
-        "liquidity": 228830.20671,
+        "prob_dem": 0.2396,
+        "volume": 171963.93032800002,
+        "volume1wk": 70694.736418,
+        "liquidity": 180900.80026,
         "slug": "vermont-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0035,
+        "change_1d": 0.0131,
         "change_7d": null
       },
       "candidates": {
@@ -7273,15 +7273,15 @@
       "title": "New York Governor Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.9605,
-        "volume": 162818.57399399998,
-        "volume1wk": 35375.195921,
-        "liquidity": 174798.69636,
+        "prob_dem": 0.9654,
+        "volume": 163143.263994,
+        "volume1wk": 975.8,
+        "liquidity": 167701.6952,
         "slug": "new-york-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0007,
-        "change_7d": 0.0055
+        "change_1d": 0.0056,
+        "change_7d": 0.0104
       },
       "candidates": {
         "D": "Kathy Hochul (D)",
@@ -7504,6 +7504,14 @@
   ],
   "movers": [
     {
+      "race_id": "sen-ks",
+      "label": "캔자스 상원",
+      "chamber": "senate",
+      "prob_dem": 0.3682,
+      "change": 0.0398,
+      "window": "1d"
+    },
+    {
       "race_id": "gov-nv",
       "label": "네바다 주지사",
       "chamber": "governor",
@@ -7512,59 +7520,51 @@
       "window": "1d"
     },
     {
-      "race_id": "gov-tx",
-      "label": "텍사스 주지사",
-      "chamber": "governor",
-      "prob_dem": 0.2738,
-      "change": 0.0204,
+      "race_id": "sen-nh",
+      "label": "뉴햄프셔 상원",
+      "chamber": "senate",
+      "prob_dem": 0.895,
+      "change": 0.0343,
       "window": "1d"
     },
     {
-      "race_id": "gov-ak",
-      "label": "알래스카 주지사",
+      "race_id": "gov-tx",
+      "label": "텍사스 주지사",
       "chamber": "governor",
-      "prob_dem": 0.7634,
-      "change": -0.0187,
+      "prob_dem": 0.2754,
+      "change": 0.022,
       "window": "1d"
     },
     {
       "race_id": "gov-oh",
       "label": "오하이오 주지사",
       "chamber": "governor",
-      "prob_dem": 0.675,
-      "change": 0.0083,
+      "prob_dem": 0.6818,
+      "change": 0.0151,
+      "window": "1d"
+    },
+    {
+      "race_id": "gov-vt",
+      "label": "버몬트 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.2396,
+      "change": 0.0131,
+      "window": "1d"
+    },
+    {
+      "race_id": "gov-ak",
+      "label": "알래스카 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.7711,
+      "change": -0.011,
       "window": "1d"
     },
     {
       "race_id": "gov-ca",
       "label": "캘리포니아 주지사",
       "chamber": "governor",
-      "prob_dem": 0.9584,
-      "change": 0.0075,
-      "window": "1d"
-    },
-    {
-      "race_id": "sen-mi",
-      "label": "미시간 상원",
-      "chamber": "senate",
-      "prob_dem": 0.735,
-      "change": 0.0064,
-      "window": "1d"
-    },
-    {
-      "race_id": "sen-ia",
-      "label": "아이오와 상원",
-      "chamber": "senate",
-      "prob_dem": 0.425,
-      "change": 0.0058,
-      "window": "1d"
-    },
-    {
-      "race_id": "sen-nh",
-      "label": "뉴햄프셔 상원",
-      "chamber": "senate",
-      "prob_dem": 0.8657,
-      "change": 0.005,
+      "prob_dem": 0.9613,
+      "change": 0.0104,
       "window": "1d"
     }
   ]
