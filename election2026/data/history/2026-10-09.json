@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-10-09T00:12:11.943368+00:00",
+    "generated_at": "2026-10-09T23:51:25.795917+00:00",
     "schema_version": "3.4.0",
     "sources_used": [
       "econ_claims",
@@ -30,27 +30,27 @@
     {
       "outcome": "Democrats Sweep",
       "label": "민주당 상·하원 석권",
-      "prob": 0.6244
+      "prob": 0.6116
     },
     {
       "outcome": "D Senate, R House",
       "label": "상원 민주 / 하원 공화",
-      "prob": 0.0085
+      "prob": 0.009
     },
     {
       "outcome": "R Senate, D House",
       "label": "상원 공화 / 하원 민주",
-      "prob": 0.2797
+      "prob": 0.2934
     },
     {
       "outcome": "Republicans Sweep",
       "label": "공화당 상·하원 석권",
-      "prob": 0.0849
+      "prob": 0.0845
     },
     {
       "outcome": "Other",
       "label": "기타",
-      "prob": 0.0025
+      "prob": 0.0015
     }
   ],
   "chambers": {
@@ -58,60 +58,60 @@
       "label": "상원",
       "total_seats": 100,
       "n_races_shown": 10,
-      "prob_dem_control": 0.6378,
-      "control_volume": 6108205.359127999,
+      "prob_dem_control": 0.6313,
+      "control_volume": 6223854.496421,
       "expected_dem_seats": 51.2,
       "expected_rep_seats": 48.8,
       "favourite_dem_seats": 52,
       "favourite_rep_seats": 48,
-      "seats_volume": 3069910.579286,
+      "seats_volume": 3070698.655094,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "≤47",
-          "prob": 0.3736,
+          "prob": 0.3667,
           "rep_low": null,
           "rep_high": 47.0,
           "midpoint": 46.5
         },
         {
           "label": "48",
-          "prob": 0.1698,
+          "prob": 0.1714,
           "rep_low": 48.0,
           "rep_high": 48.0,
           "midpoint": 48.0
         },
         {
           "label": "49",
-          "prob": 0.1262,
+          "prob": 0.1238,
           "rep_low": 49.0,
           "rep_high": 49.0,
           "midpoint": 49.0
         },
         {
           "label": "50",
-          "prob": 0.1164,
+          "prob": 0.1095,
           "rep_low": 50.0,
           "rep_high": 50.0,
           "midpoint": 50.0
         },
         {
           "label": "51",
-          "prob": 0.0728,
+          "prob": 0.0714,
           "rep_low": 51.0,
           "rep_high": 51.0,
           "midpoint": 51.0
         },
         {
           "label": "52",
-          "prob": 0.0509,
+          "prob": 0.06,
           "rep_low": 52.0,
           "rep_high": 52.0,
           "midpoint": 52.0
         },
         {
           "label": "53",
-          "prob": 0.0359,
+          "prob": 0.0433,
           "rep_low": 53.0,
           "rep_high": 53.0,
           "midpoint": 53.0
@@ -125,21 +125,21 @@
         },
         {
           "label": "55",
-          "prob": 0.0155,
+          "prob": 0.0152,
           "rep_low": 55.0,
           "rep_high": 55.0,
           "midpoint": 55.0
         },
         {
           "label": "56",
-          "prob": 0.0092,
+          "prob": 0.009,
           "rep_low": 56.0,
           "rep_high": 56.0,
           "midpoint": 56.0
         },
         {
           "label": "57+",
-          "prob": 0.0058,
+          "prob": 0.0057,
           "rep_low": 57.0,
           "rep_high": null,
           "midpoint": 57.5
@@ -151,80 +151,80 @@
       "total_seats": 435,
       "n_races_shown": 10,
       "prob_dem_control": 0.905,
-      "control_volume": 15309371.056756997,
-      "expected_dem_seats": 234.4,
-      "expected_rep_seats": 200.6,
+      "control_volume": 15708275.459961,
+      "expected_dem_seats": 234.3,
+      "expected_rep_seats": 200.7,
       "favourite_dem_seats": 234,
       "favourite_rep_seats": 200,
-      "seats_volume": 318448.840313,
+      "seats_volume": 319622.015377,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "Below 190",
-          "prob": 0.2594,
+          "prob": 0.2652,
           "rep_low": null,
           "rep_high": 190.0,
           "midpoint": 187.5
         },
         {
           "label": "190-194",
-          "prob": 0.1419,
+          "prob": 0.135,
           "rep_low": 190.0,
           "rep_high": 194.0,
           "midpoint": 192.0
         },
         {
           "label": "195-199",
-          "prob": 0.1322,
+          "prob": 0.1302,
           "rep_low": 195.0,
           "rep_high": 199.0,
           "midpoint": 197.0
         },
         {
           "label": "200-204",
-          "prob": 0.1072,
+          "prob": 0.1075,
           "rep_low": 200.0,
           "rep_high": 204.0,
           "midpoint": 202.0
         },
         {
           "label": "205-209",
-          "prob": 0.1126,
+          "prob": 0.1109,
           "rep_low": 205.0,
           "rep_high": 209.0,
           "midpoint": 207.0
         },
         {
           "label": "210-214",
-          "prob": 0.1072,
+          "prob": 0.1051,
           "rep_low": 210.0,
           "rep_high": 214.0,
           "midpoint": 212.0
         },
         {
           "label": "215-219",
-          "prob": 0.0646,
+          "prob": 0.0632,
           "rep_low": 215.0,
           "rep_high": 219.0,
           "midpoint": 217.0
         },
         {
           "label": "220-224",
-          "prob": 0.0357,
+          "prob": 0.0366,
           "rep_low": 220.0,
           "rep_high": 224.0,
           "midpoint": 222.0
         },
         {
           "label": "225-229",
-          "prob": 0.0162,
+          "prob": 0.0236,
           "rep_low": 225.0,
           "rep_high": 229.0,
           "midpoint": 227.0
         },
         {
           "label": "230+",
-          "prob": 0.023,
+          "prob": 0.0227,
           "rep_low": 230.0,
           "rep_high": null,
           "midpoint": 232.5
@@ -237,44 +237,44 @@
       "n_races_shown": 10,
       "prob_dem_control": null,
       "control_volume": 0.0,
-      "expected_dem_seats": 26.6,
-      "expected_rep_seats": 23.4,
+      "expected_dem_seats": 26.3,
+      "expected_rep_seats": 23.7,
       "favourite_dem_seats": null,
       "favourite_rep_seats": null,
-      "seats_volume": 704303.732817,
+      "seats_volume": 704638.045568,
       "expectation_is_approximate": true,
       "seat_buckets": [
         {
           "label": "<22",
-          "prob": 0.2478,
+          "prob": 0.2128,
           "rep_low": null,
           "rep_high": 22.0,
           "midpoint": 21.0
         },
         {
           "label": "22–23",
-          "prob": 0.3158,
+          "prob": 0.3095,
           "rep_low": 22.0,
           "rep_high": 23.0,
           "midpoint": 22.5
         },
         {
           "label": "24–25",
-          "prob": 0.277,
+          "prob": 0.2563,
           "rep_low": 24.0,
           "rep_high": 25.0,
           "midpoint": 24.5
         },
         {
           "label": "26–27",
-          "prob": 0.1215,
+          "prob": 0.1838,
           "rep_low": 26.0,
           "rep_high": 27.0,
           "midpoint": 26.5
         },
         {
           "label": "28–29",
-          "prob": 0.0248,
+          "prob": 0.0247,
           "rep_low": 28.0,
           "rep_high": 29.0,
           "midpoint": 28.5
@@ -306,15 +306,15 @@
       "title": "Texas Senate Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.635,
-        "volume": 2710242.181084,
-        "volume1wk": 1002074.866278,
-        "liquidity": 643953.333,
+        "prob_dem": 0.625,
+        "volume": 3005471.3648719997,
+        "volume1wk": 1256599.5715980006,
+        "liquidity": 814085.4587,
         "slug": "texas-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0266,
-        "change_7d": -0.01
+        "change_1d": -0.0366,
+        "change_7d": -0.02
       },
       "candidates": {
         "D": "James Talarico (D)",
@@ -344,13 +344,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -45.033,
+              "z": -37.705,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -45.033
+              "raw_value": -37.705
             },
             {
               "variable": "econ_coincident",
@@ -549,15 +549,15 @@
       "title": "Maine Senate Election Winner",
       "rank": 2,
       "betting": {
-        "prob_dem": 0.5693,
-        "volume": 2170688.959681,
-        "volume1wk": 118796.16083800003,
-        "liquidity": 394761.7,
+        "prob_dem": 0.5792,
+        "volume": 2196776.870229001,
+        "volume1wk": 121748.40847600003,
+        "liquidity": 361858.0265,
         "slug": "maine-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0057,
-        "change_7d": -0.0216
+        "change_1d": 0.0042,
+        "change_7d": -0.0117
       },
       "candidates": {
         "D": "Troy Jackson (D)",
@@ -587,13 +587,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -8.523,
+              "z": -10.249,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -8.523
+              "raw_value": -10.249
             },
             {
               "variable": "econ_coincident",
@@ -792,15 +792,15 @@
       "title": "Michigan Senate Election Winner",
       "rank": 3,
       "betting": {
-        "prob_dem": 0.7079,
-        "volume": 1410479.0889600003,
-        "volume1wk": 171618.9874079998,
-        "liquidity": 375210.1614,
+        "prob_dem": 0.675,
+        "volume": 1521204.843616,
+        "volume1wk": 272216.4350609997,
+        "liquidity": 380110.5856,
         "slug": "michigan-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0099,
-        "change_7d": -0.0171
+        "change_1d": -0.0428,
+        "change_7d": -0.05
       },
       "candidates": {
         "D": "Abdul El-Sayed (D)",
@@ -830,13 +830,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -17.068,
+              "z": -15.66,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -17.068
+              "raw_value": -15.66
             },
             {
               "variable": "econ_coincident",
@@ -1079,9 +1079,9 @@
       "rank": 4,
       "betting": {
         "prob_dem": 0.9993,
-        "volume": 1176291.0590279999,
-        "volume1wk": 97199.135808,
-        "liquidity": 775902.57921,
+        "volume": 1181321.3749910002,
+        "volume1wk": 93183.335066,
+        "liquidity": 760423.88859,
         "slug": "alaska-senate-election-winner",
         "unmapped_mass": 0.2653,
         "trustworthy": false,
@@ -1116,13 +1116,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -7.449,
+              "z": -10.302,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -7.449
+              "raw_value": -10.302
             },
             {
               "variable": "econ_coincident",
@@ -1321,15 +1321,15 @@
       "title": "Ohio Senate Election Winner",
       "rank": 5,
       "betting": {
-        "prob_dem": 0.615,
-        "volume": 1105232.681264,
-        "volume1wk": 114784.11013499995,
-        "liquidity": 578585.4217,
+        "prob_dem": 0.6188,
+        "volume": 1128583.3853800003,
+        "volume1wk": 114149.53458600001,
+        "liquidity": 523665.4258,
         "slug": "ohio-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": 0.014
+        "change_1d": 0.0038,
+        "change_7d": 0.0178
       },
       "candidates": {
         "D": "Sherrod Brown (D)",
@@ -1359,13 +1359,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -6.492,
+              "z": -6.516,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -6.492
+              "raw_value": -6.516
             },
             {
               "variable": "econ_coincident",
@@ -1564,15 +1564,15 @@
       "title": "Kansas Senate Election Winner",
       "rank": 6,
       "betting": {
-        "prob_dem": 0.385,
-        "volume": 851482.1616080002,
-        "volume1wk": 379141.33152900013,
-        "liquidity": 328551.8154,
+        "prob_dem": 0.3788,
+        "volume": 857652.6430639998,
+        "volume1wk": 316271.86484900006,
+        "liquidity": 389097.1576,
         "slug": "kansas-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.03,
-        "change_7d": 0.1
+        "change_1d": 0.0238,
+        "change_7d": 0.0938
       },
       "candidates": {
         "D": "Adam Hamilton (D)",
@@ -1597,13 +1597,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -17.35,
+              "z": -20.474,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -17.35
+              "raw_value": -20.474
             },
             {
               "variable": "econ_coincident",
@@ -1796,15 +1796,15 @@
       "title": "Iowa Senate Election Winner",
       "rank": 7,
       "betting": {
-        "prob_dem": 0.445,
-        "volume": 799970.1250309999,
-        "volume1wk": 124894.545588,
-        "liquidity": 415946.6905,
+        "prob_dem": 0.4307,
+        "volume": 830319.481934,
+        "volume1wk": 124070.96415200004,
+        "liquidity": 446329.7611,
         "slug": "iowa-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.01,
-        "change_7d": 0.03
+        "change_1d": -0.0243,
+        "change_7d": 0.0157
       },
       "candidates": {
         "D": "Josh Turek (D)",
@@ -1834,13 +1834,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -6.763,
+              "z": -2.953,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -6.763
+              "raw_value": -2.953
             },
             {
               "variable": "econ_coincident",
@@ -2039,15 +2039,15 @@
       "title": "South Carolina Senate Election Winner",
       "rank": 8,
       "betting": {
-        "prob_dem": 0.1535,
-        "volume": 721298.8201239998,
-        "volume1wk": 214158.9057139996,
-        "liquidity": 328689.8872,
+        "prob_dem": 0.155,
+        "volume": 740889.3638439999,
+        "volume1wk": 215744.1639179996,
+        "liquidity": 336092.224,
         "slug": "south-carolina-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0015,
-        "change_7d": 0.0185
+        "change_1d": 0.0,
+        "change_7d": 0.02
       },
       "candidates": {
         "D": "Annie Andrews (D)",
@@ -2077,13 +2077,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -13.194,
+              "z": -15.092,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -13.194
+              "raw_value": -15.092
             },
             {
               "variable": "econ_coincident",
@@ -2277,9 +2277,9 @@
       "rank": 9,
       "betting": {
         "prob_dem": 0.0014,
-        "volume": 565338.0094000001,
-        "volume1wk": 86830.132235,
-        "liquidity": 409518.62696,
+        "volume": 571154.3013159999,
+        "volume1wk": 83329.80907699997,
+        "liquidity": 372858.40395,
         "slug": "nebraska-senate-election-winner",
         "unmapped_mass": 0.2847,
         "trustworthy": false,
@@ -2298,24 +2298,24 @@
           "question": "주 경제가 좋아지고 있나, 나빠지고 있나?",
           "detail": "주 실업수당 청구·실업률·경기동행지수를 그 주의 과거 수치와 비교해 최근 몇 달의 방향을 낸다. 좋아지면 책임지는 쪽에 유리하게 읽는데, 그 대상이 직위마다 다르다 — 상·하원은 대통령 정당(현재 공화당), 주지사는 그 자리를 쥔 정당이다. 그래서 같은 주라도 상원과 주지사의 부호가 반대로 나온다.",
           "directional": true,
-          "lean": "N",
+          "lean": "R",
           "level": null,
-          "z": 0.0,
-          "strength": 0,
-          "shift_pp": 0.0,
+          "z": -0.667,
+          "strength": 1,
+          "shift_pp": -3.3,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 11.16,
+              "z": -30.916,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": 11.16
+              "raw_value": -30.916
             },
             {
               "variable": "econ_coincident",
@@ -2514,15 +2514,15 @@
       "title": "New Hampshire Senate Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.89,
-        "volume": 319682.5542210001,
-        "volume1wk": 24297.337769,
-        "liquidity": 184293.5968,
+        "prob_dem": 0.8905,
+        "volume": 319943.57533100015,
+        "volume1wk": 24225.637963,
+        "liquidity": 177299.8309,
         "slug": "new-hampshire-senate-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0045,
-        "change_7d": 0.0264
+        "change_1d": -0.004,
+        "change_7d": 0.0269
       },
       "candidates": {
         "D": "Chris Pappas (D)",
@@ -2547,13 +2547,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -9.709,
+              "z": -13.772,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -9.709
+              "raw_value": -13.772
             },
             {
               "variable": "econ_coincident",
@@ -2752,15 +2752,15 @@
       "title": "VA-06 House Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.0653,
-        "volume": 120300.69651099999,
-        "volume1wk": 259.34000000000003,
-        "liquidity": 88510.8528,
+        "prob_dem": 0.0657,
+        "volume": 120300.696511,
+        "volume1wk": null,
+        "liquidity": 93167.3788,
         "slug": "va-06-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": -0.0047
+        "change_1d": 0.0004,
+        "change_7d": -0.0043
       },
       "candidates": {
         "D": "Beth Macy (D)",
@@ -2785,13 +2785,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -18.465,
+              "z": -18.24,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -18.465
+              "raw_value": -18.24
             },
             {
               "variable": "econ_coincident",
@@ -2985,9 +2985,9 @@
       "rank": 2,
       "betting": {
         "prob_dem": 0.0354,
-        "volume": 118002.62512799997,
-        "volume1wk": 7.291667,
-        "liquidity": 47826.87071,
+        "volume": 118002.62512799999,
+        "volume1wk": null,
+        "liquidity": 56136.72611,
         "slug": "fl-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3017,13 +3017,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -9.899,
+              "z": -11.784,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -9.899
+              "raw_value": -11.784
             },
             {
               "variable": "econ_coincident",
@@ -3217,9 +3217,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.0405,
-        "volume": 117731.89112599999,
-        "volume1wk": 64.386466,
-        "liquidity": 85274.936,
+        "volume": 117731.891126,
+        "volume1wk": null,
+        "liquidity": 93153.33344,
         "slug": "ms-01-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3249,13 +3249,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -0.83,
+              "z": -4.802,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -0.83
+              "raw_value": -4.802
             },
             {
               "variable": "econ_coincident",
@@ -3448,15 +3448,15 @@
       "title": "VA-05 House Election Winner",
       "rank": 4,
       "betting": {
-        "prob_dem": 0.2172,
-        "volume": 113505.30844600001,
-        "volume1wk": 2582.9715539999997,
-        "liquidity": 82070.7882,
+        "prob_dem": 0.225,
+        "volume": 114582.82148999999,
+        "volume1wk": 3441.311333,
+        "liquidity": 87260.0485,
         "slug": "va-05-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0,
-        "change_7d": -0.0101
+        "change_1d": 0.0078,
+        "change_7d": -0.0023
       },
       "candidates": {
         "D": "Tom Perriello (D)",
@@ -3481,13 +3481,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -18.465,
+              "z": -18.24,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -18.465
+              "raw_value": -18.24
             },
             {
               "variable": "econ_coincident",
@@ -3681,9 +3681,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.0057,
-        "volume": 105883.85154,
-        "volume1wk": null,
-        "liquidity": 79972.27123,
+        "volume": 105951.85154000002,
+        "volume1wk": 436.91,
+        "liquidity": 71137.67827,
         "slug": "ok-03-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -3713,13 +3713,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -17.568,
+              "z": -22.998,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -17.568
+              "raw_value": -22.998
             },
             {
               "variable": "econ_coincident",
@@ -3912,15 +3912,15 @@
       "title": "WI-02 House Election Winner",
       "rank": 6,
       "betting": {
-        "prob_dem": 0.9895,
-        "volume": 103210.13858799999,
-        "volume1wk": null,
-        "liquidity": 59710.80679,
+        "prob_dem": 0.988,
+        "volume": 103216.138588,
+        "volume1wk": 13.16,
+        "liquidity": 59278.49185,
         "slug": "wi-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.001,
-        "change_7d": -0.006
+        "change_1d": -0.0005,
+        "change_7d": -0.0075
       },
       "candidates": {
         "D": "Mark Pocan (D)",
@@ -3945,13 +3945,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -18.227,
+              "z": -20.512,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -18.227
+              "raw_value": -20.512
             },
             {
               "variable": "econ_coincident",
@@ -4146,8 +4146,8 @@
       "betting": {
         "prob_dem": 0.0325,
         "volume": 100387.348592,
-        "volume1wk": 27.59,
-        "liquidity": 46305.85356,
+        "volume1wk": null,
+        "liquidity": 60927.40914,
         "slug": "wv-02-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4177,13 +4177,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -15.951,
+              "z": -19.103,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -15.951
+              "raw_value": -19.103
             },
             {
               "variable": "econ_coincident",
@@ -4378,8 +4378,8 @@
       "betting": {
         "prob_dem": 0.9944,
         "volume": 93635.08370500001,
-        "volume1wk": 2552.707693,
-        "liquidity": 64972.36106,
+        "volume1wk": null,
+        "liquidity": 69098.29177,
         "slug": "al-07-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -4409,13 +4409,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -15.376,
+              "z": -16.129,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -15.376
+              "raw_value": -16.129
             },
             {
               "variable": "econ_coincident",
@@ -4600,255 +4600,23 @@
       "reference": null
     },
     {
-      "race_id": "ho-oh7",
-      "chamber": "house",
-      "state": "OH",
-      "district": "07",
-      "label": "오하이오 7 선거구",
-      "title": "OH-07 House Election Winner",
-      "rank": 9,
-      "betting": {
-        "prob_dem": 0.81,
-        "volume": 89647.62356399998,
-        "volume1wk": 9334.059325,
-        "liquidity": 90404.8063,
-        "slug": "oh-07-house-election-winner",
-        "unmapped_mass": 0.0,
-        "trustworthy": true,
-        "change_1d": -0.0009,
-        "change_7d": null
-      },
-      "candidates": {
-        "D": "Brian Poindexter (D)",
-        "R": "Max Miller (R)"
-      },
-      "polls": null,
-      "models": [
-        {
-          "key": "economy",
-          "label": "경제 모델",
-          "question": "주 경제가 좋아지고 있나, 나빠지고 있나?",
-          "detail": "주 실업수당 청구·실업률·경기동행지수를 그 주의 과거 수치와 비교해 최근 몇 달의 방향을 낸다. 좋아지면 책임지는 쪽에 유리하게 읽는데, 그 대상이 직위마다 다르다 — 상·하원은 대통령 정당(현재 공화당), 주지사는 그 자리를 쥔 정당이다. 그래서 같은 주라도 상원과 주지사의 부호가 반대로 나온다.",
-          "directional": true,
-          "lean": "R",
-          "level": null,
-          "z": -1.0,
-          "strength": 2,
-          "shift_pp": -5.0,
-          "n_available": 3,
-          "n_total": 3,
-          "variables": [
-            {
-              "variable": "econ_claims",
-              "label": "주 실업수당 청구(주간)",
-              "z": -6.492,
-              "weight": 0.1,
-              "availability": "available",
-              "reason": null,
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": -6.492
-            },
-            {
-              "variable": "econ_coincident",
-              "label": "주 경기동행지수",
-              "z": -3.624,
-              "weight": 0.1,
-              "availability": "available",
-              "reason": null,
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": 3.624
-            },
-            {
-              "variable": "econ_unemployment",
-              "label": "주 실업률",
-              "z": -1.2,
-              "weight": 0.1,
-              "availability": "available",
-              "reason": null,
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": -1.2
-            }
-          ],
-          "unavailable": null,
-          "reason": null
-        },
-        {
-          "key": "money",
-          "label": "정치자금 모델",
-          "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
-          "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
-          "directional": true,
-          "lean": null,
-          "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
-          "n_total": 2,
-          "variables": [
-            {
-              "variable": "fec_in_state_share",
-              "label": "주내 기부 비중(FEC)",
-              "z": null,
-              "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            },
-            {
-              "variable": "fec_small_dollar_count",
-              "label": "소액기부 건수(FEC)",
-              "z": null,
-              "weight": 0.1,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            },
-            {
-              "variable": "fec_unique_donors",
-              "label": "고유 기부자 수(FEC)",
-              "z": null,
-              "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            },
-            {
-              "variable": "fec_repeat_donor_rate",
-              "label": "재기부율(FEC)",
-              "z": null,
-              "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            },
-            {
-              "variable": "fec_burn_rate",
-              "label": "자금 소진율(FEC)",
-              "z": null,
-              "weight": 0.0,
-              "availability": "structural",
-              "reason": "no DEM committee has filed receipts for this seat",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            }
-          ],
-          "unavailable": "structural",
-          "reason": "no DEM committee has filed receipts for this seat"
-        },
-        {
-          "key": "grassroots",
-          "label": "예비선거 모델",
-          "question": "예비선거 투표율 비교/분석",
-          "detail": "각 당의 2026 예비선거 투표수가 그 당의 2022 투표수 대비 몇 %인지 구한 뒤, 두 값을 직접 비교한다. 설문이 아니라 실제로 투표소에 간 사람 수다.",
-          "directional": true,
-          "lean": "D",
-          "level": null,
-          "z": 0.339,
-          "strength": 1,
-          "shift_pp": 1.7,
-          "n_available": 1,
-          "n_total": 1,
-          "variables": [
-            {
-              "variable": "primary_turnout_ratio",
-              "label": "예비선거 투표율 격차",
-              "z": 0.339,
-              "weight": 0.25,
-              "availability": "available",
-              "reason": null,
-              "dem_value": 154.0,
-              "rep_value": 76.0,
-              "raw_value": null
-            },
-            {
-              "variable": "party_reg_net_change",
-              "label": "정당 등록 순변동",
-              "z": null,
-              "weight": 0.0,
-              "availability": "structural",
-              "reason": "OH does not register voters by party (only AK, IA, ME, NC, NE, NH do)",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            }
-          ],
-          "unavailable": null,
-          "reason": null
-        },
-        {
-          "key": "attention",
-          "label": "관심도 모델",
-          "question": "어느 쪽 후보가 더 주목받고 있나?",
-          "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
-          "directional": true,
-          "lean": null,
-          "level": null,
-          "z": null,
-          "strength": 0,
-          "shift_pp": null,
-          "n_available": 0,
-          "n_total": 2,
-          "variables": [
-            {
-              "variable": "wiki_pageviews_share",
-              "label": "위키 조회 집중도",
-              "z": null,
-              "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            },
-            {
-              "variable": "wiki_edit_count",
-              "label": "위키 편집 활동",
-              "z": null,
-              "weight": 0.1,
-              "availability": "missing",
-              "reason": "소스가 아무 값도 반환하지 않았다",
-              "dem_value": null,
-              "rep_value": null,
-              "raw_value": null
-            }
-          ],
-          "unavailable": "missing",
-          "reason": "소스가 아무 값도 반환하지 않았다"
-        }
-      ],
-      "reference": null
-    },
-    {
       "race_id": "ho-tn4",
       "chamber": "house",
       "state": "TN",
       "district": "04",
       "label": "테네시 4 선거구",
       "title": "TN-04 House Election Winner",
-      "rank": 10,
+      "rank": 9,
       "betting": {
-        "prob_dem": 0.0067,
-        "volume": 88570.22183100002,
-        "volume1wk": 218.0,
-        "liquidity": 53740.45283,
+        "prob_dem": 0.0026,
+        "volume": 90291.52744,
+        "volume1wk": 6784.07595,
+        "liquidity": 79148.51019,
         "slug": "tn-04-house-election-winner",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0097,
-        "change_7d": -0.0023
+        "change_1d": -0.0138,
+        "change_7d": -0.0064
       },
       "candidates": {
         "D": "Victoria Broderick (D)",
@@ -4873,13 +4641,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -10.731,
+              "z": -16.823,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -10.731
+              "raw_value": -16.823
             },
             {
               "variable": "econ_coincident",
@@ -5064,6 +4832,238 @@
       "reference": null
     },
     {
+      "race_id": "ho-oh7",
+      "chamber": "house",
+      "state": "OH",
+      "district": "07",
+      "label": "오하이오 7 선거구",
+      "title": "OH-07 House Election Winner",
+      "rank": 10,
+      "betting": {
+        "prob_dem": 0.805,
+        "volume": 90098.000636,
+        "volume1wk": 4632.566828000001,
+        "liquidity": 98453.1649,
+        "slug": "oh-07-house-election-winner",
+        "unmapped_mass": 0.0,
+        "trustworthy": true,
+        "change_1d": -0.0059,
+        "change_7d": null
+      },
+      "candidates": {
+        "D": "Brian Poindexter (D)",
+        "R": "Max Miller (R)"
+      },
+      "polls": null,
+      "models": [
+        {
+          "key": "economy",
+          "label": "경제 모델",
+          "question": "주 경제가 좋아지고 있나, 나빠지고 있나?",
+          "detail": "주 실업수당 청구·실업률·경기동행지수를 그 주의 과거 수치와 비교해 최근 몇 달의 방향을 낸다. 좋아지면 책임지는 쪽에 유리하게 읽는데, 그 대상이 직위마다 다르다 — 상·하원은 대통령 정당(현재 공화당), 주지사는 그 자리를 쥔 정당이다. 그래서 같은 주라도 상원과 주지사의 부호가 반대로 나온다.",
+          "directional": true,
+          "lean": "R",
+          "level": null,
+          "z": -1.0,
+          "strength": 2,
+          "shift_pp": -5.0,
+          "n_available": 3,
+          "n_total": 3,
+          "variables": [
+            {
+              "variable": "econ_claims",
+              "label": "주 실업수당 청구(주간)",
+              "z": -6.516,
+              "weight": 0.1,
+              "availability": "available",
+              "reason": null,
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": -6.516
+            },
+            {
+              "variable": "econ_coincident",
+              "label": "주 경기동행지수",
+              "z": -3.624,
+              "weight": 0.1,
+              "availability": "available",
+              "reason": null,
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": 3.624
+            },
+            {
+              "variable": "econ_unemployment",
+              "label": "주 실업률",
+              "z": -1.2,
+              "weight": 0.1,
+              "availability": "available",
+              "reason": null,
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": -1.2
+            }
+          ],
+          "unavailable": null,
+          "reason": null
+        },
+        {
+          "key": "money",
+          "label": "정치자금 모델",
+          "question": "어느 쪽 후보가 기부를 더 많이 받는가?",
+          "detail": "FEC 신고 내역에서 소액기부 건수·고유 기부자 수·주내 기부 비중 세 가지를 두 후보끼리 직접 비교한다 — (민주 − 공화) / (민주 + 공화). 총액이 아니라 '몇 명을 움직였나'를 보고, 한쪽이 0이면 비교하지 않는다.",
+          "directional": true,
+          "lean": null,
+          "level": null,
+          "z": null,
+          "strength": 0,
+          "shift_pp": null,
+          "n_available": 0,
+          "n_total": 2,
+          "variables": [
+            {
+              "variable": "fec_in_state_share",
+              "label": "주내 기부 비중(FEC)",
+              "z": null,
+              "weight": 0.1,
+              "availability": "structural",
+              "reason": "no DEM committee has filed receipts for this seat",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            },
+            {
+              "variable": "fec_small_dollar_count",
+              "label": "소액기부 건수(FEC)",
+              "z": null,
+              "weight": 0.1,
+              "availability": "structural",
+              "reason": "no DEM committee has filed receipts for this seat",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            },
+            {
+              "variable": "fec_unique_donors",
+              "label": "고유 기부자 수(FEC)",
+              "z": null,
+              "weight": 0.0,
+              "availability": "structural",
+              "reason": "no DEM committee has filed receipts for this seat",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            },
+            {
+              "variable": "fec_repeat_donor_rate",
+              "label": "재기부율(FEC)",
+              "z": null,
+              "weight": 0.0,
+              "availability": "structural",
+              "reason": "no DEM committee has filed receipts for this seat",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            },
+            {
+              "variable": "fec_burn_rate",
+              "label": "자금 소진율(FEC)",
+              "z": null,
+              "weight": 0.0,
+              "availability": "structural",
+              "reason": "no DEM committee has filed receipts for this seat",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            }
+          ],
+          "unavailable": "structural",
+          "reason": "no DEM committee has filed receipts for this seat"
+        },
+        {
+          "key": "grassroots",
+          "label": "예비선거 모델",
+          "question": "예비선거 투표율 비교/분석",
+          "detail": "각 당의 2026 예비선거 투표수가 그 당의 2022 투표수 대비 몇 %인지 구한 뒤, 두 값을 직접 비교한다. 설문이 아니라 실제로 투표소에 간 사람 수다.",
+          "directional": true,
+          "lean": "D",
+          "level": null,
+          "z": 0.339,
+          "strength": 1,
+          "shift_pp": 1.7,
+          "n_available": 1,
+          "n_total": 1,
+          "variables": [
+            {
+              "variable": "primary_turnout_ratio",
+              "label": "예비선거 투표율 격차",
+              "z": 0.339,
+              "weight": 0.25,
+              "availability": "available",
+              "reason": null,
+              "dem_value": 154.0,
+              "rep_value": 76.0,
+              "raw_value": null
+            },
+            {
+              "variable": "party_reg_net_change",
+              "label": "정당 등록 순변동",
+              "z": null,
+              "weight": 0.0,
+              "availability": "structural",
+              "reason": "OH does not register voters by party (only AK, IA, ME, NC, NE, NH do)",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            }
+          ],
+          "unavailable": null,
+          "reason": null
+        },
+        {
+          "key": "attention",
+          "label": "관심도 모델",
+          "question": "어느 쪽 후보가 더 주목받고 있나?",
+          "detail": "두 후보의 위키백과 조회수·편집 횟수를 직접 견준다 — (민주 − 공화) / (민주 + 공화). 후보 이름은 베팅 시장이 싣고 있는 실제 출마자를 쓴다. 주의: 조회수는 유명세이지 지지가 아니다. 스캔들도 조회수를 올린다.",
+          "directional": true,
+          "lean": null,
+          "level": null,
+          "z": null,
+          "strength": 0,
+          "shift_pp": null,
+          "n_available": 0,
+          "n_total": 2,
+          "variables": [
+            {
+              "variable": "wiki_pageviews_share",
+              "label": "위키 조회 집중도",
+              "z": null,
+              "weight": 0.1,
+              "availability": "missing",
+              "reason": "소스가 아무 값도 반환하지 않았다",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            },
+            {
+              "variable": "wiki_edit_count",
+              "label": "위키 편집 활동",
+              "z": null,
+              "weight": 0.1,
+              "availability": "missing",
+              "reason": "소스가 아무 값도 반환하지 않았다",
+              "dem_value": null,
+              "rep_value": null,
+              "raw_value": null
+            }
+          ],
+          "unavailable": "missing",
+          "reason": "소스가 아무 값도 반환하지 않았다"
+        }
+      ],
+      "reference": null
+    },
+    {
       "race_id": "gov-ca",
       "chamber": "governor",
       "state": "CA",
@@ -5072,15 +5072,15 @@
       "title": "California Governor Election Winner",
       "rank": 1,
       "betting": {
-        "prob_dem": 0.9636,
-        "volume": 41734234.89035,
-        "volume1wk": 141722.574574,
-        "liquidity": 6776678.42335,
+        "prob_dem": 0.9608,
+        "volume": 41737788.491948,
+        "volume1wk": 138460.723429,
+        "liquidity": 6794428.63002,
         "slug": "california-governor-election-2026",
         "unmapped_mass": 0.0025,
         "trustworthy": true,
-        "change_1d": 0.0013,
-        "change_7d": 0.0083
+        "change_1d": -0.0015,
+        "change_7d": 0.0055
       },
       "candidates": {
         "D": "Xavier Becerra",
@@ -5110,13 +5110,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -5.947,
+              "z": -7.605,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -5.947
+              "raw_value": -7.605
             },
             {
               "variable": "econ_coincident",
@@ -5309,15 +5309,15 @@
       "title": "Alaska Governor Election Winner",
       "rank": 2,
       "betting": {
-        "prob_dem": 0.7852,
-        "volume": 1411579.4377799998,
-        "volume1wk": 20038.643822,
-        "liquidity": 927136.96635,
+        "prob_dem": 0.7848,
+        "volume": 1411998.7777799997,
+        "volume1wk": 18480.47843,
+        "liquidity": 1025889.95726,
         "slug": "alaska-governor-election-winner",
         "unmapped_mass": 0.0025,
         "trustworthy": true,
-        "change_1d": 0.0008,
-        "change_7d": -0.0006
+        "change_1d": 0.0004,
+        "change_7d": -0.001
       },
       "candidates": {
         "D": "Jonathan Kreiss-Tomkins",
@@ -5347,13 +5347,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -7.449,
+              "z": -10.302,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -7.449
+              "raw_value": -10.302
             },
             {
               "variable": "econ_coincident",
@@ -5547,9 +5547,9 @@
       "rank": 3,
       "betting": {
         "prob_dem": 0.815,
-        "volume": 709405.1106230001,
-        "volume1wk": 10811.90418,
-        "liquidity": 232724.0953,
+        "volume": 709877.605219,
+        "volume1wk": 9064.296871999999,
+        "liquidity": 245143.1993,
         "slug": "wisconsin-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -5584,13 +5584,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 18.227,
+              "z": 20.512,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -18.227
+              "raw_value": -20.512
             },
             {
               "variable": "econ_coincident",
@@ -5748,12 +5748,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.387,
+              "z": 0.382,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.6935826916024935,
-              "rep_value": 0.3064173083975064,
+              "dem_value": 0.6911541497176856,
+              "rep_value": 0.30884585028231437,
               "raw_value": null
             },
             {
@@ -5789,15 +5789,15 @@
       "title": "Texas Governor Election Winner",
       "rank": 4,
       "betting": {
-        "prob_dem": 0.2608,
-        "volume": 485310.20530400024,
-        "volume1wk": 134535.47946999996,
-        "liquidity": 213230.49427,
+        "prob_dem": 0.2529,
+        "volume": 487450.7138740002,
+        "volume1wk": 128166.59070699998,
+        "liquidity": 162288.46024,
         "slug": "texas-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0076,
-        "change_7d": 0.0533
+        "change_1d": -0.0155,
+        "change_7d": 0.0454
       },
       "candidates": {
         "D": "Gina Hinojosa (D)",
@@ -5822,13 +5822,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -45.033,
+              "z": -37.705,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -45.033
+              "raw_value": -37.705
             },
             {
               "variable": "econ_coincident",
@@ -6022,9 +6022,9 @@
       "rank": 5,
       "betting": {
         "prob_dem": 0.545,
-        "volume": 356268.82607600006,
-        "volume1wk": 174586.30246700003,
-        "liquidity": 234586.761,
+        "volume": 356983.88295400003,
+        "volume1wk": 174453.35934500003,
+        "liquidity": 181204.891,
         "slug": "nevada-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6045,22 +6045,22 @@
           "directional": true,
           "lean": "R",
           "level": null,
-          "z": -1.0,
-          "strength": 2,
-          "shift_pp": -5.0,
+          "z": -0.333,
+          "strength": 1,
+          "shift_pp": -1.7,
           "n_available": 3,
           "n_total": 3,
           "variables": [
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -2.137,
+              "z": 2.047,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -2.137
+              "raw_value": 2.047
             },
             {
               "variable": "econ_coincident",
@@ -6218,12 +6218,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.26,
+              "z": -0.214,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.37019298492745456,
-              "rep_value": 0.6298070150725454,
+              "dem_value": 0.3928907721280603,
+              "rep_value": 0.6071092278719398,
               "raw_value": null
             },
             {
@@ -6288,15 +6288,15 @@
       "title": "Ohio Governor Election Winner",
       "rank": 6,
       "betting": {
-        "prob_dem": 0.6782,
-        "volume": 296572.95551099995,
-        "volume1wk": 27373.532459,
-        "liquidity": 263796.4572,
+        "prob_dem": 0.695,
+        "volume": 300226.68952699995,
+        "volume1wk": 28535.394537999997,
+        "liquidity": 228660.7392,
         "slug": "ohio-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": 0.0065,
-        "change_7d": 0.0732
+        "change_1d": 0.0233,
+        "change_7d": 0.09
       },
       "candidates": {
         "D": "Amy Acton (D)",
@@ -6326,13 +6326,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -6.492,
+              "z": -6.516,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -6.492
+              "raw_value": -6.516
             },
             {
               "variable": "econ_coincident",
@@ -6490,12 +6490,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": -0.316,
+              "z": -0.265,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.3420342501297353,
-              "rep_value": 0.6579657498702647,
+              "dem_value": 0.3676842029299271,
+              "rep_value": 0.6323157970700729,
               "raw_value": null
             },
             {
@@ -6561,9 +6561,9 @@
       "rank": 7,
       "betting": {
         "prob_dem": 0.225,
-        "volume": 279203.3586599999,
-        "volume1wk": 41064.407382000005,
-        "liquidity": 248499.7053,
+        "volume": 280612.89909499994,
+        "volume1wk": 28092.341628,
+        "liquidity": 256117.8059,
         "slug": "florida-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -6593,13 +6593,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -9.899,
+              "z": -11.784,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -9.899
+              "raw_value": -11.784
             },
             {
               "variable": "econ_coincident",
@@ -6798,15 +6798,15 @@
       "title": "Michigan Governor Election Winner",
       "rank": 8,
       "betting": {
-        "prob_dem": 0.9362,
-        "volume": 247649.49786799995,
-        "volume1wk": 36353.801943,
-        "liquidity": 174539.84827,
+        "prob_dem": 0.9342,
+        "volume": 247779.067868,
+        "volume1wk": 31603.124400999997,
+        "liquidity": 182928.88454,
         "slug": "michigan-governor-winner-2026",
         "unmapped_mass": 0.0005,
         "trustworthy": true,
-        "change_1d": 0.0008,
-        "change_7d": 0.0212
+        "change_1d": -0.0012,
+        "change_7d": 0.0192
       },
       "candidates": {
         "D": "Jocelyn Benson (D)",
@@ -6836,13 +6836,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 17.068,
+              "z": 15.66,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -17.068
+              "raw_value": -15.66
             },
             {
               "variable": "econ_coincident",
@@ -7042,9 +7042,9 @@
       "rank": 9,
       "betting": {
         "prob_dem": 0.2639,
-        "volume": 217897.8637900001,
-        "volume1wk": 103558.52661100001,
-        "liquidity": 235615.99095,
+        "volume": 218150.36662900005,
+        "volume1wk": 58075.804517000004,
+        "liquidity": 198869.20179,
         "slug": "vermont-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
@@ -7074,13 +7074,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": 16.916,
+              "z": 17.089,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": 16.916
+              "raw_value": 17.089
             },
             {
               "variable": "econ_coincident",
@@ -7273,15 +7273,15 @@
       "title": "Georgia Governor Election Winner",
       "rank": 10,
       "betting": {
-        "prob_dem": 0.4798,
-        "volume": 183698.98866400003,
-        "volume1wk": 39906.071792999996,
-        "liquidity": 163384.4361,
+        "prob_dem": 0.4726,
+        "volume": 184830.51020300004,
+        "volume1wk": 44759.26592,
+        "liquidity": 163020.266,
         "slug": "georgia-governor-winner-2026",
         "unmapped_mass": 0.0,
         "trustworthy": true,
-        "change_1d": -0.0049,
-        "change_7d": -0.04
+        "change_1d": -0.0121,
+        "change_7d": -0.0472
       },
       "candidates": {
         "D": "Keisha Lance Bottoms (D)",
@@ -7311,13 +7311,13 @@
             {
               "variable": "econ_claims",
               "label": "주 실업수당 청구(주간)",
-              "z": -9.464,
+              "z": -15.012,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
               "dem_value": null,
               "rep_value": null,
-              "raw_value": -9.464
+              "raw_value": -15.012
             },
             {
               "variable": "econ_coincident",
@@ -7475,12 +7475,12 @@
             {
               "variable": "wiki_pageviews_share",
               "label": "위키 조회 집중도",
-              "z": 0.985,
+              "z": 0.986,
               "weight": 0.1,
               "availability": "available",
               "reason": null,
-              "dem_value": 0.9925980261403041,
-              "rep_value": 0.007401973859695919,
+              "dem_value": 0.9930104297493584,
+              "rep_value": 0.006989570250641621,
               "raw_value": null
             },
             {
@@ -7510,19 +7510,43 @@
   ],
   "movers": [
     {
-      "race_id": "sen-ks",
-      "label": "캔자스 상원",
+      "race_id": "sen-mi",
+      "label": "미시간 상원",
       "chamber": "senate",
-      "prob_dem": 0.385,
-      "change": 0.03,
+      "prob_dem": 0.675,
+      "change": -0.0428,
       "window": "1d"
     },
     {
       "race_id": "sen-tx",
       "label": "텍사스 상원",
       "chamber": "senate",
-      "prob_dem": 0.635,
-      "change": -0.0266,
+      "prob_dem": 0.625,
+      "change": -0.0366,
+      "window": "1d"
+    },
+    {
+      "race_id": "sen-ia",
+      "label": "아이오와 상원",
+      "chamber": "senate",
+      "prob_dem": 0.4307,
+      "change": -0.0243,
+      "window": "1d"
+    },
+    {
+      "race_id": "sen-ks",
+      "label": "캔자스 상원",
+      "chamber": "senate",
+      "prob_dem": 0.3788,
+      "change": 0.0238,
+      "window": "1d"
+    },
+    {
+      "race_id": "gov-oh",
+      "label": "오하이오 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.695,
+      "change": 0.0233,
       "window": "1d"
     },
     {
@@ -7534,43 +7558,19 @@
       "window": "1d"
     },
     {
-      "race_id": "sen-ia",
-      "label": "아이오와 상원",
-      "chamber": "senate",
-      "prob_dem": 0.445,
-      "change": -0.01,
-      "window": "1d"
-    },
-    {
-      "race_id": "sen-mi",
-      "label": "미시간 상원",
-      "chamber": "senate",
-      "prob_dem": 0.7079,
-      "change": -0.0099,
+      "race_id": "gov-tx",
+      "label": "텍사스 주지사",
+      "chamber": "governor",
+      "prob_dem": 0.2529,
+      "change": -0.0155,
       "window": "1d"
     },
     {
       "race_id": "ho-tn4",
       "label": "테네시 4 선거구",
       "chamber": "house",
-      "prob_dem": 0.0067,
-      "change": -0.0097,
-      "window": "1d"
-    },
-    {
-      "race_id": "gov-fl",
-      "label": "플로리다 주지사",
-      "chamber": "governor",
-      "prob_dem": 0.225,
-      "change": 0.0078,
-      "window": "1d"
-    },
-    {
-      "race_id": "gov-tx",
-      "label": "텍사스 주지사",
-      "chamber": "governor",
-      "prob_dem": 0.2608,
-      "change": -0.0076,
+      "prob_dem": 0.0026,
+      "change": -0.0138,
       "window": "1d"
     }
   ]
